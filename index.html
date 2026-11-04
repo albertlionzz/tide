@@ -1,0 +1,494 @@
+<!-- AI生成 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="潮汐 · A股每日盘面分析 — 行业板块、个股、龙虎榜、游资策略与恐慌指数" />
+  <title>潮汐 · A股每日盘面</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="潮汐首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M2 14c2.5-4 5-6 9-6s6.5 2 9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M2 18c2.5-3.2 5-4.8 9-4.8S17.5 14.8 20 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+          </svg>
+        </span>
+        <span class="brand-name">潮汐</span>
+        <span class="brand-sub">Tide</span>
+      </a>
+      <nav class="main-nav" aria-label="主导航">
+        <a href="#overview">概览</a>
+        <a href="#feed">资讯</a>
+        <a href="#sectors">行业板块</a>
+        <a href="#stock">个股分析</a>
+        <a href="#screen">股票筛选</a>
+        <a href="#pool">涨停池</a>
+        <a href="#dragon">龙虎榜</a>
+        <a href="#hotmoney">游资策略</a>
+        <a href="#fear">恐慌指数</a>
+      </nav>
+      <div class="header-meta">
+        <span class="live-dot" id="liveDot" aria-hidden="true"></span>
+        <span class="live-text" id="liveText">加载中</span>
+        <time id="headerDate">—</time>
+      </div>
+    </div>
+  </header>
+
+  <div class="offline-banner" id="offlineBanner" hidden>
+    未能读取本地行情快照，当前展示的是<b>离线样本</b>，数字不代表真实盘面。
+  </div>
+
+  <main>
+    <!-- ============ HERO / 概览 ============ -->
+    <section class="hero" id="overview">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">A股每日盘面分析</p>
+          <h1 class="hero-title">看清潮水的方向。</h1>
+          <p class="hero-desc">
+            行业轮动、涨停梯队、龙虎席位与游资动向，浓缩为一屏可读的信号。
+            全部数据取自当日收盘快照，恐慌指数由五项盘面读数合成。
+          </p>
+          <div class="hero-cta">
+            <a class="btn-primary" href="#fear">查看恐慌指数</a>
+            <a class="btn-ghost" href="#sectors">浏览行业</a>
+          </div>
+        </div>
+
+        <div class="fear-card" aria-labelledby="fearTitle">
+          <div class="fear-card-head">
+            <h2 id="fearTitle">股票恐慌指数</h2>
+            <span class="badge badge-warn" id="fearBadge">—</span>
+          </div>
+          <div class="gauge-wrap">
+            <svg class="gauge" viewBox="0 0 240 240" role="img" aria-label="恐慌指数仪表">
+              <circle class="gauge-track" cx="120" cy="120" r="92" />
+              <circle class="gauge-progress" id="gaugeArc" cx="120" cy="120" r="92" />
+            </svg>
+            <div class="gauge-center">
+              <div class="gauge-value" id="fearValue">—</div>
+              <div class="gauge-label">Fear Index</div>
+            </div>
+          </div>
+          <p class="fear-caption" id="fearCaption">正在读取盘面数据…</p>
+          <div class="fear-scale" aria-hidden="true">
+            <span>冷静</span><span>平稳</span><span>紧张</span><span>偏高</span><span>恐慌</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="stat-row" id="marketStats"></div>
+      </div>
+    </section>
+
+    <!-- ============ 资讯 · 快讯 + 股民跟踪 ============ -->
+    <section class="section" id="feed">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">News &amp; Community</p>
+            <h2 class="section-title">资讯 · 股民跟踪</h2>
+            <p class="section-desc">
+              左路是<b>财联社电报</b>——消息面驱动的短线快讯，抢的是时效；右路是<b>雪球</b>——股民对个股的长期跟踪与深度论证，看的是逻辑。两条信息流互补：快讯告诉你「发生了什么」，长帖告诉你「有人在怎么想」。
+            </p>
+          </div>
+          <div class="segmented" id="feedSourceFilter" role="tablist" aria-label="按信源筛选">
+            <button class="seg-btn is-active" data-src="all" role="tab" aria-selected="true">全部</button>
+            <button class="seg-btn" data-src="cls" role="tab" aria-selected="false">财联社</button>
+            <button class="seg-btn" data-src="xueqiu" role="tab" aria-selected="false">雪球</button>
+          </div>
+        </header>
+
+        <div class="feed-layout">
+          <!-- 左：快讯流 -->
+          <div class="feed-col">
+            <div class="panel feed-panel">
+              <div class="feed-panel-head">
+                <h3 class="feed-panel-title">财联社电报</h3>
+                <span class="feed-panel-sub">快讯 · 消息面 · <span id="feedClsCount">0</span> 条</span>
+              </div>
+              <div class="feed-list" id="feedClsList"></div>
+            </div>
+          </div>
+
+          <!-- 右：股民跟踪 -->
+          <div class="feed-col">
+            <div class="panel feed-panel">
+              <div class="feed-panel-head">
+                <h3 class="feed-panel-title">雪球 · 股民研究</h3>
+                <span class="feed-panel-sub">深度跟踪 · <span id="feedXqCount">0</span> 条</span>
+              </div>
+              <div class="feed-list" id="feedXqList"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 被讨论个股聚合 -->
+        <div class="panel buzz-panel">
+          <div class="feed-panel-head">
+            <h3 class="feed-panel-title">被股民反复提及的个股</h3>
+            <span class="feed-panel-sub">从雪球帖子的 <code>$名称(代码)$</code> 标签聚合 · 讨论度即关注度</span>
+          </div>
+          <div class="buzz-grid" id="buzzGrid"></div>
+        </div>
+
+        <!-- 财联社话题热度 -->
+        <div class="panel topics-panel">
+          <div class="feed-panel-head">
+            <h3 class="feed-panel-title">当日话题标签</h3>
+            <span class="feed-panel-sub">财联社快讯标签频次 · 越靠前当日越热</span>
+          </div>
+          <div class="topic-cloud" id="topicCloud"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 行业板块 ============ -->
+    <section class="section" id="sectors">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Daily Sectors</p>
+            <h2 class="section-title">行业板块分析</h2>
+            <p class="section-desc">按申万一级行业涨跌幅排序，识别今日资金主攻方向。</p>
+          </div>
+          <div class="segmented" role="tablist" aria-label="板块排序">
+            <button class="seg-btn is-active" data-sort="change" role="tab" aria-selected="true">涨跌幅</button>
+            <button class="seg-btn" data-sort="flow" role="tab" aria-selected="false">主力净流入</button>
+            <button class="seg-btn" data-sort="volume" role="tab" aria-selected="false">成交额</button>
+          </div>
+        </header>
+
+        <div class="panel sector-panel">
+          <div class="sector-list" id="sectorList" role="list"></div>
+          <aside class="sector-detail">
+            <p class="panel-kicker">板块详情</p>
+            <h3 class="sector-detail-title" id="sectorDetailTitle">—</h3>
+            <p class="sector-detail-desc" id="sectorDetailDesc">正在读取板块数据…</p>
+            <ul class="leader-list" id="sectorLeaders"></ul>
+            <div class="mini-metrics">
+              <div>
+                <p class="mini-label">板块涨幅</p>
+                <p class="mini-value" id="sectorChange">—</p>
+              </div>
+              <div>
+                <p class="mini-label">板块换手</p>
+                <p class="mini-value" id="sectorFlow">—</p>
+              </div>
+              <div>
+                <p class="mini-label">板块内涨停</p>
+                <p class="mini-value" id="sectorBreadth">—</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 个股分析 ============ -->
+    <section class="section" id="stock">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Single Stock</p>
+            <h2 class="section-title">个股分析</h2>
+            <p class="section-desc">焦点个股近 60 个交易日的真实收盘序列、量价与阶段涨跌。</p>
+          </div>
+          <div class="stock-picker" id="stockPicker" role="tablist" aria-label="选择个股"></div>
+        </header>
+
+        <div class="panel stock-panel">
+          <div class="stock-hero">
+            <div class="stock-identity">
+              <h3 class="stock-name" id="stockName">—</h3>
+              <p class="stock-code" id="stockCode">—</p>
+            </div>
+            <div class="stock-quote">
+              <p class="stock-price" id="stockPrice">—</p>
+              <p class="stock-delta flat" id="stockDelta">—</p>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <div class="chart-toolbar">
+              <span class="chart-label">近 60 日走势</span>
+              <div class="chart-legend">
+                <span><i class="swatch up"></i>收盘价</span>
+                <span><i class="swatch accent"></i>MA20</span>
+                <span class="chart-range" id="chartRange">—</span>
+              </div>
+            </div>
+            <svg class="stock-chart" id="stockChart" viewBox="0 0 960 280" preserveAspectRatio="none" role="img" aria-label="股价走势图"></svg>
+            <div class="chart-axis">
+              <span>60日前</span><span>40日前</span><span>20日前</span><span>今日</span>
+            </div>
+          </div>
+
+          <div class="metric-grid" id="stockMetrics"></div>
+
+          <div class="stock-note">
+            <p class="panel-kicker">盘面解读</p>
+            <p class="stock-note-text" id="stockNote">正在读取行情数据…</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 股票筛选 ============ -->
+    <section class="section" id="screen">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Stock Screener</p>
+            <h2 class="section-title">股票筛选</h2>
+            <p class="section-desc">科技赛道中期观察池：市值 50–300 亿 · 日均换手 &gt;2.5%，叠加景气与加分项。研究底稿，非当日选股结果。</p>
+          </div>
+          <div class="segmented" id="screenTierFilter" role="tablist" aria-label="按关注等级筛选">
+            <button class="seg-btn is-active" data-tier="all" role="tab" aria-selected="true">全部</button>
+            <button class="seg-btn" data-tier="★★★" role="tab" aria-selected="false">★★★ 优先</button>
+            <button class="seg-btn" data-tier="★★" role="tab" aria-selected="false">★★ 跟踪</button>
+            <button class="seg-btn" data-tier="★" role="tab" aria-selected="false">★ 观察</button>
+          </div>
+        </header>
+
+        <div class="panel rules-panel">
+          <div class="rules-grid">
+            <div>
+              <p class="panel-kicker">硬条件</p>
+              <ul class="rule-list">
+                <li><span class="rule-tag">H1</span>总市值 50–300 亿元（±10% 弹性）</li>
+                <li><span class="rule-tag">H2</span>近 5 日日均换手率 &gt; 2.5%</li>
+                <li><span class="rule-tag">H3</span>半导体 / 散热 / 设备 / 光模块 / 纤维布 / PCB / 光纤 / 创新医药</li>
+                <li><span class="rule-tag">H4</span>剔除科创板 688 与 9 开头；优先 60 / 00 / 30</li>
+                <li><span class="rule-tag">H5</span>行业景气稳中向上</li>
+                <li><span class="rule-tag">H6</span>无重大不利新闻</li>
+              </ul>
+            </div>
+            <div>
+              <p class="panel-kicker">加分项</p>
+              <ul class="rule-list">
+                <li><span class="rule-tag plus">A1 +1</span>创始人仍在管理团队</li>
+                <li><span class="rule-tag plus">A2 +1</span>科技研发投入持续增长</li>
+                <li><span class="rule-tag plus">A3 +1</span>业务稳中向上或止跌向好</li>
+                <li><span class="rule-tag plus">A4 +2</span>游资大佬或近期热点涉及</li>
+                <li><span class="rule-tag plus">A5 +2</span>股价上升且一周涨幅 &gt; 12%</li>
+              </ul>
+              <p class="rule-note">分档：★★★ ≥4 分 · ★★ 2–3 分 · ★ 0–1 分。A4/A5 建议每周复评。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="screen-toolbar">
+          <div class="chip-row" id="screenTrackFilter" role="listbox" aria-label="按赛道筛选"></div>
+          <p class="screen-count"><span id="screenCount">0</span> 只候选 · 研究底稿截面 2026-09-29</p>
+        </div>
+
+        <div class="panel table-panel">
+          <div class="table-scroll">
+            <table class="data-table screen-table" id="screenTable">
+              <thead>
+                <tr>
+                  <th>等级</th>
+                  <th>代码</th>
+                  <th>名称</th>
+                  <th>赛道</th>
+                  <th>市值(亿)</th>
+                  <th>换手%</th>
+                  <th>5日涨幅</th>
+                  <th>加分</th>
+                  <th>核心逻辑</th>
+                  <th>风险提示</th>
+                </tr>
+              </thead>
+              <tbody id="screenBody"></tbody>
+            </table>
+          </div>
+          <p class="table-foot">研究筛选底稿 · 行情截面需当日复核 · 不构成投资建议</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 涨停 / 跌停池 ============ -->
+    <section class="section" id="pool">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Limit Pool</p>
+            <h2 class="section-title">涨停 · 跌停池</h2>
+            <p class="section-desc">当日封板与跌停个股，含连板高度、封单金额、开板次数与题材归因。</p>
+          </div>
+          <div class="segmented" id="poolFilter" role="tablist" aria-label="池切换">
+            <button class="seg-btn is-active" data-pool="up" role="tab" aria-selected="true">涨停池</button>
+            <button class="seg-btn" data-pool="down" role="tab" aria-selected="false">跌停池</button>
+          </div>
+        </header>
+
+        <div class="panel table-panel">
+          <div class="table-scroll">
+            <table class="data-table pool-table" id="poolTable">
+              <thead>
+                <tr>
+                  <th>股票</th>
+                  <th>涨跌幅</th>
+                  <th>连板</th>
+                  <th>封单</th>
+                  <th>开板</th>
+                  <th>题材</th>
+                  <th>催化 / 说明</th>
+                </tr>
+              </thead>
+              <tbody id="poolBody"></tbody>
+            </table>
+          </div>
+          <p class="table-foot">数据来源：通达信（tdx-connector）· 涨停池为当日封板样本 · 仅作研究参考，不构成投资建议</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 龙虎榜 ============ -->
+    <section class="section" id="dragon">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Dragon &amp; Tiger</p>
+            <h2 class="section-title">龙虎榜</h2>
+            <p class="section-desc">当日上榜席位活跃度：按买卖金额排序，标注北向 / 机构 / 营业部属性。</p>
+          </div>
+          <div class="segmented" id="dragonFilter" role="tablist" aria-label="龙虎榜筛选">
+            <button class="seg-btn is-active" data-filter="all" role="tab" aria-selected="true">全部</button>
+            <button class="seg-btn" data-filter="机构" role="tab" aria-selected="false">机构专用</button>
+            <button class="seg-btn" data-filter="北向" role="tab" aria-selected="false">北向</button>
+          </div>
+        </header>
+
+        <div class="panel table-panel">
+          <div class="table-scroll">
+            <table class="data-table" id="dragonTable">
+              <thead>
+                <tr>
+                  <th>席位</th>
+                  <th>买入</th>
+                  <th>卖出</th>
+                  <th>净买入</th>
+                  <th>成交额</th>
+                  <th>风格信号</th>
+                </tr>
+              </thead>
+              <tbody id="dragonBody"></tbody>
+            </table>
+          </div>
+          <p class="table-foot">数据来源：沪深交易所公开龙虎榜 · 仅作研究参考，不构成投资建议</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 游资策略 ============ -->
+    <section class="section" id="hotmoney">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Hot Money Research</p>
+            <h2 class="section-title">游资大佬交易策略</h2>
+            <p class="section-desc">基于 25+ 公开源的研究梳理：知名席位近 12 个月活跃度、打法变化，以及二板战法的阶段适配门。</p>
+          </div>
+        </header>
+
+        <div class="hot-grid" id="hotGrid"></div>
+
+        <div class="panel stage-gate-panel">
+          <div id="stageGate"></div>
+        </div>
+
+        <div class="panel strategy-panel">
+          <div class="strategy-head">
+            <p class="panel-kicker">研究结论</p>
+            <h3>二板战法的四条纪律</h3>
+          </div>
+          <ol class="principle-list">
+            <li>
+              <strong>阶段优先于选股。</strong>
+              「二板定龙」只在修复期→发酵期有效；退潮/冰点期最优动作是空仓（0–1 成）。
+              战法的胜负不在战法本身，而在阶段匹配。
+            </li>
+            <li>
+              <strong>「二板长三板」才是扩散。</strong>
+              2 板里长出 3 板 = 扩散，出现完整 2-3-4 梯队 = 确认；在此之前打二板只是猜测。
+              口诀：看涨停家数，不如看涨停结构。
+            </li>
+            <li>
+              <strong>换手板优于一字板。</strong>
+              一字板买不进、抛压后置，连板期换手可能低至 2%。时间窗共识落在 9:35–10:00，
+              9:35 前换手不够，即使上板也易炸。
+            </li>
+            <li>
+              <strong>仓位写进情绪表，不写进感觉。</strong>
+              单笔最大亏损 ≤ 账户 2%，用止损距离反推股数；单票 ≤ 20%，持仓 ≤ 2 只。
+              连续 2 笔亏损或单日回撤 &gt;2% → 至少空仓 1 个交易日。
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 恐慌指数 ============ -->
+    <section class="section" id="fear">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Fear Index</p>
+            <h2 class="section-title">恐慌指数详解</h2>
+            <p class="section-desc">由涨跌家数失衡、跌停扩散度、连板高度、赚钱效应、指数振幅五项加权合成，全部取自当日收盘快照。</p>
+          </div>
+        </header>
+
+        <div class="fear-layout">
+          <div class="panel fear-breakdown">
+            <h3 class="panel-title">今日分项</h3>
+            <div class="breakdown-list" id="fearBreakdown"></div>
+            <p class="panel-kicker raw-kicker">原始读数</p>
+            <div class="fear-raw" id="fearRaw"></div>
+          </div>
+
+          <div class="panel fear-scale-panel">
+            <h3 class="panel-title">五档情绪刻度</h3>
+            <div class="scale-rows">
+              <div class="scale-row"><span class="scale-range">0–20</span><span class="scale-name down">冷静</span><span class="scale-desc">波动收缩，可逢低布局</span></div>
+              <div class="scale-row"><span class="scale-range">21–40</span><span class="scale-name">平稳</span><span class="scale-desc">正常轮动，按计划执行</span></div>
+              <div class="scale-row"><span class="scale-range">41–60</span><span class="scale-name">紧张</span><span class="scale-desc">分歧加大，降低追高</span></div>
+              <div class="scale-row"><span class="scale-range">61–80</span><span class="scale-name up">偏高</span><span class="scale-desc">避险升温，控制仓位</span></div>
+              <div class="scale-row"><span class="scale-range">81–100</span><span class="scale-name up">恐慌</span><span class="scale-desc">极端情绪，逆向观察机会</span></div>
+            </div>
+            <p class="fear-note">
+              权重设置：涨跌家数失衡 30% · 跌停扩散度 22% · 连板高度 18% · 赚钱效应 15% · 指数振幅 15%。
+              五项均统一映射到「越高越恐慌」方向后加权。恐慌指数不是买卖信号，而是仓位与预期管理的仪表盘。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">潮汐</span>
+        <span class="brand-sub">Tide</span>
+      </div>
+      <p class="footer-disclaimer">
+        数据来源 <span id="dataSource">—</span> · 交易日 <span id="dataDate">—</span>。
+        本站不构成任何投资建议，市场有风险，决策需独立。页面仅供学习与研究使用，与任何券商、交易所无隶属关系。
+      </p>
+      <p class="footer-copy">© 2026 潮汐 Tide · Designed with restraint</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
