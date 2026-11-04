@@ -80,20 +80,36 @@ node verify.js                  # ④ 渲染校验（46 条断言）
 纯静态站点，任意 1 核 1G 的机器都够。实测在一台 2 核 2G / 3 Mbps 的轻量云主机上：
 内存占用约 12 MB，首屏 0.07 秒，`tide_data.json` 经 gzip 从 47 KB 压到 8.6 KB。
 
+线上地址：**https://artsi.site**（TLS 1.3 + HTTP/2 + HSTS）
+
 ### 一键部署
 
 ```bash
-# 本地执行：上传 6 个运行文件 + nginx 配置 + 初始化脚本
-bash deploy/deploy.sh root@<服务器IP> 80 -i ~/.ssh/你的私钥
+# 本地执行：上传 7 个运行文件 + 两份 nginx 模板 + 初始化脚本
+bash deploy/deploy.sh root@<服务器IP> "example.com www.example.com" 8080 -i ~/.ssh/你的私钥
 ```
 
 服务端会依次完成：装 nginx → 落配置 → 禁用默认站点 → 放行系统防火墙 → 重启 → 自检。
 
-### 三个必踩的坑
+`setup-server.sh` 会自动判断阶段：证书不存在时落纯 HTTP 配置（`nginx-tide-http.conf`），
+先让你能跑通 certbot；证书已存在时落 HTTPS 配置（`nginx-tide.conf`），80 只做跳转和续期验证。
+所以完整流程是 **跑一次脚本 → 签证书 → 再跑一次**。
+
+### 申请证书
+
+```bash
+certbot certonly --webroot -w /var/www/tide \
+  -d example.com -d www.example.com \
+  --agree-tos -m you@example.com --preferred-challenges http
+```
+
+续期由 certbot 的 systemd timer 自动完成，验证命令 `certbot renew --dry-run`。
+
+### 五个必踩的坑
 
 **① 云端防火墙和系统防火墙是两层。** 脚本只能管系统层（ufw / firewalld）。云厂商控制台的
 安全组通常默认只开 22/80/443，用 8080 这类高位端口必须手动加规则，否则服务器上
-`curl 127.0.0.1:8080` 返回 200、公网就是连不上。
+`curl 127.0.0.1:8080` 返回 200、公网就是连不上。**443 同样可能没开**，上 HTTPS 前先确认。
 
 **② Ubuntu 的默认站点会抢占 80 端口。** `/etc/nginx/sites-enabled/default` 也监听 80，
 请求会被它接走并返回 404（它的 root 指向 `/var/www/html`）。必须移走该软链，脚本已处理。
@@ -101,10 +117,25 @@ bash deploy/deploy.sh root@<服务器IP> 80 -i ~/.ssh/你的私钥
 **③ ufw 规则不要只在 active 时添加。** apt 安装过程可能重置 ufw，导致脚本报告"已放行"
 但 `ufw status` 里只剩 22/tcp。正确做法是不判断 active 直接 `ufw allow`，规则会持久化。
 
+**④ `location ~ /\. { deny all; }` 会连 ACME 验证路径一起拒掉。** 这条安全规则拦所有
+以点开头的路径，Let's Encrypt 的 `/.well-known/acme-challenge/` 正好在范围内，表现为
+证书签发失败、错误信息却是"验证文件 404"。必须用 `location ^~ /.well-known/acme-challenge/`
+**前缀匹配短路**正则，`^~` 的优先级高于 `~`。
+
+**⑤ nginx reload 后旧 worker 仍在处理请求。** 改完配置立刻用 curl 验证，可能拿到旧的
+404/403，看起来像配置没生效。等 1–2 秒或 `systemctl restart nginx` 再测。
+
+### 一个容易忽略的 add_header 陷阱
+
+nginx 的继承规则是：**location 里只要出现任意 `add_header`，server 层的 `add_header` 全部失效**。
+本项目每个 location 都带了 `Cache-Control`，如果安全头只写在 server 层，那所有页面都拿不到
+HSTS / X-Frame-Options。所以安全头抽成 `/etc/nginx/snippets/tide-headers.conf` 逐 location include。
+
 ### 关于备案
 
 国内节点用 80 端口**直接以 IP 访问**通常不受影响；一旦绑定域名对外提供 web 服务，
-域名必须已完成 ICP 备案，否则会被拦截。只想自己看的话，用高位端口 + 控制台放行即可。
+域名必须已完成 ICP 备案，否则会被拦截。备案、域名归属、DNS 解析是三件独立的事 ——
+备案下来了但 A 记录没配，浏览器照样打不开。
 
 ## 资讯抓取：两家都重度反爬
 
