@@ -31,3 +31,7 @@ venv/
 # ---- 本地服务/日志 ----
 *.log
 no_serve
+
+# 部署打包产物
+_pkg/
+deploy/*.tar.gz
