@@ -1,876 +1,1014 @@
 {
   "meta": {
-    "tradeDate": "2026-11-04",
-    "capturedAt": "2026-11-04T15:30:00+08:00",
-    "source": "tdx-connector (通达信)",
+    "tradeDate": "2026-11-06",
+    "capturedAt": "2026-11-08T10:26:59+08:00",
+    "source": "通达信(指数/涨跌停) + 东方财富(板块/龙虎榜/K线)",
     "generatedBy": "derive.py"
   },
   "fear": {
-    "value": 40,
-    "label": "平稳",
-    "caption": "正常轮动，按计划执行",
+    "value": 79,
+    "label": "偏高",
+    "caption": "避险升温，控制仓位",
     "parts": [
       {
         "name": "涨跌家数失衡",
-        "value": 0,
+        "value": 100,
         "weight": 0.3
       },
       {
         "name": "跌停扩散度",
-        "value": 31,
+        "value": 100,
         "weight": 0.22
       },
       {
         "name": "连板高度",
-        "value": 75,
+        "value": 50,
         "weight": 0.18
       },
       {
         "name": "赚钱效应",
-        "value": 35,
+        "value": 73,
         "weight": 0.15
       },
       {
         "name": "指数振幅",
-        "value": 100,
+        "value": 48,
         "weight": 0.15
       }
     ]
   },
   "breadth": {
-    "advancers": 4396,
-    "decliners": 771,
-    "unchanged": 128,
+    "advancers": 725,
+    "decliners": 4483,
+    "unchanged": 87,
     "total": 5295,
-    "advRatio": 83.02
+    "advRatio": 13.69
   },
   "limit": {
-    "upTotal": 121,
-    "downTotal": 10,
+    "upTotal": 33,
+    "downTotal": 15,
     "upShown": 20,
-    "downShown": 10,
-    "maxBoards": 3,
-    "highBoardCount": 7,
-    "sealedRatio": 20.0,
-    "avgSealYi": 2.22,
-    "openTimesShown": 30
+    "downShown": 15,
+    "maxBoards": 5,
+    "highBoardCount": 8,
+    "sealedRatio": 5.0,
+    "avgSealYi": 1.02,
+    "openTimesShown": 29
   },
-  "amplitude": 5.07,
+  "amplitude": 2.09,
   "indices": [
     {
       "name": "上证指数",
       "code": "000001",
-      "price": 3686.17,
-      "change": 78.07,
-      "pct": 2.16,
-      "amount": 953265160000
+      "price": 3649.18,
+      "change": -40.73,
+      "pct": -1.1,
+      "amount": 772634575000
     },
     {
       "name": "深证成指",
       "code": "399001",
-      "price": 11335.69,
-      "change": 458.7,
-      "pct": 4.22,
-      "amount": 1084429040000
+      "price": 11175.78,
+      "change": -295.31,
+      "pct": -2.57,
+      "amount": 885159887000
     },
     {
       "name": "创业板指",
       "code": "399006",
-      "price": 2544.73,
-      "change": 153.08,
-      "pct": 6.4,
-      "amount": 549329535000
+      "price": 2465.23,
+      "change": -101.57,
+      "pct": -3.96,
+      "amount": 444017082000
     }
   ],
-  "turnoverYi": 20376.94,
+  "turnoverYi": 16577.94,
   "boards": [
     {
-      "code": "881319",
-      "name": "半导体",
-      "pct": 11.4,
-      "turnover": 4.78,
-      "advancers": 185,
+      "code": "BK1296",
+      "name": "视频媒体",
+      "pct": 6.25,
+      "turnover": 13.68,
+      "advancers": 1,
+      "decliners": 0,
+      "pe": 153.49
+    },
+    {
+      "code": "BK1518",
+      "name": "种子",
+      "pct": 4.64,
+      "turnover": 10.38,
+      "advancers": 10,
+      "decliners": 0,
+      "pe": 116.74
+    },
+    {
+      "code": "BK1452",
+      "name": "卫浴电器",
+      "pct": 3.46,
+      "turnover": 3.83,
+      "advancers": 2,
+      "decliners": 1,
+      "pe": 68.02
+    },
+    {
+      "code": "BK1510",
+      "name": "其他养殖",
+      "pct": 3.18,
+      "turnover": 2.74,
+      "advancers": 1,
       "decliners": 2,
-      "pe": 39.5344
+      "pe": -168.55
     },
     {
-      "code": "881479",
-      "name": "电子化学品",
-      "pct": 10.68,
-      "turnover": 5.39
+      "code": "BK1587",
+      "name": "电信运营商",
+      "pct": 2.87,
+      "turnover": 0.31,
+      "advancers": 3,
+      "decliners": 0,
+      "pe": 18.55
     },
     {
-      "code": "881075",
-      "name": "贵金属",
-      "pct": 9.94,
-      "turnover": 4.49
+      "code": "BK1261",
+      "name": "种植业",
+      "pct": 2.72,
+      "turnover": 6.61,
+      "advancers": 16,
+      "decliners": 5,
+      "pe": 142.15
     },
     {
-      "code": "881333",
-      "name": "元器件",
-      "pct": 9.19,
-      "turnover": 7.17
+      "code": "BK1347",
+      "name": "纺织鞋类制造",
+      "pct": 2.69,
+      "turnover": 0.45,
+      "advancers": 1,
+      "decliners": 0,
+      "pe": 20.16
     },
     {
-      "code": "881338",
+      "code": "BK1499",
+      "name": "医美服务",
+      "pct": 2.64,
+      "turnover": 1.84,
+      "advancers": 2,
+      "decliners": 0,
+      "pe": -40.26
+    },
+    {
+      "code": "BK1556",
+      "name": "教育运营及其他",
+      "pct": 2.15,
+      "turnover": 6.56,
+      "advancers": 2,
+      "decliners": 0,
+      "pe": -111.42
+    },
+    {
+      "code": "BK1378",
+      "name": "其他能源发电",
+      "pct": 1.96,
+      "turnover": 1.89,
+      "advancers": 1,
+      "decliners": 0,
+      "pe": 31.24
+    },
+    {
+      "code": "BK1516",
+      "name": "其他种植业",
+      "pct": 1.65,
+      "turnover": 5.69,
+      "advancers": 3,
+      "decliners": 2,
+      "pe": 482.72
+    },
+    {
+      "code": "BK1315",
+      "name": "光伏电池组件",
+      "pct": 1.46,
+      "turnover": 5.88,
+      "advancers": 10,
+      "decliners": 12,
+      "pe": -10.49
+    },
+    {
+      "code": "BK1380",
+      "name": "水力发电",
+      "pct": 1.46,
+      "turnover": 0.79,
+      "advancers": 9,
+      "decliners": 2,
+      "pe": 22.07
+    },
+    {
+      "code": "BK1483",
+      "name": "高速公路",
+      "pct": 1.2,
+      "turnover": 1.3,
+      "advancers": 15,
+      "decliners": 3,
+      "pe": 15.84
+    },
+    {
+      "code": "BK1506",
+      "name": "农业综合Ⅲ",
+      "pct": 1.17,
+      "turnover": 2.19,
+      "advancers": 2,
+      "decliners": 0,
+      "pe": 65.64
+    },
+    {
+      "code": "BK1257",
+      "name": "农业综合Ⅱ",
+      "pct": 1.17,
+      "turnover": 2.19,
+      "advancers": 2,
+      "decliners": 0,
+      "pe": 65.64
+    },
+    {
+      "code": "BK1612",
+      "name": "农商行Ⅲ",
+      "pct": 1.16,
+      "turnover": 1.19,
+      "advancers": 9,
+      "decliners": 0,
+      "pe": 6.12
+    },
+    {
+      "code": "BK0448",
       "name": "通信设备",
-      "pct": 8.7,
-      "turnover": 4.5
+      "pct": -3.84,
+      "turnover": 3.22,
+      "advancers": 7,
+      "decliners": 87,
+      "pe": 31.57
     },
     {
-      "code": "881094",
-      "name": "玻璃玻纤",
-      "pct": 8.05,
-      "turnover": 5.31
+      "code": "BK1615",
+      "name": "铜",
+      "pct": -3.91,
+      "turnover": 1.54,
+      "advancers": 0,
+      "decliners": 17,
+      "pe": 10.76
     },
     {
-      "code": "881247",
-      "name": "医疗服务",
-      "pct": 7.53,
-      "turnover": 4.1
+      "code": "BK1625",
+      "name": "钨",
+      "pct": -4.08,
+      "turnover": 2.91,
+      "advancers": 0,
+      "decliners": 4,
+      "pe": 20.56
     },
     {
-      "code": "881313",
-      "name": "自动化设备",
-      "pct": 7.42,
-      "turnover": 4.08
+      "code": "BK1331",
+      "name": "数字芯片设计",
+      "pct": -4.32,
+      "turnover": 3.74,
+      "advancers": 2,
+      "decliners": 54,
+      "pe": 27.11
     },
     {
-      "code": "881104",
-      "name": "非金属材料",
-      "pct": 7.31,
-      "turnover": 2.98
+      "code": "BK1591",
+      "name": "通信网络设备及器件",
+      "pct": -4.51,
+      "turnover": 2.9,
+      "advancers": 1,
+      "decliners": 37,
+      "pe": 30.75
     },
     {
-      "code": "881326",
-      "name": "消费电子",
-      "pct": 7.2,
-      "turnover": 2.4
+      "code": "BK1462",
+      "name": "玻纤制造",
+      "pct": -4.65,
+      "turnover": 4.04,
+      "advancers": 0,
+      "decliners": 8,
+      "pe": 30.46
     },
     {
-      "code": "881336",
-      "name": "其他电子",
-      "pct": 6.37,
-      "turnover": 4.5
+      "code": "BK1600",
+      "name": "医疗研发外包",
+      "pct": -4.67,
+      "turnover": 4.27,
+      "advancers": 0,
+      "decliners": 29,
+      "pe": 27.41
     },
     {
-      "code": "881044",
-      "name": "塑料",
-      "pct": 5.48,
-      "turnover": 3.46
+      "code": "BK1592",
+      "name": "通信线缆及配套",
+      "pct": -4.78,
+      "turnover": 4.59,
+      "advancers": 0,
+      "decliners": 14,
+      "pe": 26.43
     },
     {
-      "code": "881303",
-      "name": "专用设备",
-      "pct": 5.4,
-      "turnover": 2.73
+      "code": "BK0459",
+      "name": "元件",
+      "pct": -5.13,
+      "turnover": 5.09,
+      "advancers": 2,
+      "decliners": 65,
+      "pe": 30.74
     },
     {
-      "code": "881285",
-      "name": "其他发电设备",
-      "pct": 5.4,
-      "turnover": 1.6
-    },
-    {
-      "code": "881294",
-      "name": "通用设备",
-      "pct": 5.19,
-      "turnover": 4.5
-    },
-    {
-      "code": "881329",
-      "name": "光学光电",
-      "pct": 5.1,
-      "turnover": 3.22
-    },
-    {
-      "code": "881071",
-      "name": "工业金属",
-      "pct": 5.05,
-      "turnover": 2.14
-    },
-    {
-      "code": "881091",
-      "name": "水泥",
-      "pct": 0.37,
-      "turnover": 1.1
-    },
-    {
-      "code": "881467",
-      "name": "燃气",
-      "pct": 0.35,
-      "turnover": 1.34
-    },
-    {
-      "code": "881212",
-      "name": "乘用车",
-      "pct": 0.33,
-      "turnover": 0.67
-    },
-    {
-      "code": "881422",
-      "name": "房产服务",
-      "pct": 0.32,
-      "turnover": 4.42
-    },
-    {
-      "code": "881452",
-      "name": "物流",
-      "pct": 0.27,
-      "turnover": 1.1
-    },
-    {
-      "code": "881151",
-      "name": "纺织制造",
-      "pct": 0.26,
-      "turnover": 2.56
-    },
-    {
-      "code": "881429",
-      "name": "酒店餐饮",
-      "pct": 0.25,
-      "turnover": 2.41
-    },
-    {
-      "code": "881065",
-      "name": "普钢",
-      "pct": 0.24,
-      "turnover": 0.88
-    },
-    {
-      "code": "881256",
-      "name": "中药",
-      "pct": 0.14,
-      "turnover": 2.04
-    },
-    {
-      "code": "881204",
-      "name": "商业物业经营",
-      "pct": 0.14,
-      "turnover": 1.21
+      "code": "BK1340",
+      "name": "印制电路板",
+      "pct": -5.86,
+      "turnover": 5.37,
+      "advancers": 1,
+      "decliners": 47,
+      "pe": 30.26
     }
   ],
   "boardStats": {
-    "up": 27,
-    "down": 0,
-    "spread": 11.26
+    "up": 17,
+    "down": 10,
+    "spread": 12.11
   },
   "limitUpPool": [
     {
-      "code": "000096",
+      "code": "002578",
       "setcode": "0",
-      "name": "广聚能源",
-      "price": 8.46,
-      "pct": 10.01,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "一字板",
-      "sealAmount": 423659900,
+      "name": "闽发铝业",
+      "price": 5.01,
+      "pct": 10.11,
+      "boards": 5,
+      "pattern": "5天5板",
+      "boardType": "T字板",
+      "sealAmount": 220341800,
       "firstSealTime": "09:25:00",
-      "openTimes": 0,
-      "reason": "风电.国企改革.石油化工.粤港澳.陆股通重仓",
-      "detail": "深圳成品油主要经销商之一，广东省内拥有12座加油站；前三季度营收12.11亿元同比+17.00%，归母净利8518万元同比+177.71%；实控人为深圳南山区国资局"
-    },
-    {
-      "code": "002827",
-      "setcode": "0",
-      "name": "高争民爆",
-      "price": 68.95,
-      "pct": 10.0,
-      "boards": 3,
-      "pattern": "3天3板",
-      "boardType": "一字板",
-      "sealAmount": 419933100,
-      "firstSealTime": "09:25:00",
-      "openTimes": 0,
-      "reason": "近期复牌.芯片.国企改革.化学制品",
-      "detail": "西藏民爆行业龙头；公司拟购买紫源铜业51%股权和晟源矿业100%股权"
-    },
-    {
-      "code": "002428",
-      "setcode": "0",
-      "name": "云南锗业",
-      "price": 75.38,
-      "pct": 10.0,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "换手板",
-      "sealAmount": 408936500,
-      "firstSealTime": "09:32:33",
-      "openTimes": 3,
-      "reason": "周期股.芯片.华为概念.稀有金属",
-      "detail": "磷化铟衬底龙头，产能15万片/年；子公司与AOI签长期供货协议，2027-2031年每年采购18万片4英寸N型磷化铟衬底，对应金额约13.05亿元，占2025年营收122.46%"
-    },
-    {
-      "code": "002156",
-      "setcode": "0",
-      "name": "通富微电",
-      "price": 42.33,
-      "pct": 10.01,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "",
-      "sealAmount": 380000700,
-      "firstSealTime": "13:47:21",
-      "openTimes": 0,
-      "reason": "CPO概念.非周期股",
-      "detail": "隔夜美股芯片股走高；国内第二、全球第四封测巨头，为AMD等国际巨头及华为海思、寒武纪提供封测服务"
-    },
-    {
-      "code": "002371",
-      "setcode": "0",
-      "name": "北方华创",
-      "price": 535.5,
-      "pct": 10.0,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "",
-      "sealAmount": 356321700,
-      "firstSealTime": "13:47:03",
-      "openTimes": 0,
-      "reason": "非周期股.芯片.国企改革.半导体",
-      "detail": "国产半导体设备龙头；存储芯片设备覆盖DRAM/NAND，HBM领域可提供TSV刻蚀、电镀等核心设备；10-30公告收购诺合键维100%股权完成工商变更（对价4.05亿元），补齐混合键合布局"
-    },
-    {
-      "code": "603259",
-      "setcode": "1",
-      "name": "药明康德",
-      "price": 148.81,
-      "pct": 10.0,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "换手板",
-      "sealAmount": 322768900,
-      "firstSealTime": "14:05:17",
-      "openTimes": 5,
-      "reason": "非周期股.专项贷款.医疗服务.人民币贬值受益",
-      "detail": "持续经营业务在手订单767.4亿元，较二季度末增加约103亿元；全年收入指引由585-605亿元上调至610-619亿元；生物学业务已承接AI药物发现湿实验需求"
-    },
-    {
-      "code": "600641",
-      "setcode": "1",
-      "name": "先导基电",
-      "price": 28.2,
-      "pct": 9.98,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "",
-      "sealAmount": 311006500,
-      "firstSealTime": "13:38:17",
-      "openTimes": 0,
-      "reason": "固态电池.非周期股",
-      "detail": "大股东先导科技自有镓锗铟等稀散金属（产量全球领先）；子公司凯世通离子注入机上半年新获2家头部客户批量重复订单并新增2家新客户订单；铋业务收入9.96亿元占营收86.86%"
-    },
-    {
-      "code": "600584",
-      "setcode": "1",
-      "name": "长电科技",
-      "price": 51.74,
-      "pct": 9.99,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "换手板",
-      "sealAmount": 230496500,
-      "firstSealTime": "14:07:42",
-      "openTimes": 9,
-      "reason": "CPO概念.非周期股",
-      "detail": "CPO量产技术及产线准备已完成，2.5D平台CPO产品预计明年率先在海外工厂商业化生产；高深宽比TSV研发取得进展，已完成样品试制；前三季度营收309.52亿元同比+7.96%，归母净利16.17亿元同比+69.58%"
-    },
-    {
-      "code": "600988",
-      "setcode": "1",
-      "name": "赤峰黄金",
-      "price": 34.54,
-      "pct": 10.0,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "换手板",
-      "sealAmount": 220600100,
-      "firstSealTime": "13:30:17",
-      "openTimes": 4,
-      "reason": "周期股.贵金属.人民币贬值受益",
-      "detail": "世界黄金协会称三季度央行购金同比增42%；运营6座黄金矿山及1座多金属矿山；紫金黄金受让12.73%股份完成过户，控股股东变更；前三季度营收100.87亿元同比+16.69%，归母净利22.85亿元同比+11.05%"
-    },
-    {
-      "code": "000603",
-      "setcode": "0",
-      "name": "盛达资源",
-      "price": 23.68,
-      "pct": 9.99,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "换手板",
-      "sealAmount": 195791000,
-      "firstSealTime": "13:24:39",
       "openTimes": 1,
-      "reason": "贵金属.财报高增长.黄金概念.镍金属",
-      "detail": "拟通过股权转让及增资取得方鑫矿业不低于58%股权（拥有毛姐山金矿采矿权）；累计查明银约1.3万吨、金约35吨、铜约164万吨；前三季度营收20.17亿元同比+22.04%，归母净利6.85亿元同比+112.20%"
+      "reason": "光伏.国企改革.国资入股",
+      "detail": "优必选Thinker-Sim具身智能仿真平台正式发布；公司位于福建省南安市，为海西板块铝型材龙头，表示将重点拓展机器人等工业铝型材及高端装备铝型材赛道；液冷服务器用铝型材已开始小批量供货；光伏支架和边框等配套产品是主要工业材产品之一"
     },
     {
-      "code": "600206",
+      "code": "603366",
       "setcode": "1",
-      "name": "有研新材",
-      "price": 34.9,
-      "pct": 9.99,
+      "name": "日出东方",
+      "price": 8.99,
+      "pct": 10.04,
       "boards": 1,
       "pattern": "1天1板",
       "boardType": "",
-      "sealAmount": 195736700,
-      "firstSealTime": "13:49:49",
+      "sealAmount": 192785200,
+      "firstSealTime": "09:45:11",
       "openTimes": 0,
-      "reason": "医疗器械概念.非周期股",
-      "detail": "控股子公司为长江存储、长鑫存储靶材供应商；有研亿金量产12英寸晶圆制造高纯靶材"
+      "reason": "储能.光伏",
+      "detail": "海外选举落地或影响新能源政策；第三季度中国新增光伏装机同比增长约38%；公司光伏业务主要为分布式户用光伏和分布式工商业光伏，空气能热泵领域技术领先"
+    },
+    {
+      "code": "002929",
+      "setcode": "0",
+      "name": "润建股份",
+      "price": 63.11,
+      "pct": 10.01,
+      "boards": 2,
+      "pattern": "5天3板",
+      "boardType": "换手板",
+      "sealAmount": 181214100,
+      "firstSealTime": "13:05:51",
+      "openTimes": 1,
+      "reason": "储能.光伏",
+      "detail": "领先的数字化智能运维（AIOps）服务商；为算力中心及IDC提供全生命周期一站式服务，近日签下2亿美元AI词元大单"
     },
     {
       "code": "601599",
       "setcode": "1",
       "name": "浙文影业",
-      "price": 4.2,
-      "pct": 9.95,
-      "boards": 3,
-      "pattern": "3天3板",
-      "boardType": "",
-      "sealAmount": 185745400,
-      "firstSealTime": "09:30:20",
-      "openTimes": 0,
-      "reason": "短剧游戏.国企改革.人工智能",
-      "detail": "海外市场AI漫剧活跃用户整体已超1.5亿；文旅微短剧《九龙湖之有间客栈》已播出，竖屏微短剧《江南机动队》杀青待播"
+      "price": 5.08,
+      "pct": 9.96,
+      "boards": 5,
+      "pattern": "5天5板",
+      "boardType": "T字板",
+      "sealAmount": 169470800,
+      "firstSealTime": "09:25:01",
+      "openTimes": 1,
+      "reason": "短剧游戏.国企改革.纺织制造",
+      "detail": "海外市场AI漫剧活跃用户整体已超1.5亿；出品的文旅微短剧《九龙湖之有间客栈》已播出，竖屏微短剧《江南机动队》杀青待播，将继续布局微短剧业务矩阵"
     },
     {
-      "code": "002821",
+      "code": "603381",
+      "setcode": "1",
+      "name": "永臻股份",
+      "price": 20.74,
+      "pct": 10.03,
+      "boards": 4,
+      "pattern": "4天4板",
+      "boardType": "一字板",
+      "sealAmount": 146364300,
+      "firstSealTime": "09:25:01",
+      "openTimes": 0,
+      "reason": "人形机器人.储能",
+      "detail": "国家能源局：第三季度中国新增光伏装机同比增长约38%；光伏铝边框绝对龙头，全球市占率超18%，配套隆基、天合光能等国内外头部组件厂商"
+    },
+    {
+      "code": "001258",
       "setcode": "0",
-      "name": "凯莱英",
-      "price": 148.84,
+      "name": "立新能源",
+      "price": 9.57,
       "pct": 10.0,
       "boards": 1,
       "pattern": "1天1板",
       "boardType": "",
-      "sealAmount": 185335600,
-      "firstSealTime": "13:32:06",
-      "openTimes": 0,
-      "reason": "非周期股.医疗服务.CXO概念",
-      "detail": "国内CMO龙头之一；前三季度营收53.95亿元同比+16.52%，归母净利8.52亿元同比+6.49%，第三季度营收同比+24.0%、归母净利同比+81.5%"
+      "sealAmount": 143545200,
+      "firstSealTime": "09:34:36",
+      "openTimes": 1,
+      "reason": "储能.风电.国企改革",
+      "detail": "公司立足新疆，专注风力发电和光伏发电业务；深度卡位疆电外送核心通道，参与第三通道新疆侧配套电源项目建设，项目总装机规模8100MW，持有项目公司13.42%股权"
     },
-    {
-      "code": "002409",
-      "setcode": "0",
-      "name": "雅克科技",
-      "price": 83.66,
-      "pct": 10.01,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "",
-      "sealAmount": 180948200,
-      "firstSealTime": "13:41:33",
-      "openTimes": 0,
-      "reason": "非周期股.芯片.专精特新.半导体",
-      "detail": "子公司成都科美特专注含氟特种气体（六氟化硫、四氟化碳），为合肥长鑫供应商；向SK海力士、三星电子提供逻辑芯片，海力士占全球HBM市场80%份额"
-    },
-    {
-      "code": "688361",
-      "setcode": "1",
-      "name": "中科飞测",
-      "price": 246.74,
-      "pct": 20.0,
-      "boards": 1,
-      "pattern": "1天1板",
-      "boardType": "换手板",
-      "sealAmount": 151819100,
-      "firstSealTime": "14:00:50",
-      "openTimes": 2,
-      "reason": "非周期股.芯片.深圳板块.半导体",
-      "detail": "实控人提议回购1-1.5亿元用于股权激励；截至三季度末前道制程订单占比约80%，存储客户占比显著提升，先进封装订单占比约15%（主要来自HBM、2.5D/3D封装）"
-    },
-    {
-      "code": "600892",
-      "setcode": "1",
-      "name": "大晟文化",
-      "price": 5.29,
-      "pct": 9.98,
-      "boards": 3,
-      "pattern": "3天3板",
-      "boardType": "一字板",
-      "sealAmount": 142930000,
-      "firstSealTime": "09:25:02",
-      "openTimes": 0,
-      "reason": "游戏.短剧游戏",
-      "detail": "海外市场AI漫剧活跃用户整体已超1.5亿；主营短剧制作与发行，游戏业务由子公司淘乐网络运营（《桃花源记》）"
-    },
-    {
-      "code": "002578",
-      "setcode": "0",
-      "name": "闽发铝业",
-      "price": 4.14,
-      "pct": 10.11,
-      "boards": 3,
-      "pattern": "3天3板",
-      "boardType": "",
-      "sealAmount": 54342900,
-      "firstSealTime": "13:03:51",
-      "openTimes": 0,
-      "reason": "国企改革.一带一路.国资入股.光伏.工业金属",
-      "detail": "优必选Thinker-Sim具身智能仿真平台发布；海西铝型材龙头，重点拓展机器人等工业铝型材及高端装备铝型材；液冷服务器用铝型材已开始小批量供货；光伏支架和边框为主要工业材产品"
-    },
-    {
-      "code": "600537",
-      "setcode": "1",
-      "name": "*ST亿晶",
-      "price": 1.69,
-      "pct": 9.74,
-      "boards": 3,
-      "pattern": "3天3板",
-      "boardType": "一字板",
-      "sealAmount": 34156300,
-      "firstSealTime": "09:25:00",
-      "openTimes": 0,
-      "reason": "ST板块.光伏.钙钛矿电池",
-      "detail": "公司预重整投资安排生变，中润光能拟入主"
-    },
-    {
-      "code": "605577",
-      "setcode": "1",
-      "name": "龙版传媒",
-      "price": 15.73,
-      "pct": 10.0,
-      "boards": 3,
-      "pattern": "3天3板",
-      "boardType": "换手板",
-      "sealAmount": 21381800,
-      "firstSealTime": "09:30:56",
-      "openTimes": 4,
-      "reason": "国企改革.电商概念.新零售.在线教育",
-      "detail": "首部AI漫剧《穿越1988》完成170集制作上线，全网播放量突破1.2亿，红果热度值超4000万；旗下109家新华书店门店连锁经营"
-    },
-    {
-      "code": "002058",
-      "setcode": "0",
-      "name": "紫竹高科",
-      "price": 23.24,
-      "pct": 9.99,
-      "boards": 3,
-      "pattern": "3天3板",
-      "boardType": "换手板",
-      "sealAmount": 21278500,
-      "firstSealTime": "09:37:06",
-      "openTimes": 2,
-      "reason": "固态电池.活跃小盘非融",
-      "detail": "核心业务为铝塑膜及汽车检具，铝塑膜是软包锂电池电芯封装关键材料；具备民用核安全电气设备设计与制造许可证，为福清/方家山核电站供货核级压力变送器"
-    }
-  ],
-  "limitDownPool": [
     {
       "code": "600261",
       "setcode": "1",
       "name": "阳光照明",
-      "price": 4.46,
-      "pct": -9.9,
-      "days": 1,
+      "price": 5.4,
+      "pct": 9.98,
+      "boards": 2,
+      "pattern": "7天6板",
       "boardType": "换手板",
-      "sealAmount": 344114000,
+      "sealAmount": 138619600,
+      "firstSealTime": "09:30:17",
       "openTimes": 1,
-      "theme": "商业航天.智能家居.光学光电.绿色照明.高分红股"
+      "reason": "商业航天.智能家居.光学光电.绿色照明.节能环保",
+      "detail": "中国最大的节能灯生产和出口基地之一；以自有资金3000万元参与蓝星光域（上海）航天科技融资，完成后持股1.0989%；后者专注全场景激光通信解决方案，产品用于星间、星地高速率通信"
     },
     {
-      "code": "002172",
+      "code": "002310",
       "setcode": "0",
-      "name": "澳洋健康",
-      "price": 6.12,
-      "pct": -10.0,
-      "days": 1,
+      "name": "东方新能",
+      "price": 2.32,
+      "pct": 9.95,
+      "boards": 1,
+      "pattern": "1天1板",
+      "boardType": "",
+      "sealAmount": 121391000,
+      "firstSealTime": "09:48:45",
+      "openTimes": 0,
+      "reason": "储能.固废处理",
+      "detail": "上半年业绩扭亏为盈，重大资产购买标的纳入合并报表；现金收购海城锐海100%股权及电投瑞享80%股权已完成过户，标的资产合计持有815.85MW新能源电站"
+    },
+    {
+      "code": "002086",
+      "setcode": "0",
+      "name": "东方海洋",
+      "price": 3.97,
+      "pct": 9.97,
+      "boards": 2,
+      "pattern": "13天8板",
       "boardType": "换手板",
-      "sealAmount": 215004200,
+      "sealAmount": 111474800,
+      "firstSealTime": "09:59:27",
       "openTimes": 2,
-      "theme": "养老概念.昨日断板.医疗服务"
+      "reason": "医疗器械概念.预制菜.冷链物流.基因概念.渔业",
+      "detail": "《广东省扩大消费实施方案》印发；公司主要从事海水苗种繁育、养殖与水产品加工，产品包括调理食品系列、冷冻鱼片系列、海参系列"
     },
     {
-      "code": "603578",
+      "code": "002889",
+      "setcode": "0",
+      "name": "东方嘉盛",
+      "price": 14.91,
+      "pct": 10.04,
+      "boards": 1,
+      "pattern": "1天1板",
+      "boardType": "换手板",
+      "sealAmount": 91180600,
+      "firstSealTime": "10:22:18",
+      "openTimes": 1,
+      "reason": "跨境电商.人工智能.电商概念.智能物流.机器人概念.光刻机",
+      "detail": "与国际头部芯片光刻机厂商合作，在深圳建设寄售维修保税仓库，为华南片区集成电路制造企业提供光刻机寄售维修服务；国内领先的一体化供应链服务商"
+    },
+    {
+      "code": "600371",
       "setcode": "1",
-      "name": "三星新材",
-      "price": 11.35,
-      "pct": -9.99,
-      "days": 1,
-      "boardType": "一字板",
-      "sealAmount": 132919900,
-      "openTimes": 0,
-      "theme": "微小盘股"
-    },
-    {
-      "code": "002696",
-      "setcode": "0",
-      "name": "百洋股份",
-      "price": 11.12,
-      "pct": -10.03,
-      "days": 1,
+      "name": "万向德农",
+      "price": 12.39,
+      "pct": 10.04,
+      "boards": 1,
+      "pattern": "3天2板",
       "boardType": "换手板",
-      "sealAmount": 108793600,
-      "openTimes": 20,
-      "theme": "国企改革.专项贷款.饲料.一带一路.广西自贸区"
+      "sealAmount": 85850300,
+      "firstSealTime": "09:36:28",
+      "openTimes": 4,
+      "reason": "专项贷款.乡村振兴.摩根中国A股基金持股.种植业.转基因",
+      "detail": "主要从事玉米杂交种子的研发、生产与销售，单倍体育种技术领先"
     },
     {
-      "code": "001318",
+      "code": "301697",
       "setcode": "0",
-      "name": "阳光乳业",
-      "price": 14.26,
-      "pct": -9.97,
-      "days": 1,
+      "name": "贝特利",
+      "price": 36.6,
+      "pct": 20.0,
+      "boards": 3,
+      "pattern": "3天3板",
       "boardType": "换手板",
-      "sealAmount": 105545400,
-      "openTimes": 0,
-      "theme": "电商概念.新零售.饮料乳品.婴童概念.基金增仓"
-    },
-    {
-      "code": "002949",
-      "setcode": "0",
-      "name": "华阳国际",
-      "price": 13.81,
-      "pct": -9.97,
-      "days": 1,
-      "boardType": "一字板",
-      "sealAmount": 104359400,
-      "openTimes": 0,
-      "theme": "活跃小盘非融.微小盘股.工程咨询服务"
+      "sealAmount": 83162500,
+      "firstSealTime": "09:34:03",
+      "openTimes": 1,
+      "reason": "光伏.芯片.华为概念",
+      "detail": "主营电子材料研发生产与销售，光伏银粉和HJT浆料是核心导电材料，银粉收入占主营七成以上，客户覆盖上海银浆、帝科股份、华晟新能源；四甲基环四硅氧烷可作半导体上游原材料，Mini-LED封装胶已量产"
     },
     {
       "code": "000525",
       "setcode": "0",
       "name": "红太阳",
-      "price": 4.52,
-      "pct": -9.96,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 53919500,
-      "openTimes": 3,
-      "theme": "草铵膦.昨日断板"
+      "price": 5.02,
+      "pct": 10.09,
+      "boards": 1,
+      "pattern": "6天3板",
+      "boardType": "",
+      "sealAmount": 77237700,
+      "firstSealTime": "13:39:51",
+      "openTimes": 0,
+      "reason": "乡村振兴.扣非亏损.农用化工.虫害防治",
+      "detail": "绿色农药全产业链公司，拥有行业内最完整、规模最大的吡啶碱产业链；第三季度净利润同比增长38.96%"
     },
     {
-      "code": "002029",
+      "code": "600540",
+      "setcode": "1",
+      "name": "新赛股份",
+      "price": 4.58,
+      "pct": 10.1,
+      "boards": 1,
+      "pattern": "1天1板",
+      "boardType": "换手板",
+      "sealAmount": 64695700,
+      "firstSealTime": "10:39:22",
+      "openTimes": 0,
+      "reason": "微小盘股.风电.国企改革.种植业",
+      "detail": "农业主要产品为棉籽、葵花籽、菜籽及其他油料作物，立足新疆棉花产业，聚焦棉业全产业链"
+    },
+    {
+      "code": "600229",
+      "setcode": "1",
+      "name": "城市传媒",
+      "price": 6.42,
+      "pct": 9.93,
+      "boards": 1,
+      "pattern": "5天2板",
+      "boardType": "",
+      "sealAmount": 62383100,
+      "firstSealTime": "09:30:08",
+      "openTimes": 0,
+      "reason": "短剧游戏.国企改革.人工智能",
+      "detail": "AI短剧出海及商业化提速；推进头部IP全链条运营并开发AIGC应用产品；针对出版行业开放万象出版大模型，为出版行业首个垂直细分大模型"
+    },
+    {
+      "code": "001316",
       "setcode": "0",
-      "name": "七匹狼",
-      "price": 9.3,
-      "pct": -9.97,
-      "days": 1,
+      "name": "润贝航科",
+      "price": 27.82,
+      "pct": 10.0,
+      "boards": 1,
+      "pattern": "1天1板",
       "boardType": "换手板",
-      "sealAmount": 12959600,
-      "openTimes": 4,
-      "theme": "服装家纺.跨境电商.电商概念"
+      "sealAmount": 61760400,
+      "firstSealTime": "09:57:24",
+      "openTimes": 2,
+      "reason": "低空经济.商业航天.国防军工.深圳板块.航空发动机.贸易",
+      "detail": "控股子公司杭州轻云负责航空、航天先进复合材料研发生产；自2011年起服务中国商飞，曾获C919大型客机首飞先进集体奖和TC取证先进集体奖"
     },
     {
-      "code": "603382",
-      "setcode": "1",
-      "name": "海阳科技",
-      "price": 19.0,
-      "pct": -10.0,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 10461400,
-      "openTimes": 14,
-      "theme": "化纤.绿色电力.工业互联"
+      "code": "002388",
+      "setcode": "0",
+      "name": "新亚制程",
+      "price": 6.67,
+      "pct": 10.07,
+      "boards": 3,
+      "pattern": "3天3板",
+      "boardType": "",
+      "sealAmount": 58130400,
+      "firstSealTime": "10:27:24",
+      "openTimes": 0,
+      "reason": "储能.人形机器人.光伏",
+      "detail": "优必选Thinker-Sim具身智能仿真平台正式发布；公司产品已批量用于人型机器人主板，与多家客户建立合作"
     },
     {
-      "code": "600189",
+      "code": "600537",
       "setcode": "1",
-      "name": "泉阳泉",
-      "price": 8.46,
-      "pct": -10.0,
-      "days": 1,
+      "name": "*ST亿晶",
+      "price": 2.05,
+      "pct": 10.22,
+      "boards": 5,
+      "pattern": "5天5板",
       "boardType": "换手板",
-      "sealAmount": 6744300,
-      "openTimes": 12,
-      "theme": "昨日断板.国企改革.饮料乳品"
+      "sealAmount": 17298700,
+      "firstSealTime": "09:39:29",
+      "openTimes": 5,
+      "reason": "光伏.ST板块",
+      "detail": "公司预重整投资安排生变，中润光能拟入主"
+    },
+    {
+      "code": "603657",
+      "setcode": "1",
+      "name": "春光科技",
+      "price": 33.88,
+      "pct": 10.0,
+      "boards": 3,
+      "pattern": "3天3板",
+      "boardType": "换手板",
+      "sealAmount": 17024700,
+      "firstSealTime": "09:31:27",
+      "openTimes": 1,
+      "reason": "机器人概念.专精特新.小米概念",
+      "detail": "优必选Thinker-Sim具身智能仿真平台正式发布；公司主营吸尘器、洗地机、扫地机器人、布衣清洗机等"
+    },
+    {
+      "code": "002088",
+      "setcode": "0",
+      "name": "鲁阳节能",
+      "price": 11.09,
+      "pct": 10.02,
+      "boards": 4,
+      "pattern": "6天5板",
+      "boardType": "换手板",
+      "sealAmount": 4409400,
+      "firstSealTime": "14:45:51",
+      "openTimes": 8,
+      "reason": "摩根中国A股基金持股.装饰建材.锂电池概念.新材料.可燃冰",
+      "detail": "中国陶瓷纤维龙头，间接控股股东筹划破产重组，公司实控人拟发生变更"
     }
   ],
-  "seats": [
-    {
-      "seat": "开源证券股份有限公司西安西大街证券营业部",
-      "kind": "营业部",
-      "lists": 319,
-      "buy": 79.14,
-      "sell": 46.52,
-      "net": 32.63,
-      "turnover": 125.66,
-      "signal": "游资净买"
-    },
-    {
-      "seat": "深股通专用",
-      "kind": "北向",
-      "lists": 750,
-      "buy": 341.75,
-      "sell": 318.08,
-      "net": 23.66,
-      "turnover": 659.83,
-      "signal": "北向加仓"
-    },
-    {
-      "seat": "沪股通专用",
-      "kind": "北向",
-      "lists": 479,
-      "buy": 236.16,
-      "sell": 215.64,
-      "net": 20.52,
-      "turnover": 451.8,
-      "signal": "北向加仓"
-    },
-    {
-      "seat": "国泰海通证券股份有限公司总部",
-      "kind": "营业部",
-      "lists": 702,
-      "buy": 103.47,
-      "sell": 85.94,
-      "net": 17.53,
-      "turnover": 189.41,
-      "signal": "席位博弈"
-    },
-    {
-      "seat": "国信证券股份有限公司浙江互联网分公司",
-      "kind": "营业部",
-      "lists": 464,
-      "buy": 51.42,
-      "sell": 38.18,
-      "net": 13.25,
-      "turnover": 89.6,
-      "signal": "席位博弈"
-    },
-    {
-      "seat": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-      "kind": "营业部",
-      "lists": 457,
-      "buy": 36.21,
-      "sell": 29.38,
-      "net": 6.83,
-      "turnover": 65.6,
-      "signal": "席位博弈"
-    },
-    {
-      "seat": "高盛(中国)证券有限责任公司上海浦东新区世纪大道证券营业部",
-      "kind": "营业部",
-      "lists": 509,
-      "buy": 67.75,
-      "sell": 67.6,
-      "net": 0.15,
-      "turnover": 135.36,
-      "signal": "席位博弈"
-    },
-    {
-      "seat": "中国国际金融股份有限公司上海分公司",
-      "kind": "营业部",
-      "lists": 279,
-      "buy": 53.61,
-      "sell": 55.13,
-      "net": -1.52,
-      "turnover": 108.73,
-      "signal": "席位出货"
-    },
-    {
-      "seat": "中信证券股份有限公司上海分公司",
-      "kind": "营业部",
-      "lists": 308,
-      "buy": 46.35,
-      "sell": 52.47,
-      "net": -6.12,
-      "turnover": 98.82,
-      "signal": "席位出货"
-    },
-    {
-      "seat": "机构专用",
-      "kind": "机构",
-      "lists": 3726,
-      "buy": 594.05,
-      "sell": 657.96,
-      "net": -63.91,
-      "turnover": 1252.01,
-      "signal": "机构撤退"
-    }
-  ],
-  "stockActivity": [
-    {
-      "code": "000530",
-      "setcode": "0",
-      "name": "冰山冷热",
-      "lists": 27,
-      "lastDate": "2026-11-04",
-      "buyAmount": 378627.63,
-      "sellAmount": 350675.51
-    },
-    {
-      "code": "002696",
-      "setcode": "0",
-      "name": "百洋股份",
-      "lists": 24,
-      "lastDate": "2026-11-04",
-      "buyAmount": 197886.16,
-      "sellAmount": 183780.7
-    },
-    {
-      "code": "600241",
-      "setcode": "1",
-      "name": "时代万恒",
-      "lists": 22,
-      "lastDate": "2026-11-04",
-      "buyAmount": 136202.95,
-      "sellAmount": 174401.26
-    },
-    {
-      "code": "002343",
-      "setcode": "0",
-      "name": "慈文传媒",
-      "lists": 21,
-      "lastDate": "2026-11-04",
-      "buyAmount": 333393.91,
-      "sellAmount": 314697.41
-    },
-    {
-      "code": "301052",
-      "setcode": "0",
-      "name": "果麦文化",
-      "lists": 18,
-      "lastDate": "2026-11-04",
-      "buyAmount": 237532.84,
-      "sellAmount": 244968.09
-    },
+  "limitDownPool": [
     {
       "code": "000678",
       "setcode": "0",
       "name": "襄阳轴承",
-      "lists": 16,
-      "lastDate": "2026-11-04",
-      "buyAmount": 336383.97,
-      "sellAmount": 350809.88
+      "price": 17.77,
+      "pct": -9.98,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 182112300,
+      "openTimes": 2,
+      "theme": "机器人概念.一带一路.农机"
     },
     {
-      "code": "600127",
+      "code": "603083",
       "setcode": "1",
-      "name": "金健米业",
-      "lists": 16,
-      "lastDate": "2026-11-04",
-      "buyAmount": 527793.26,
-      "sellAmount": 557046.27
+      "name": "剑桥科技",
+      "price": 104.81,
+      "pct": -10.0,
+      "days": 1,
+      "boardType": "⊥字板",
+      "sealAmount": 139481200,
+      "openTimes": 28,
+      "theme": "非周期股.CPO概念.华为概念.通信设备"
     },
     {
-      "code": "920157",
-      "setcode": "2",
-      "name": "宇特光电",
-      "lists": 16,
-      "lastDate": "2026-11-04",
-      "buyAmount": 70153.53,
-      "sellAmount": 71923.2
+      "code": "605058",
+      "setcode": "1",
+      "name": "澳弘电子",
+      "price": 50.22,
+      "pct": -10.0,
+      "days": 1,
+      "boardType": "⊥字板",
+      "sealAmount": 98988600,
+      "openTimes": 16,
+      "theme": "储能.元器件.智能家居"
+    },
+    {
+      "code": "002827",
+      "setcode": "0",
+      "name": "高争民爆",
+      "price": 60.99,
+      "pct": -10.0,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 87362100,
+      "openTimes": 3,
+      "theme": "回购计划.昨日断板.化学制品"
     },
     {
       "code": "603278",
       "setcode": "1",
       "name": "大业股份",
-      "lists": 15,
-      "lastDate": "2026-11-04",
-      "buyAmount": 1377117.5,
-      "sellAmount": 1378279.11
+      "price": 13.57,
+      "pct": -10.01,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 48809900,
+      "openTimes": 4,
+      "theme": "人形机器人.风电.通用设备"
     },
     {
-      "code": "301313",
+      "code": "600892",
+      "setcode": "1",
+      "name": "大晟文化",
+      "price": 4.63,
+      "pct": -9.92,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 27566600,
+      "openTimes": 1,
+      "theme": "短剧游戏.微小盘股.昨日断板"
+    },
+    {
+      "code": "002353",
       "setcode": "0",
-      "name": "凡拓数创",
-      "lists": 15,
-      "lastDate": "2026-10-29",
-      "buyAmount": 1198824.89,
-      "sellAmount": 1201508.9
+      "name": "杰瑞股份",
+      "price": 79.44,
+      "pct": -10.0,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 26755400,
+      "openTimes": 81,
+      "theme": "天然气.储能"
+    },
+    {
+      "code": "600838",
+      "setcode": "1",
+      "name": "上海九百",
+      "price": 10.45,
+      "pct": -9.99,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 23289900,
+      "openTimes": 14,
+      "theme": "国企改革.新零售.一般零售.网络直播"
+    },
+    {
+      "code": "002384",
+      "setcode": "0",
+      "name": "东山精密",
+      "price": 80.19,
+      "pct": -10.0,
+      "days": 1,
+      "boardType": "⊥字板",
+      "sealAmount": 13744600,
+      "openTimes": 10,
+      "theme": "人形机器人.非周期股"
+    },
+    {
+      "code": "605100",
+      "setcode": "1",
+      "name": "华丰股份",
+      "price": 22.8,
+      "pct": -9.99,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 12601600,
+      "openTimes": 0,
+      "theme": "回购计划.通用设备"
+    },
+    {
+      "code": "003033",
+      "setcode": "0",
+      "name": "征和工业",
+      "price": 76.58,
+      "pct": -10.0,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 10177500,
+      "openTimes": 12,
+      "theme": "人形机器人.机器人概念"
+    },
+    {
+      "code": "000679",
+      "setcode": "0",
+      "name": "大连友谊",
+      "price": 5.91,
+      "pct": -10.05,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 5941300,
+      "openTimes": 0,
+      "theme": "新零售.微小盘股.昨日断板"
+    },
+    {
+      "code": "600281",
+      "setcode": "1",
+      "name": "华阳新材",
+      "price": 4.99,
+      "pct": -9.93,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 4784900,
+      "openTimes": 0,
+      "theme": "微小盘股.国企改革.稀有金属"
+    },
+    {
+      "code": "603578",
+      "setcode": "1",
+      "name": "三星新材",
+      "price": 9.54,
+      "pct": -10.0,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 3588000,
+      "openTimes": 0,
+      "theme": "光伏.微小盘股"
+    },
+    {
+      "code": "001225",
+      "setcode": "0",
+      "name": "和泰机电",
+      "price": 34.04,
+      "pct": -9.99,
+      "days": 1,
+      "boardType": "换手板",
+      "sealAmount": 3550400,
+      "openTimes": 7,
+      "theme": "专用设备.一带一路"
+    }
+  ],
+  "seats": [
+    {
+      "seat": "国泰海通证券上海长宁区江苏路",
+      "kind": "营业部",
+      "lists": 13,
+      "buy": 8.34,
+      "sell": 3.63,
+      "net": 4.71,
+      "turnover": 11.96,
+      "signal": "游资净买"
+    },
+    {
+      "seat": "开源证券西安西大街",
+      "kind": "营业部",
+      "lists": 8,
+      "buy": 3.83,
+      "sell": 0.79,
+      "net": 3.04,
+      "turnover": 4.63,
+      "signal": "游资净买"
+    },
+    {
+      "seat": "华泰证券长沙湘江中路",
+      "kind": "营业部",
+      "lists": 3,
+      "buy": 2.89,
+      "sell": 0.0,
+      "net": 2.89,
+      "turnover": 2.89,
+      "signal": "游资净买"
+    },
+    {
+      "seat": "国泰海通证券三亚迎宾路",
+      "kind": "营业部",
+      "lists": 1,
+      "buy": 2.05,
+      "sell": 0.0,
+      "net": 2.05,
+      "turnover": 2.05,
+      "signal": "游资净买"
+    },
+    {
+      "seat": "国泰海通证券湛江万豪世家",
+      "kind": "营业部",
+      "lists": 4,
+      "buy": 1.87,
+      "sell": 0.0,
+      "net": 1.87,
+      "turnover": 1.87,
+      "signal": "游资净买"
+    },
+    {
+      "seat": "机构专用",
+      "kind": "机构",
+      "lists": 37,
+      "buy": 33.32,
+      "sell": 32.88,
+      "net": 0.45,
+      "turnover": 66.2,
+      "signal": "机构主买"
+    },
+    {
+      "seat": "深股通专用",
+      "kind": "北向",
+      "lists": 14,
+      "buy": 22.52,
+      "sell": 23.96,
+      "net": -1.44,
+      "turnover": 46.49,
+      "signal": "北向流出"
+    },
+    {
+      "seat": "瑞银证券有限责任公司上海花园石桥路",
+      "kind": "营业部",
+      "lists": 6,
+      "buy": 2.05,
+      "sell": 4.46,
+      "net": -2.41,
+      "turnover": 6.5,
+      "signal": "席位出货"
+    },
+    {
+      "seat": "中信证券上海分公司",
+      "kind": "营业部",
+      "lists": 12,
+      "buy": 1.82,
+      "sell": 4.61,
+      "net": -2.79,
+      "turnover": 6.43,
+      "signal": "席位出货"
+    },
+    {
+      "seat": "沪股通专用",
+      "kind": "北向",
+      "lists": 10,
+      "buy": 9.71,
+      "sell": 14.79,
+      "net": -5.08,
+      "turnover": 24.5,
+      "signal": "北向流出"
+    }
+  ],
+  "stockActivity": [
+    {
+      "code": "002086",
+      "setcode": "0",
+      "name": "东方海洋",
+      "lists": 3,
+      "lastDate": "2026-11-06",
+      "buyAmount": 131314.03,
+      "sellAmount": 121381.06
+    },
+    {
+      "code": "002388",
+      "setcode": "0",
+      "name": "新亚制程",
+      "lists": 3,
+      "lastDate": "2026-11-06",
+      "buyAmount": 44453.84,
+      "sellAmount": 40404.03
+    },
+    {
+      "code": "002088",
+      "setcode": "0",
+      "name": "鲁阳节能",
+      "lists": 3,
+      "lastDate": "2026-11-06",
+      "buyAmount": 27926.41,
+      "sellAmount": 32706.44
+    },
+    {
+      "code": "002929",
+      "setcode": "0",
+      "name": "润建股份",
+      "lists": 2,
+      "lastDate": "2026-11-06",
+      "buyAmount": 86406.11,
+      "sellAmount": 75326.82
+    },
+    {
+      "code": "603598",
+      "setcode": "1",
+      "name": "引力传媒",
+      "lists": 2,
+      "lastDate": "2026-11-06",
+      "buyAmount": 41039.5,
+      "sellAmount": 47172.64
+    },
+    {
+      "code": "600371",
+      "setcode": "1",
+      "name": "万向德农",
+      "lists": 2,
+      "lastDate": "2026-11-06",
+      "buyAmount": 39762.07,
+      "sellAmount": 46777.36
+    },
+    {
+      "code": "600327",
+      "setcode": "1",
+      "name": "大东方",
+      "lists": 2,
+      "lastDate": "2026-11-06",
+      "buyAmount": 33515.44,
+      "sellAmount": 11918.51
+    },
+    {
+      "code": "300686",
+      "setcode": "0",
+      "name": "智动力",
+      "lists": 2,
+      "lastDate": "2026-11-06",
+      "buyAmount": 22815.08,
+      "sellAmount": 14037.71
+    },
+    {
+      "code": "301697",
+      "setcode": "0",
+      "name": "贝特利",
+      "lists": 2,
+      "lastDate": "2026-11-06",
+      "buyAmount": 22236.54,
+      "sellAmount": 15029.31
+    },
+    {
+      "code": "920007",
+      "setcode": "2",
+      "name": "酉立智能",
+      "lists": 2,
+      "lastDate": "2026-11-06",
+      "buyAmount": 5442.07,
+      "sellAmount": 10228.72
     }
   ],
   "watchlist": [
@@ -879,18 +1017,10 @@
       "setcode": "1",
       "name": "时代万恒",
       "industry": "电池",
-      "price": 9.03,
-      "pct": -0.99,
-      "turnoverRate": 28.66,
+      "price": 8.61,
+      "pct": -6.11,
+      "turnoverRate": 15.61,
       "kline60": [
-        {
-          "d": "20260805",
-          "c": 7.09
-        },
-        {
-          "d": "20260806",
-          "c": 7.28
-        },
         {
           "d": "20260807",
           "c": 7.13
@@ -1122,6 +1252,14 @@
         {
           "d": "20261104",
           "c": 9.03
+        },
+        {
+          "d": "20261105",
+          "c": 9.17
+        },
+        {
+          "d": "20261106",
+          "c": 8.61
         }
       ]
     },
@@ -1130,18 +1268,10 @@
       "setcode": "0",
       "name": "雄韬股份",
       "industry": "电池",
-      "price": 15.58,
-      "pct": 1.9,
-      "turnoverRate": 5.66,
+      "price": 15.79,
+      "pct": -2.53,
+      "turnoverRate": 4.22,
       "kline60": [
-        {
-          "d": "20260805",
-          "c": 18.79
-        },
-        {
-          "d": "20260806",
-          "c": 19.04
-        },
         {
           "d": "20260807",
           "c": 19.29
@@ -1373,6 +1503,14 @@
         {
           "d": "20261104",
           "c": 15.58
+        },
+        {
+          "d": "20261105",
+          "c": 16.2
+        },
+        {
+          "d": "20261106",
+          "c": 15.79
         }
       ]
     },
@@ -1381,18 +1519,10 @@
       "setcode": "0",
       "name": "东岳硅材",
       "industry": "化学制品",
-      "price": 13.59,
-      "pct": 7.52,
-      "turnoverRate": 6.87,
+      "price": 13.49,
+      "pct": -3.23,
+      "turnoverRate": 3.83,
       "kline60": [
-        {
-          "d": "20260805",
-          "c": 16.22
-        },
-        {
-          "d": "20260806",
-          "c": 16.75
-        },
         {
           "d": "20260807",
           "c": 16.99
@@ -1624,6 +1754,14 @@
         {
           "d": "20261104",
           "c": 13.59
+        },
+        {
+          "d": "20261105",
+          "c": 13.94
+        },
+        {
+          "d": "20261106",
+          "c": 13.49
         }
       ]
     },
@@ -1631,19 +1769,11 @@
       "code": "300413",
       "setcode": "0",
       "name": "芒果超媒",
-      "industry": "影视院线",
-      "price": 30.0,
-      "pct": 7.91,
-      "turnoverRate": 13.04,
+      "industry": "文化传媒",
+      "price": 34.83,
+      "pct": 6.25,
+      "turnoverRate": 13.68,
       "kline60": [
-        {
-          "d": "20260805",
-          "c": 16.47
-        },
-        {
-          "d": "20260806",
-          "c": 16.1
-        },
         {
           "d": "20260807",
           "c": 16.0
@@ -1875,6 +2005,14 @@
         {
           "d": "20261104",
           "c": 30.0
+        },
+        {
+          "d": "20261105",
+          "c": 32.78
+        },
+        {
+          "d": "20261106",
+          "c": 34.83
         }
       ]
     },
@@ -1882,19 +2020,11 @@
       "code": "605577",
       "setcode": "1",
       "name": "龙版传媒",
-      "industry": "出版业",
-      "price": 15.73,
-      "pct": 10.0,
-      "turnoverRate": 10.33,
+      "industry": "文化传媒",
+      "price": 15.52,
+      "pct": -7.62,
+      "turnoverRate": 10.11,
       "kline60": [
-        {
-          "d": "20260731",
-          "c": 9.69
-        },
-        {
-          "d": "20260803",
-          "c": 9.83
-        },
         {
           "d": "20260804",
           "c": 9.75
@@ -2126,6 +2256,14 @@
         {
           "d": "20261104",
           "c": 15.73
+        },
+        {
+          "d": "20261105",
+          "c": 16.8
+        },
+        {
+          "d": "20261106",
+          "c": 15.52
         }
       ]
     }

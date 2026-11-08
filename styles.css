@@ -1694,6 +1694,19 @@ button {
   font-weight: 600;
 }
 
+/* 跨页入口（研习社）：与页内锚点区分开 */
+.main-nav a.nav-page {
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 500;
+}
+
+.main-nav a.nav-page:hover,
+.main-nav a.nav-page:focus-visible {
+  color: #fff;
+  background: var(--accent);
+}
+
 /* 板块领涨股空态 */
 .leader-empty {
   color: var(--secondary);

@@ -654,7 +654,7 @@ function renderDragon(filter = STATE.dragonFilter) {
     <tr>
       <td>
         <span class="t-name">${escapeHTML(s.seat)}</span>
-        <span class="t-code">${escapeHTML(s.kind)}专用 · 上榜 ${s.lists} 次</span>
+        <span class="t-code">${escapeHTML(s.kind)}专用 · 当日上榜 ${s.lists} 只</span>
       </td>
       <td class="t-num up">+${fmtNum(s.buy)} 亿</td>
       <td class="t-num down">−${fmtNum(s.sell)} 亿</td>

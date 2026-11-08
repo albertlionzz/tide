@@ -86,22 +86,22 @@ setTimeout(() => {
   const assert = (name, cond, got) => checks.push({ name, ok: !!cond, got: String(got).slice(0, 90) });
 
   // ---- 元信息 ----
-  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-04", txt("headerDate"));
+  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-06", txt("headerDate"));
   assert("liveText 显示已收盘时间", txt("liveText").includes("已收盘"), txt("liveText"));
   assert("dataSource 填入数据源", txt("dataSource").includes("通达信"), txt("dataSource"));
-  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 4 日"), txt("dataDate"));
+  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 6 日"), txt("dataDate"));
   assert("offlineBanner 保持隐藏", d.getElementById("offlineBanner").hidden === true, d.getElementById("offlineBanner").hidden);
 
   // ---- 恐慌指数 ----
-  assert("fearValue = 40", txt("fearValue") === "40", txt("fearValue"));
-  assert("fearBadge = 平稳", txt("fearBadge") === "平稳", txt("fearBadge"));
+  assert("fearValue = 79", txt("fearValue") === "79", txt("fearValue"));
+  assert("fearBadge = 偏高", txt("fearBadge") === "偏高", txt("fearBadge"));
   assert("fearBreakdown 渲染 5 项", count("#fearBreakdown .breakdown-item") === 5, count("#fearBreakdown .breakdown-item"));
   assert("fearRaw 渲染 6 项读数", count("#fearRaw > div") === 6, count("#fearRaw > div"));
   assert("gaugeArc 有描边色", (d.getElementById("gaugeArc").style.stroke || "").length > 0, d.getElementById("gaugeArc").style.stroke);
 
   // ---- 指数 ----
   assert("marketStats 4 张卡片", count("#marketStats .stat-card") === 4, count("#marketStats .stat-card"));
-  assert("指数含上证 3686.17", htmlOf("marketStats").includes("3,686.17"), "见 innerHTML");
+  assert("指数含上证 3649.18", htmlOf("marketStats").includes("3,649.18"), "见 innerHTML");
   assert("成交额显示万亿", htmlOf("marketStats").includes("万亿"), "见 innerHTML");
 
   // ---- 板块 ----
@@ -119,11 +119,11 @@ setTimeout(() => {
 
   // ---- 涨停池 ----
   assert("poolBody 渲染 20 行", count("#poolBody tr") === 20, count("#poolBody tr"));
-  assert("池内出现广聚能源首板", htmlOf("poolBody").includes("广聚能源") && htmlOf("poolBody").includes("1 板"), "见 innerHTML");
+  assert("池内出现闽发铝业 5 板", htmlOf("poolBody").includes("闽发铝业") && htmlOf("poolBody").includes("5 板"), "见 innerHTML");
 
   // ---- 龙虎榜 ----
   assert("dragonBody 渲染 10 行", count("#dragonBody tr") === 10, count("#dragonBody tr"));
-  assert("龙虎榜含北向加仓", htmlOf("dragonBody").includes("北向加仓"), "见 innerHTML");
+  assert("龙虎榜含北向席位", htmlOf("dragonBody").includes("北向"), "见 innerHTML");
 
   // ---- 游资 / 阶段门 ----
   assert("hotGrid 4 张卡片", count("#hotGrid .hot-card") === 4, count("#hotGrid .hot-card"));

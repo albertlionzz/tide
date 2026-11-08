@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="潮汐 · 研习社 — 行情分析与股票分析的经验总结、复盘笔记与留言板" />
+  <title>研习社 · 潮汐</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="theme-color" content="#0071e3" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="community.css" />
+</head>
+<body class="cm-body">
+  <header class="site-header" id="top">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="返回潮汐首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M2 14c2.5-4 5-6 9-6s6.5 2 9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M2 18c2.5-3.2 5-4.8 9-4.8S17.5 14.8 20 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>
+          </svg>
+        </span>
+        <span class="brand-name">潮汐</span>
+        <span class="brand-sub">Tide</span>
+      </a>
+      <nav class="main-nav" aria-label="主导航">
+        <a href="index.html">盘面</a>
+        <a href="community.html" class="is-current nav-page" aria-current="page">研习社</a>
+        <a href="index.html#pool">涨停池</a>
+        <a href="index.html#dragon">龙虎榜</a>
+        <a href="index.html#fear">恐慌指数</a>
+      </nav>
+      <div class="header-meta">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span class="live-text">研习社</span>
+        <span id="cmHeaderCount">—</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="cm-main">
+    <!-- ============ HERO ============ -->
+    <section class="cm-hero">
+      <div class="cm-container">
+        <p class="cm-eyebrow">Research &amp; Journal</p>
+        <h1 class="cm-title">研习社</h1>
+        <p class="cm-lede">
+          把每天的盘面判断写下来，用后来的走势验证它。<br />
+          经验不是记住结论，而是记住推导过程——以及它在哪一天失效。
+        </p>
+        <div class="cm-stats" id="cmStats">
+          <div class="cm-stat"><span class="cm-stat-num" data-k="notes">—</span><span class="cm-stat-label">篇经验</span></div>
+          <div class="cm-stat"><span class="cm-stat-num" data-k="messages">—</span><span class="cm-stat-label">条留言</span></div>
+          <div class="cm-stat"><span class="cm-stat-num" data-k="comments">—</span><span class="cm-stat-label">条评论</span></div>
+          <div class="cm-stat"><span class="cm-stat-num" data-k="authors">—</span><span class="cm-stat-label">位参与者</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 工具条 ============ -->
+    <section class="cm-toolbar-wrap">
+      <div class="cm-container cm-toolbar">
+        <div class="cm-tabs" role="tablist" aria-label="板块切换">
+          <button class="cm-tab is-active" data-type="note" role="tab" aria-selected="true">经验总结</button>
+          <button class="cm-tab" data-type="message" role="tab" aria-selected="false">留言板</button>
+        </div>
+        <div class="cm-search">
+          <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" fill="none">
+            <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M13.5 13.5 17 17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <input type="search" id="cmSearch" placeholder="搜标题、正文或标签…" aria-label="搜索" autocomplete="off" />
+        </div>
+      </div>
+    </section>
+
+    <div class="cm-container cm-layout">
+      <!-- ============ 主列 ============ -->
+      <div class="cm-col-main">
+        <!-- 发帖 -->
+        <section class="cm-compose" id="cmCompose">
+          <button class="cm-compose-trigger" id="cmComposeTrigger" type="button" aria-expanded="false">
+            <span class="cm-compose-icon" aria-hidden="true">+</span>
+            <span id="cmComposeLabel">写下今天的盘面判断</span>
+          </button>
+
+          <form class="cm-form" id="cmForm" hidden novalidate>
+            <div class="cm-field" id="cmTitleField">
+              <label for="cmTitle">标题</label>
+              <input type="text" id="cmTitle" maxlength="120" placeholder="一句话说清这篇要复盘什么" />
+            </div>
+
+            <div class="cm-field-row">
+              <div class="cm-field">
+                <label for="cmCategory">分类</label>
+                <select id="cmCategory">
+                  <option>盘面复盘</option>
+                  <option>个股研究</option>
+                  <option>方法论</option>
+                  <option>交易心理</option>
+                  <option>复盘教训</option>
+                  <option>其他</option>
+                </select>
+              </div>
+              <div class="cm-field">
+                <label for="cmAuthor">署名</label>
+                <input type="text" id="cmAuthor" maxlength="24" placeholder="匿名" autocomplete="nickname" />
+              </div>
+            </div>
+
+            <div class="cm-field">
+              <label for="cmBody">正文<span class="cm-hint">支持换行，空行分段</span></label>
+              <textarea id="cmBody" rows="7" maxlength="6000" placeholder="今天看到了什么信号？依据是什么？什么情况下这条判断会被证伪？"></textarea>
+              <div class="cm-counter"><span id="cmCount">0</span> / 6000</div>
+            </div>
+
+            <div class="cm-field">
+              <label for="cmTags">标签<span class="cm-hint">逗号分隔，最多 6 个</span></label>
+              <input type="text" id="cmTags" maxlength="90" placeholder="涨停梯队, 恐慌指数, 退潮" />
+            </div>
+
+            <div class="cm-form-actions">
+              <button type="submit" class="cm-btn cm-btn-primary" id="cmSubmit">发布</button>
+              <button type="button" class="cm-btn" id="cmCancel">取消</button>
+              <span class="cm-form-msg" id="cmFormMsg" role="status"></span>
+            </div>
+          </form>
+        </section>
+
+        <!-- 分类筛选 -->
+        <div class="cm-chips" id="cmChips" hidden>
+          <button class="cm-chip is-active" data-cat="">全部</button>
+          <button class="cm-chip" data-cat="盘面复盘">盘面复盘</button>
+          <button class="cm-chip" data-cat="个股研究">个股研究</button>
+          <button class="cm-chip" data-cat="方法论">方法论</button>
+          <button class="cm-chip" data-cat="交易心理">交易心理</button>
+          <button class="cm-chip" data-cat="复盘教训">复盘教训</button>
+          <button class="cm-chip" data-cat="其他">其他</button>
+        </div>
+
+        <!-- 列表 -->
+        <section class="cm-feed" id="cmFeed" aria-live="polite">
+          <div class="cm-skeleton-wrap" id="cmLoading">
+            <div class="cm-skeleton"></div>
+            <div class="cm-skeleton"></div>
+            <div class="cm-skeleton"></div>
+          </div>
+        </section>
+
+        <!-- 分页 -->
+        <div class="cm-pager" id="cmPager" hidden>
+          <button class="cm-btn" id="cmPrev" type="button">上一页</button>
+          <span id="cmPageInfo">1 / 1</span>
+          <button class="cm-btn" id="cmNext" type="button">下一页</button>
+        </div>
+      </div>
+
+      <!-- ============ 侧列 ============ -->
+      <aside class="cm-col-side">
+        <div class="cm-side-card">
+          <h3>这个板块用来做什么</h3>
+          <p>
+            记录可验证的判断，而不是给自己打气。一条好的复盘至少要有三件事：
+            <b>当时的依据</b>、<b>预期的路径</b>、<b>什么情况算判断错了</b>。
+          </p>
+        </div>
+
+        <div class="cm-side-card">
+          <h3>写之前先自问</h3>
+          <ul class="cm-qa">
+            <li>这条结论来自哪些可核对的数据？</li>
+            <li>如果我错了，最可能是哪一步推错了？</li>
+            <li>换一个市场环境，这条还成立吗？</li>
+            <li>我是在描述盘面，还是在解释盘面？</li>
+          </ul>
+        </div>
+
+        <div class="cm-side-card cm-side-muted">
+          <h3>说明</h3>
+          <p>
+            公开留言板，无需登录。发布有频率限制，内容默认保留。
+            如遇不适当内容可通过页脚邮箱联系删除。
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-brand">潮汐 · Tide</p>
+      <p class="footer-note">
+        <a href="index.html">返回盘面</a> ·
+        交易日 <span id="cmTradeDate">—</span> ·
+        仅作研究记录，不构成投资建议
+      </p>
+      <p class="footer-copy">© 2026 研习社</p>
+    </div>
+  </footer>
+
+  <script src="community.js"></script>
+</body>
+</html>

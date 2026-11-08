@@ -55,6 +55,25 @@ fetch_feed.py  ──►  feed_cls.json / feed_xueqiu.json ──► build_feed.
 - `tide_data.json` — 派生后的指标（恐慌指数五分量、宽度、连板梯队、席位汇总）
 - `feed_data.json` — 资讯聚合（财联社电报 + 雪球热帖 + 被讨论个股）
 
+### 双数据源与口径
+
+主数据源是通达信 MCP。当它有额度时，`build_snapshot_<日期>.py` 一次抓完。
+
+2026-11-06 那天通达信额度耗尽（`leftValue=2`），改用 `fetch_em_1106.py` 从东方财富
+公开接口补齐板块 / 龙虎榜 / K 线，指数与涨跌停仍用已抓取的通达信数据。两家的**上证收盘
+做了交叉验证**（3649.18 / -1.10% 完全一致），前复权 K 线也一致（11-04 收盘同为 9.03）。
+
+必须知道的三个口径差异：
+
+| 项目 | 通达信 | 东方财富 |
+|---|---|---|
+| 行业分类 | ~100 个二级行业 | **496 个**二级行业，粒度更细 |
+| 席位 `lists` | 累计上榜天数（如机构 3726） | **当日上榜股票只数**（如机构 37） |
+| 席位覆盖 | 含机构专用 / 沪深股通 | 需用买卖席位明细聚合，`RPT_OPERATEDEPT_ACTIVE` 那张表**漏掉机构与股通** |
+
+所以 `tide_data.json` 的 `meta.source` 会写明当日实际来源，前端页脚直接展示。
+**板块数值不可跨数据源直接比较**，接口口径变了就要当新指标看。
+
 ## 运行
 
 ```bash
@@ -73,7 +92,10 @@ python fetch_feed.py && python build_feed.py   # ③ 刷新资讯
 node verify.js                  # ④ 渲染校验（46 条断言）
 ```
 
-`verify.js` 内含**写死的当日基线常量**（headerDate / dataDate / 恐慌值 / 上证点位 / 涨停池代表个股），换交易日必须同步更新，否则会报失败项但页面其实是对的。
+通达信额度不足时，① 换成 `fetch_em_1106.py`（东方财富补齐版，脚本内自带日期断言，
+会拿东财上证收盘与通达信已抓值比对，不一致直接中止）。
+
+`verify.js` 内含**写死的当日基线常量**（headerDate / dataDate / 恐慌值 / 上证点位 / 涨停池代表个股 / 北向信号），换交易日必须同步更新，否则会报失败项但页面其实是对的。注意信号类断言要跟着当日方向改 —— 11-06 北向是净流出，沿用「北向加仓」会误报。
 
 ## 部署到云服务器
 
@@ -137,6 +159,88 @@ HSTS / X-Frame-Options。所以安全头抽成 `/etc/nginx/snippets/tide-headers
 域名必须已完成 ICP 备案，否则会被拦截。备案、域名归属、DNS 解析是三件独立的事 ——
 备案下来了但 A 记录没配，浏览器照样打不开。
 
+## 研习社（论坛 + 留言板）
+
+`community.html` —— 用来沉淀可验证的判断，而不是给自己打气。两个板块：
+
+- **经验总结**：结构化发帖（标题 / 分类 / 正文 / 标签 / 署名），分类固定为
+  盘面复盘、个股研究、方法论、交易心理、复盘教训、其他
+- **留言板**：短留言，不分分类，不需要标题
+
+两者共用一套帖子表（`type` 区分），都支持评论、点赞、搜索、分页。
+
+### 为什么这里要一个后端
+
+静态站点做留言板只有两条路：localStorage（换设备就丢）或第三方服务（要账号、要限额）。
+这台机器上跑一个 **Python 标准库 + SQLite** 的服务最省事：零第三方依赖、内存约 20 MB、
+单文件、不需要维护 ORM 迁移。
+
+```
+community/server.py     # 全部后端逻辑（约 400 行）
+community.db            # SQLite，运行时生成，不进版本库
+```
+
+只监听 `127.0.0.1:8091`，由 nginx 反代 `/api/` 出去，**不直接暴露公网**。
+
+### API
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | `/api/health` | 健康检查 |
+| GET | `/api/stats` | 经验 / 留言 / 评论 / 参与者计数 |
+| GET | `/api/posts?type=note\|message&page=&size=&q=&category=` | 列表，支持关键词与分类 |
+| POST | `/api/posts` | 发帖 `{type,title,body,category,tags,author}` |
+| GET | `/api/posts/<id>` | 详情，含评论 |
+| POST | `/api/posts/<id>/like` | 点赞 |
+| POST | `/api/posts/<id>/comments` | 评论 `{body,author}` |
+| DELETE | `/api/posts/<id>` | 软删除，需 `X-Admin-Token` |
+
+### 部署
+
+```bash
+# 1. 上传后端并初始化（生成 systemd 服务 + 随机删除口令）
+scp -i ~/.ssh/tide_tencent community/server.py deploy/setup-community.sh root@<IP>:/tmp/
+ssh -i ~/.ssh/tide_tencent root@<IP> \
+  'sed -i "s/\r$//" /tmp/setup-community.sh && bash /tmp/setup-community.sh'
+# 输出里的 ADMIN_TOKEN= 就是删帖口令，记下来
+
+# 2. 给 nginx 加 /api/ 反代（幂等，失败自动回滚）
+scp -i ~/.ssh/tide_tencent deploy/patch-nginx-api.py root@<IP>:/tmp/
+ssh -i ~/.ssh/tide_tencent root@<IP> 'python3 /tmp/patch-nginx-api.py'
+
+# 3. 上传前端
+scp -i ~/.ssh/tide_tencent community.html community.css community.js root@<IP>:/var/www/tide/
+```
+
+删帖：
+
+```bash
+curl -X DELETE https://artsi.site/api/posts/12 -H "X-Admin-Token: <口令>"
+```
+
+### 安全取舍
+
+- **无登录**。留言板是公开的，低摩擦优先。写入按 IP 每小时限 20 帖 / 60 条评论，
+  内存滑动窗口，不落盘。
+- **所有用户内容一律 textContent / escapeHTML 渲染**，不拼进 innerHTML 的标签位置。
+  正文用 `white-space: pre-wrap` 保留换行，不需要富文本。
+- **删除走软删除 + 口令**。口令存在 systemd 的 `Environment` 里，只 root 可读，
+  没配置时删除接口直接返回 403 而不是放行。
+- 请求体上限 64 KB，字段按类型截断（标题 120 / 正文 6000 / 评论 1200）。
+  截断而不是报错，避免用户写长文白丢。
+
+### 两个已修的坑
+
+**① `display:flex` 会盖掉 `hidden` 属性。** `.cm-pager{display:flex}` 让
+`element.hidden = true` 完全失效，只有 1 页时下限按钮照样显示。CSS 里必须补一条
+`[hidden]{display:none !important}`。
+
+**② innerHTML 替换掉的节点不能再引用。** `loadList()` 开头原本写了
+`$("cmLoading").hidden = false`，但下一行就用 `innerHTML` 把 `#cmLoading`
+（它就在 `#cmFeed` 内部）整个换掉了。第二次调用时该元素已不存在，
+`null.hidden` 抛 `Cannot set properties of null`，表现为**切换标签列表不刷新、发帖后报错**。
+骨架屏应该纯粹由 innerHTML 控制，不要另外持有引用。
+
 ## 资讯抓取：两家都重度反爬
 
 唯一可靠路径是**真浏览器渲染 + DOM 解析**，curl 换 UA 无效 —— WAF 拦的是 TLS/浏览器指纹。
@@ -151,24 +255,39 @@ HSTS / X-Frame-Options。所以安全头抽成 `/etc/nginx/snippets/tide-headers
 ## 目录
 
 ```
-├── index.html              页面骨架
+├── index.html              盘面页骨架
 ├── styles.css              苹果风样式（浅色、留白、单色强调）
 ├── app.js                  渲染 + 交互（无框架、无构建步骤）
+├── community.html          研习社（论坛 + 留言板）
+├── community.css           研习社样式（复用 styles.css 的变量）
+├── community.js            研习社前端（fetch + 事件委托）
+├── community/
+│   └── server.py           研习社后端（标准库 http.server + SQLite）
 ├── derive.py               派生管道：快照 → 指标 → 恐慌指数
-├── build_snapshot_1104.py  当日快照组装（每个交易日一份，可回溯）
+├── build_snapshot_1104.py  当日快照组装（通达信版，每个交易日一份）
+├── fetch_em_1106.py        当日快照组装（东财补齐版，通达信额度不足时用）
 ├── extract_screen.py       研究池抽取（市值 50-300 亿 + 换手 >2.5%）
 ├── fetch_feed.py           资讯抓取（Edge 无头）
 ├── build_feed.py           资讯聚合
+├── deploy/
+│   ├── nginx-tide.conf         HTTPS 站点配置模板
+│   ├── nginx-tide-http.conf    证书签发前的 HTTP 过渡模板
+│   ├── setup-server.sh         服务端初始化（含 acme 例外）
+│   ├── setup-community.sh      研习社后端初始化（systemd + 随机口令）
+│   ├── patch-nginx-api.py      给 nginx 加 /api/ 反代（幂等）
+│   └── deploy.sh               本地一键上传
 └── verify.js               jsdom 等价渲染校验
 ```
 
 ## 已知局限
 
-- **涨停池只展示 20 只**（封单额前 15 + 全部 3 连板），连板梯队统计基于这 20 只样本而非全市场 121 只。样本恰好覆盖全部高标时结论准确，否则 `highBoardCount` 会偏小。
+- **涨停池只展示 20 只**（封单额前 15 + 全部 3 连板），连板梯队统计基于这 20 只样本而非全市场。2026-11-06 全市场仅 33 家涨停，样本覆盖度反而最高。
 - **炸板率**定义为 `开板次数总和 / 展示只数`，可超过 100%，语义上更接近"开板烈度"而非"炸板率"。
 - **研究池截面固定**在 2026-09-29，不随每日行情刷新，属研究底稿而非当日选股结果。
-- 板块采用通达信二级行业分类（100 个），**不是申万一级**。
+- **板块口径随数据源变化**：通达信约 100 个二级行业，东方财富 496 个，两者数值不可直接比较。`meta.source` 会写明当日实际来源。
+- **席位 `lists` 口径在 2026-11-06 起变化**：从「累计上榜天数」改为「当日上榜股票只数」，前端文案已同步为「当日上榜 N 只」。
 - 龙虎榜席位维度可用，个股维度接口（`tdxf10_gg_jyds`）当前返 ErrorCode -1005 不可用。
+- **研习社无登录体系**，删除依赖单一管理口令；没有用户体系也就无法做「只看我的帖子」这类功能。
 
 ## 免责
 

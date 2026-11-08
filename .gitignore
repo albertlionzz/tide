@@ -16,8 +16,20 @@ feed_index.json
 # 历史快照备份（体积大且可从 build_snapshot_*.py 重放）
 raw_snapshot_1013.json
 raw_snapshot_1021.json
+raw_snapshot_1104.json
+raw_snapshot_1106_partial.json
 tide_data_1013.json
 tide_data_1021.json
+tide_data_1104.json
+
+# ---- 研习社后端运行时数据 ----
+community/*.db
+community/*.db-shm
+community/*.db-wal
+community/.admin_token
+
+# ---- 临时回收目录 ----
+.trash/
 
 # ---- 系统/工具 ----
 .DS_Store
