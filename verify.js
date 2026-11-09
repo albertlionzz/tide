@@ -86,22 +86,22 @@ setTimeout(() => {
   const assert = (name, cond, got) => checks.push({ name, ok: !!cond, got: String(got).slice(0, 90) });
 
   // ---- 元信息 ----
-  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-06", txt("headerDate"));
+  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-09", txt("headerDate"));
   assert("liveText 显示已收盘时间", txt("liveText").includes("已收盘"), txt("liveText"));
-  assert("dataSource 填入数据源", txt("dataSource").includes("通达信"), txt("dataSource"));
-  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 6 日"), txt("dataDate"));
+  assert("dataSource 填入数据源", txt("dataSource").includes("东方财富"), txt("dataSource"));
+  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 9 日"), txt("dataDate"));
   assert("offlineBanner 保持隐藏", d.getElementById("offlineBanner").hidden === true, d.getElementById("offlineBanner").hidden);
 
   // ---- 恐慌指数 ----
-  assert("fearValue = 79", txt("fearValue") === "79", txt("fearValue"));
-  assert("fearBadge = 偏高", txt("fearBadge") === "偏高", txt("fearBadge"));
+  assert("fearValue = 49", txt("fearValue") === "49", txt("fearValue"));
+  assert("fearBadge = 紧张", txt("fearBadge") === "紧张", txt("fearBadge"));
   assert("fearBreakdown 渲染 5 项", count("#fearBreakdown .breakdown-item") === 5, count("#fearBreakdown .breakdown-item"));
   assert("fearRaw 渲染 6 项读数", count("#fearRaw > div") === 6, count("#fearRaw > div"));
   assert("gaugeArc 有描边色", (d.getElementById("gaugeArc").style.stroke || "").length > 0, d.getElementById("gaugeArc").style.stroke);
 
   // ---- 指数 ----
   assert("marketStats 4 张卡片", count("#marketStats .stat-card") === 4, count("#marketStats .stat-card"));
-  assert("指数含上证 3649.18", htmlOf("marketStats").includes("3,649.18"), "见 innerHTML");
+  assert("指数含上证 3660.79", htmlOf("marketStats").includes("3,660.79"), "见 innerHTML");
   assert("成交额显示万亿", htmlOf("marketStats").includes("万亿"), "见 innerHTML");
 
   // ---- 板块 ----
@@ -118,8 +118,8 @@ setTimeout(() => {
   assert("stockNote 为真实解读", txt("stockNote").includes("%"), txt("stockNote").slice(0, 40));
 
   // ---- 涨停池 ----
-  assert("poolBody 渲染 20 行", count("#poolBody tr") === 20, count("#poolBody tr"));
-  assert("池内出现闽发铝业 5 板", htmlOf("poolBody").includes("闽发铝业") && htmlOf("poolBody").includes("5 板"), "见 innerHTML");
+  assert("poolBody 渲染 15 行", count("#poolBody tr") === 15, count("#poolBody tr"));
+  assert("池内出现 6 板个股", htmlOf("poolBody").includes("6 板"), "见 innerHTML");
 
   // ---- 龙虎榜 ----
   assert("dragonBody 渲染 10 行", count("#dragonBody tr") === 10, count("#dragonBody tr"));

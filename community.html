@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="潮汐 · 研习社 — 行情分析与股票分析的经验总结、复盘笔记与留言板" />
+  <meta name="description" content="潮汐 · 研习社 — 行情分析与股票分析的经验总结与复盘笔记" />
   <title>研习社 · 潮汐</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="theme-color" content="#0071e3" />
@@ -50,7 +50,7 @@
         </p>
         <div class="cm-stats" id="cmStats">
           <div class="cm-stat"><span class="cm-stat-num" data-k="notes">—</span><span class="cm-stat-label">篇经验</span></div>
-          <div class="cm-stat"><span class="cm-stat-num" data-k="messages">—</span><span class="cm-stat-label">条留言</span></div>
+          <div class="cm-stat" id="cmStatMessages"><span class="cm-stat-num" data-k="messages">—</span><span class="cm-stat-label">条留言</span></div>
           <div class="cm-stat"><span class="cm-stat-num" data-k="comments">—</span><span class="cm-stat-label">条评论</span></div>
           <div class="cm-stat"><span class="cm-stat-num" data-k="authors">—</span><span class="cm-stat-label">位参与者</span></div>
         </div>
@@ -62,7 +62,7 @@
       <div class="cm-container cm-toolbar">
         <div class="cm-tabs" role="tablist" aria-label="板块切换">
           <button class="cm-tab is-active" data-type="note" role="tab" aria-selected="true">经验总结</button>
-          <button class="cm-tab" data-type="message" role="tab" aria-selected="false">留言板</button>
+          <button class="cm-tab" id="cmTabMessage" data-type="message" role="tab" aria-selected="false" hidden>留言板</button>
         </div>
         <div class="cm-search">
           <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" fill="none">
@@ -177,9 +177,9 @@
 
         <div class="cm-side-card cm-side-muted">
           <h3>说明</h3>
-          <p>
-            公开留言板，无需登录。发布有频率限制，内容默认保留。
-            如遇不适当内容可通过页脚邮箱联系删除。
+          <p id="cmSideNote">
+            目前只开放「经验总结」，发布无需登录但有频率限制。
+            留言板已暂时关闭，避免出现不适宜内容。
           </p>
         </div>
       </aside>

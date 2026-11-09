@@ -8,6 +8,7 @@
 
 API
     GET    /api/health
+    GET    /api/config                   公开开关状态（留言板是否开放）
     GET    /api/posts?type=note|message&page=1&size=20&q=&category=
     POST   /api/posts                    {type,title,body,category,tags,author}
     GET    /api/posts/<id>               含评论
@@ -17,9 +18,13 @@ API
     DELETE /api/posts/<id>               需 X-Admin-Token
 
 环境变量
-    TIDE_ADMIN_TOKEN   删除口令；不设置则删除接口关闭（返回 403）
-    TIDE_DB            SQLite 路径，默认 ./community.db
-    TIDE_PORT          默认 8091
+    TIDE_ADMIN_TOKEN     删除口令；不设置则删除接口关闭（返回 403）
+    TIDE_DB              SQLite 路径，默认 ./community.db
+    TIDE_PORT            默认 8091
+    TIDE_MESSAGE_BOARD   留言板开关，默认 "0"（关闭）。
+                         关闭时列表不返回、写入拒绝、单帖详情 404，
+                         前后端同时生效，改完重启服务即可恢复。
+    TIDE_COMMENT_OPEN    文章评论开关，默认 "1"（开放）。
 """
 
 import json
@@ -36,6 +41,12 @@ from urllib.parse import parse_qs, urlparse
 DB_PATH = os.environ.get("TIDE_DB", os.path.join(os.path.dirname(os.path.abspath(__file__)), "community.db"))
 PORT = int(os.environ.get("TIDE_PORT", "8091"))
 ADMIN_TOKEN = os.environ.get("TIDE_ADMIN_TOKEN", "").strip()
+
+# 公开互动开关。留言板是匿名白板，风险最高，默认关闭：
+# 关闭后既不下发历史留言，也不接受新留言（前端同时隐藏入口）。
+# 需要恢复时 TIDE_MESSAGE_BOARD=1 重启 tide-community 即可，历史数据一条不丢。
+MESSAGE_BOARD_OPEN = os.environ.get("TIDE_MESSAGE_BOARD", "0").strip() == "1"
+COMMENT_OPEN = os.environ.get("TIDE_COMMENT_OPEN", "1").strip() == "1"
 
 CST = timezone(timedelta(hours=8))
 
@@ -176,6 +187,9 @@ def api_list_posts(q):
     ptype = q.get("type", "note")
     if ptype not in POST_TYPES:
         ptype = "note"
+    # 留言板关闭时不下发任何留言内容（历史数据仍在库里，仅不再对外）
+    if ptype == "message" and not MESSAGE_BOARD_OPEN:
+        return {"items": [], "total": 0, "page": 1, "size": 20, "pages": 1, "closed": True}
     page = max(1, int(q.get("page", "1") or 1))
     size = min(50, max(1, int(q.get("size", "20") or 20)))
     kw = clean(q.get("q", ""), 40)
@@ -217,6 +231,8 @@ def api_get_post(pid):
         r = c.execute("SELECT * FROM posts WHERE id = ? AND deleted = 0", (pid,)).fetchone()
         if not r:
             return None
+        if r["type"] == "message" and not MESSAGE_BOARD_OPEN:
+            return None                                    # 留言关闭后详情一律当不存在
         cs = c.execute(
             "SELECT * FROM comments WHERE post_id = ? AND deleted = 0 ORDER BY created_at ASC, id ASC",
             (pid,),
@@ -233,6 +249,8 @@ def api_create_post(payload, ip):
     ptype = payload.get("type", "note")
     if ptype not in POST_TYPES:
         return 400, {"error": "type 必须是 note 或 message"}
+    if ptype == "message" and not MESSAGE_BOARD_OPEN:
+        return 403, {"error": "留言板已暂时关闭，暂时只开放经验总结"}
 
     body = clean(payload.get("body"), LIMITS["body"])
     if len(body) < 2:
@@ -269,6 +287,8 @@ def api_create_post(payload, ip):
 
 
 def api_create_comment(pid, payload, ip):
+    if not COMMENT_OPEN:
+        return 403, {"error": "评论已暂时关闭"}
     body = clean(payload.get("body"), LIMITS["comment"])
     if len(body) < 1:
         return 400, {"error": "留言内容不能为空"}
@@ -290,6 +310,14 @@ def api_like(pid):
             return 404, {"error": "帖子不存在"}
         likes = c.execute("SELECT likes FROM posts WHERE id = ?", (pid,)).fetchone()[0]
     return 200, {"ok": True, "likes": likes}
+
+
+def api_config():
+    return {
+        "messageBoard": MESSAGE_BOARD_OPEN,
+        "comments": COMMENT_OPEN,
+        "notice": "" if MESSAGE_BOARD_OPEN else "留言板已暂时关闭，目前只开放经验总结",
+    }
 
 
 def api_stats():
@@ -369,6 +397,9 @@ class Handler(BaseHTTPRequestHandler):
 
         if path == "/api/stats":
             return self._send(200, api_stats())
+
+        if path == "/api/config":
+            return self._send(200, api_config())
 
         if path == "/api/posts":
             try:
@@ -452,7 +483,9 @@ def main():
     srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
     srv.daemon_threads = True
     print(f"tide-community listening on 127.0.0.1:{PORT}  db={DB_PATH}  "
-          f"admin={'on' if ADMIN_TOKEN else 'off'}", flush=True)
+          f"admin={'on' if ADMIN_TOKEN else 'off'}  "
+          f"messageBoard={'on' if MESSAGE_BOARD_OPEN else 'OFF'}  "
+          f"comments={'on' if COMMENT_OPEN else 'off'}", flush=True)
     try:
         srv.serve_forever()
     except KeyboardInterrupt:

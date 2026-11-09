@@ -176,6 +176,7 @@ function renderMeta() {
 
   setText("dataDate", fmtDateCN(d.meta.tradeDate));
   setText("dataSource", d.meta.source || "—");
+  setText("poolSource", d.meta.source || "—");   // 涨跌停池口径随数据源变化，写死会过时
 
   const banner = $("offlineBanner");
   if (banner) banner.hidden = !STATE.offline;
@@ -382,13 +383,16 @@ function renderSectorDetail(s) {
       : `${l.upTotal} / ${l.upTotal + l.downTotal} 全市场`;
   }
 
-  // 该板块内的涨停股（按行业关键词匹配）
+  // 该板块内的涨停股。只能按行业关键词粗匹配：板块名带 Ⅰ/Ⅱ/Ⅲ 层级后缀，
+  // 且涨停池的行业归属来自另一套行业分类，两者不保证同名，所以措辞取「样本内」。
   const leaders = $("sectorLeaders");
   if (leaders) {
-    const pool = STATE.data.limitUpPool.filter((r) =>
-      (r.reason || "").includes(s.name) ||
-      (r.reason || "").split(".").some((t) => t && s.name.includes(t))
-    );
+    const bare = String(s.name || "").replace(/[ⅠⅡⅢⅣⅤ]/g, "").trim();
+    const pool = STATE.data.limitUpPool.filter((r) => {
+      const reason = r.reason || "";
+      return (bare && reason.includes(bare)) ||
+        reason.split(".").some((t) => t && (t.includes(bare) || bare.includes(t)));
+    });
     const rows = pool.length ? pool.slice(0, 4) : [];
     leaders.innerHTML = rows.length
       ? rows
@@ -403,7 +407,7 @@ function renderSectorDetail(s) {
         </li>`
           )
           .join("")
-      : `<li class="leader-empty">该板块今日无涨停个股</li>`;
+      : `<li class="leader-empty">样本内未见该板块涨停股</li>`;
   }
 }
 

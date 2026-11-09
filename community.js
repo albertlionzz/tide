@@ -28,6 +28,11 @@
 
   var CATS = ["盘面复盘", "个股研究", "方法论", "交易心理", "复盘教训", "其他"];
 
+  // 服务端开关（/api/config）。默认按「留言板关闭」渲染，只有服务端明确
+  // 返回 messageBoard:true 才显示入口——这样即使开关配置错了，前端也不会
+  // 先把匿名白板亮出来。真正的拦截在后端，前端只是不展示。
+  var CFG = { messageBoard: false, comments: true, notice: "" };
+
   // ---------- 工具 ----------
   function $(id) { return document.getElementById(id); }
 
@@ -83,6 +88,20 @@
     });
   }
 
+  // ---------- 开关 ----------
+  function applyConfig() {
+    var open = CFG.messageBoard !== false;
+    var tab = $("cmTabMessage");
+    if (tab) tab.hidden = !open;
+    var stat = $("cmStatMessages");
+    if (stat) stat.hidden = !open;
+    if (!open) {
+      STATE.type = "note";
+      var note = $("cmSideNote");
+      if (note && CFG.notice) note.textContent = CFG.notice + "。发布无需登录但有频率限制。";
+    }
+  }
+
   // ---------- 统计 ----------
   function loadStats() {
     request("/stats").then(function (d) {
@@ -91,7 +110,11 @@
         if (el) el.textContent = d[k];
       });
       var hc = $("cmHeaderCount");
-      if (hc) hc.textContent = d.notes + " 篇 · " + d.messages + " 条留言";
+      if (hc) {
+        hc.textContent = CFG.messageBoard === false
+          ? d.notes + " 篇 · " + d.comments + " 条评论"
+          : d.notes + " 篇 · " + d.messages + " 条留言";
+      }
     }).catch(function () { /* 统计失败不影响主流程 */ });
   }
 
@@ -498,13 +521,27 @@
   // ---------- 初始化 ----------
   function init() {
     bind();
+    applyConfig();     // 先按默认（留言板关闭）收敛界面，避免先闪一下匿名白板
     syncComposeLabel();
     try {
       var saved = localStorage.getItem("tide.author");
       if (saved) $("cmAuthor").value = saved;
     } catch (e) { /* 隐私模式忽略 */ }
-    loadStats();
-    loadList();
+
+    request("/config")
+      .then(function (c) {
+        CFG = {
+          messageBoard: c.messageBoard !== false,
+          comments: c.comments !== false,
+          notice: c.notice || "",
+        };
+        applyConfig();
+      })
+      .catch(function () { /* 取不到开关就沿用默认关闭，宁可少一个入口 */ })
+      .then(function () {
+        loadStats();
+        loadList();
+      });
 
     // 底部显示当前盘面交易日，失败就算了
     fetch("tide_data.json", { cache: "no-store" })

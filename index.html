@@ -136,8 +136,8 @@
         <!-- 被讨论个股聚合 -->
         <div class="panel buzz-panel">
           <div class="feed-panel-head">
-            <h3 class="feed-panel-title">被股民反复提及的个股</h3>
-            <span class="feed-panel-sub">从雪球帖子的 <code>$名称(代码)$</code> 标签聚合 · 讨论度即关注度</span>
+            <h3 class="feed-panel-title">股民帖子中提到的个股</h3>
+            <span class="feed-panel-sub">从雪球帖子的 <code>$名称(代码)$</code> 标签聚合 · 按提及帖数排序（含仅 1 帖）</span>
           </div>
           <div class="buzz-grid" id="buzzGrid"></div>
         </div>
@@ -186,7 +186,7 @@
                 <p class="mini-value" id="sectorFlow">—</p>
               </div>
               <div>
-                <p class="mini-label">板块内涨停</p>
+                <p class="mini-label">板块内上涨</p>
                 <p class="mini-value" id="sectorBreadth">—</p>
               </div>
             </div>
@@ -350,7 +350,7 @@
               <tbody id="poolBody"></tbody>
             </table>
           </div>
-          <p class="table-foot">数据来源：通达信（tdx-connector）· 涨停池为当日封板样本 · 仅作研究参考，不构成投资建议</p>
+          <p class="table-foot">数据来源：<span id="poolSource">—</span> · 涨停池为当日封板样本 · 仅作研究参考，不构成投资建议</p>
         </div>
       </div>
     </section>
