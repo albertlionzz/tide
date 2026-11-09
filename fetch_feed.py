@@ -45,7 +45,7 @@ def render(url, ua=DESKTOP_UA, budget=12000, profile=None):
     cmd = [
         EDGE, "--headless=new", "--disable-gpu", "--no-sandbox",
         "--disable-dev-shm-usage", "--hide-scrollbars",
-        "--window-size=1440,2400",
+        "--window-size=1440,5200",
         "--virtual-time-budget=%d" % budget,
         "--user-agent=%s" % ua,
     ]
@@ -110,14 +110,23 @@ def parse_cls(doc):
         # 去掉时间戳前缀、阅/评论尾巴
         text = re.sub(r"^\s*\d{1,2}:\d{2}(?::\d{2})?\s*", "", text)
         text = re.sub(r"\s*阅\d+.*$", "", text)
-        # 标题（【】内）
-        tm = re.search(r"[【\[]([^】\]]{4,60})[】\]]", text)
+        # 标题（【】内）。允许到 90 字，否则「美股盘前要闻一览」这类长标题
+        # 会因为找不到闭合括号而退化成一堆无意义前缀。
+        tm = re.search(r"[【\[]([^】\]]{4,90})[】\]]", text)
         title = tm.group(1) if tm else ""
         # 无【】标题时，去掉「财联社X月X日电，」前缀后取首句
         clean = re.sub(r"^财联社\d+月\d+日电[，,]\s*", "", text)
+        # 「据报道」「卡塔尔官员表示」这类只是引语开头，不构成标题，
+        # 直接用正文首句代替，否则页面上会出现一堆「据报道」。
+        generic = (not title) or len(title) < 8 or re.fullmatch(
+            r"[^，。；：]{0,10}(表示|称|获悉|报道|宣布)$", title)
+        if generic:
+            body_head = re.sub(r"^据报道[，,]\s*", "", clean)
+            head = re.split(r"[，。；：]", body_head)[0]
+            if len(head) >= 8:
+                title = head[:46]
         if not title:
-            head = re.split(r"[，。；：]", clean)[0]
-            title = head[:46] if head else clean[:46]
+            title = clean[:46]
         # 正文去掉标题重复部分
         body = clean
         if title and title in body:

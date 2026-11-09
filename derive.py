@@ -18,6 +18,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -40,6 +41,30 @@ BANDS = [
     (61, 80, "偏高", "避险升温，控制仓位"),
     (81, 100, "恐慌", "极端情绪，逆向观察机会"),
 ]
+
+
+def dedupe_boards(rows):
+    """去掉东财行业层级重叠造成的「同数不同名」板块。
+
+    东财同时给二级（Ⅱ）和三级（Ⅲ）行业，当某个二级行业下只有一个三级行业时，
+    两者的涨幅与涨跌家数完全一致（实测 焦炭Ⅲ/焦炭Ⅱ 同为 +5.39%、7 涨 0 跌）。
+    同一批成分股被算两次，榜单会看起来像重复行，板块涨跌家数也被放大。
+    判据：涨幅与涨跌家数三者全同 → 视为同一批成分，只留不带 Ⅲ/Ⅳ 后缀的那个。
+    """
+    seen = {}
+    out = []
+    for b in sorted(rows, key=lambda x: x["pct"], reverse=True):
+        key = (round(float(b["pct"]), 2), b.get("advancers"), b.get("decliners"))
+        if key in seen:
+            keep = seen[key]
+            # 已有的是 Ⅲ/Ⅳ 级、新来的是 Ⅱ 级 → 换成层级更靠上的那个
+            if re.search(r"[ⅢⅣ]$", keep["name"]) and not re.search(r"[ⅢⅣ]$", b["name"]):
+                out[out.index(keep)] = b
+                seen[key] = b
+            continue
+        seen[key] = b
+        out.append(b)
+    return out
 
 
 def clamp(v: float, lo: float = 0.0, hi: float = 100.0) -> float:
@@ -169,7 +194,7 @@ def build(raw: dict) -> dict:
     total_amount_yi = total_amount / 1e8  # 亿元
 
     # ==================== 板块（补算分化度） ====================
-    boards = sorted(raw["industryBoards"], key=lambda b: b["pct"], reverse=True)
+    boards = dedupe_boards(raw["industryBoards"])
     board_pcts = [b["pct"] for b in boards]
     board_spread = (max(board_pcts) - min(board_pcts)) if board_pcts else 0.0
     board_up = sum(1 for b in boards if b["pct"] > 0)
@@ -261,7 +286,24 @@ def build(raw: dict) -> dict:
         "seats": seats,
         "stockActivity": raw["stockListActivity"],
         "watchlist": raw["watchlist"],
+        # 游资 × 个股联动（fetch_seat_stocks.py 产出，直接透传）
+        "seatStocks": raw.get("seatStocks"),
+        # 筛选规则与焦点池（前后端共用同一份规则，避免两套口径）
+        "screenRules": _read_json("screen_rules.json"),
+        "screenMeta": _read_json("screen_meta.json"),
+        "focus": _read_json("top5.json"),
     }
+
+
+def _read_json(name):
+    """读同目录的附属配置；缺失时返回 None，前端按缺省处理。"""
+    p = HERE / name
+    if not p.exists():
+        return None
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
 
 
 def main() -> None:

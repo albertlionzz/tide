@@ -1,0 +1,118 @@
+{
+  "meta": {
+    "generatedBy": "build_history.py",
+    "note": "全部点用当前 derive.py 重算，口径一致；板块分类跨月不同源，故不入库。",
+    "count": 5,
+    "span": [
+      "2026-10-13",
+      "2026-11-09"
+    ]
+  },
+  "points": [
+    {
+      "date": "2026-10-13",
+      "fear": 63,
+      "label": "偏高",
+      "limitUp": 70,
+      "limitDown": 10,
+      "maxBoards": 3,
+      "turnoverYi": 16759.0,
+      "advancers": 2820,
+      "decliners": 2296,
+      "advRatio": 53.32,
+      "amplitude": 3.42,
+      "parts": [
+        54,
+        50,
+        75,
+        56,
+        97
+      ],
+      "source": "tdx-connector (通达信)"
+    },
+    {
+      "date": "2026-10-21",
+      "fear": 62,
+      "label": "偏高",
+      "limitUp": 50,
+      "limitDown": 5,
+      "maxBoards": 4,
+      "turnoverYi": 14293.0,
+      "advancers": 1967,
+      "decliners": 3092,
+      "advRatio": 37.16,
+      "amplitude": 2.07,
+      "parts": [
+        100,
+        36,
+        62,
+        38,
+        47
+      ],
+      "source": "tdx-connector (通达信)"
+    },
+    {
+      "date": "2026-11-04",
+      "fear": 40,
+      "label": "平稳",
+      "limitUp": 121,
+      "limitDown": 10,
+      "maxBoards": 3,
+      "turnoverYi": 20377.0,
+      "advancers": 4396,
+      "decliners": 771,
+      "advRatio": 83.02,
+      "amplitude": 5.07,
+      "parts": [
+        0,
+        31,
+        75,
+        35,
+        100
+      ],
+      "source": "tdx-connector (通达信)"
+    },
+    {
+      "date": "2026-11-06",
+      "fear": 79,
+      "label": "偏高",
+      "limitUp": 33,
+      "limitDown": 15,
+      "maxBoards": 5,
+      "turnoverYi": 16578.0,
+      "advancers": 725,
+      "decliners": 4483,
+      "advRatio": 13.69,
+      "amplitude": 2.09,
+      "parts": [
+        100,
+        100,
+        50,
+        73,
+        48
+      ],
+      "source": "通达信(指数/涨跌停) + 东方财富(板块/龙虎榜/K线)"
+    },
+    {
+      "date": "2026-11-09",
+      "fear": 49,
+      "label": "紧张",
+      "limitUp": 54,
+      "limitDown": 1,
+      "maxBoards": 6,
+      "turnoverYi": 14826.0,
+      "advancers": 2077,
+      "decliners": 3028,
+      "advRatio": 39.23,
+      "amplitude": 1.46,
+      "parts": [
+        100,
+        7,
+        46,
+        35,
+        24
+      ],
+      "source": "东方财富 + 同花顺（通达信配额未恢复）"
+    }
+  ]
+}

@@ -29,9 +29,10 @@
         <a href="#sectors">行业板块</a>
         <a href="#stock">个股分析</a>
         <a href="#screen">股票筛选</a>
+        <a href="#trend">资金趋势</a>
         <a href="#pool">涨停池</a>
         <a href="#dragon">龙虎榜</a>
-        <a href="#hotmoney">游资策略</a>
+        <a href="#hotmoney">游资席位</a>
         <a href="#fear">恐慌指数</a>
         <a href="community.html" class="nav-page">研习社</a>
       </nav>
@@ -99,7 +100,7 @@
             <p class="eyebrow">News &amp; Community</p>
             <h2 class="section-title">资讯 · 股民跟踪</h2>
             <p class="section-desc">
-              左路是<b>财联社电报</b>——消息面驱动的短线快讯，抢的是时效；右路是<b>雪球</b>——股民对个股的长期跟踪与深度论证，看的是逻辑。两条信息流互补：快讯告诉你「发生了什么」，长帖告诉你「有人在怎么想」。
+              左路是<b>财联社电报</b>——消息面驱动的短线快讯，抢的是时效；右路是<b>雪球</b>——股民对个股的长期跟踪与深度论证，看的是逻辑。两条信息流互补：快讯告诉你「发生了什么」，长帖告诉你「有人在怎么想」。<b>电报只收财经、科技与社会重大影响</b>，纯天气、生活服务、付费导流一律不收录。
             </p>
           </div>
           <div class="segmented" id="feedSourceFilter" role="tablist" aria-label="按信源筛选">
@@ -108,6 +109,11 @@
             <button class="seg-btn" data-src="xueqiu" role="tab" aria-selected="false">雪球</button>
           </div>
         </header>
+
+        <div class="feed-cat-bar">
+          <div class="chip-row" id="feedCatFilter" role="listbox" aria-label="按快讯主题筛选"></div>
+          <p class="feed-filter-note" id="feedFilterNote">—</p>
+        </div>
 
         <div class="feed-layout">
           <!-- 左：快讯流 -->
@@ -195,6 +201,64 @@
       </div>
     </section>
 
+    <!-- ============ 资金与趋势 ============ -->
+    <section class="section" id="trend">
+      <div class="container">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">Money Flow &amp; Trend</p>
+            <h2 class="section-title">资金与趋势</h2>
+            <p class="section-desc">
+              把每日快照串成序列：恐慌指数与涨跌停结构怎么变、板块资金当天堆在哪、龙虎榜三类席位谁在净买。
+              多日曲线只连接<b>实际抓取到的交易日</b>，缺数据的日期不插值。
+            </p>
+          </div>
+          <div class="segmented" id="trendRange" role="tablist" aria-label="趋势区间">
+            <button class="seg-btn is-active" data-range="all" role="tab" aria-selected="true">全部</button>
+            <button class="seg-btn" data-range="5" role="tab" aria-selected="false">近 5 点</button>
+            <button class="seg-btn" data-range="3" role="tab" aria-selected="false">近 3 点</button>
+          </div>
+        </header>
+
+        <div class="trend-grid">
+          <div class="panel chart-panel">
+            <div class="chart-head">
+              <h3 class="panel-title">恐慌指数走势</h3>
+              <span class="chart-sub" id="trendFearSub">—</span>
+            </div>
+            <svg class="trend-svg" id="chartFear" viewBox="0 0 720 250" preserveAspectRatio="none" role="img" aria-label="恐慌指数历史走势"></svg>
+            <div class="legend-row" id="chartFearLegend"></div>
+          </div>
+
+          <div class="panel chart-panel">
+            <div class="chart-head">
+              <h3 class="panel-title">涨停 / 跌停家数</h3>
+              <span class="chart-sub" id="trendLimitSub">—</span>
+            </div>
+            <svg class="trend-svg" id="chartLimit" viewBox="0 0 720 250" preserveAspectRatio="none" role="img" aria-label="涨停跌停家数对比"></svg>
+            <div class="legend-row" id="chartLimitLegend"></div>
+          </div>
+
+          <div class="panel chart-panel">
+            <div class="chart-head">
+              <h3 class="panel-title">板块涨跌分布</h3>
+              <span class="chart-sub" id="trendBoardSub">—</span>
+            </div>
+            <div class="board-bars" id="chartBoards"></div>
+          </div>
+
+          <div class="panel chart-panel">
+            <div class="chart-head">
+              <h3 class="panel-title">龙虎榜资金结构</h3>
+              <span class="chart-sub" id="trendMoneySub">—</span>
+            </div>
+            <div class="flow-stack" id="chartMoney"></div>
+            <div class="legend-row" id="chartMoneyLegend"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ 个股分析 ============ -->
     <section class="section" id="stock">
       <div class="container">
@@ -202,10 +266,12 @@
           <div>
             <p class="eyebrow">Single Stock</p>
             <h2 class="section-title">个股分析</h2>
-            <p class="section-desc">焦点个股近 60 个交易日的真实收盘序列、量价与阶段涨跌。</p>
+            <p class="section-desc">焦点池<b>跟着「股票筛选」走</b>：按当前筛选条件得分排序取前 5 名，条件一变标的就换。展示近 60 个交易日真实收盘序列、量价与阶段涨跌。</p>
           </div>
           <div class="stock-picker" id="stockPicker" role="tablist" aria-label="选择个股"></div>
         </header>
+
+        <p class="focus-note" id="focusNote">—</p>
 
         <div class="panel stock-panel">
           <div class="stock-hero">
@@ -251,7 +317,7 @@
           <div>
             <p class="eyebrow">Stock Screener</p>
             <h2 class="section-title">股票筛选</h2>
-            <p class="section-desc">科技赛道中期观察池：市值 50–300 亿 · 日均换手 &gt;2.5%，叠加景气与加分项。研究底稿，非当日选股结果。</p>
+            <p class="section-desc" id="screenDesc">下面是<b>当前生效的筛选条件</b>，可切换预设或直接改参数，列表与「个股分析」焦点池会同步重算。条件默认取自 <code>screen_rules.json</code>，改文件即可换口径。</p>
           </div>
           <div class="segmented" id="screenTierFilter" role="tablist" aria-label="按关注等级筛选">
             <button class="seg-btn is-active" data-tier="all" role="tab" aria-selected="true">全部</button>
@@ -261,36 +327,32 @@
           </div>
         </header>
 
-        <div class="panel rules-panel">
-          <div class="rules-grid">
+        <div class="panel rules-panel" id="screenRulesPanel">
+          <div class="rules-head">
             <div>
-              <p class="panel-kicker">硬条件</p>
-              <ul class="rule-list">
-                <li><span class="rule-tag">H1</span>总市值 50–300 亿元（±10% 弹性）</li>
-                <li><span class="rule-tag">H2</span>近 5 日日均换手率 &gt; 2.5%</li>
-                <li><span class="rule-tag">H3</span>半导体 / 散热 / 设备 / 光模块 / 纤维布 / PCB / 光纤 / 创新医药</li>
-                <li><span class="rule-tag">H4</span>剔除科创板 688 与 9 开头；优先 60 / 00 / 30</li>
-                <li><span class="rule-tag">H5</span>行业景气稳中向上</li>
-                <li><span class="rule-tag">H6</span>无重大不利新闻</li>
-              </ul>
+              <p class="panel-kicker">筛选条件（可调）</p>
+              <h3 class="rules-title" id="rulesTitle">默认（既定条件）</h3>
             </div>
-            <div>
-              <p class="panel-kicker">加分项</p>
-              <ul class="rule-list">
-                <li><span class="rule-tag plus">A1 +1</span>创始人仍在管理团队</li>
-                <li><span class="rule-tag plus">A2 +1</span>科技研发投入持续增长</li>
-                <li><span class="rule-tag plus">A3 +1</span>业务稳中向上或止跌向好</li>
-                <li><span class="rule-tag plus">A4 +2</span>游资大佬或近期热点涉及</li>
-                <li><span class="rule-tag plus">A5 +2</span>股价上升且一周涨幅 &gt; 12%</li>
-              </ul>
-              <p class="rule-note">分档：★★★ ≥4 分 · ★★ 2–3 分 · ★ 0–1 分。A4/A5 建议每周复评。</p>
-            </div>
+            <p class="rules-hint">换预设或调参数，下方列表与「个股分析」焦点池会同步重算</p>
           </div>
+
+          <div class="preset-row" id="screenPresets" role="radiogroup" aria-label="筛选预设"></div>
+
+          <div class="param-grid">
+            <label class="param"><span>市值下限<em>亿</em></span><input type="number" id="ruleMcapMin" step="5" min="0" inputmode="decimal"></label>
+            <label class="param"><span>市值上限<em>亿</em></span><input type="number" id="ruleMcapMax" step="10" min="0" inputmode="decimal"></label>
+            <label class="param"><span>换手下限<em>%</em></span><input type="number" id="ruleTurnoverMin" step="0.5" min="0" inputmode="decimal"></label>
+            <label class="param"><span>加分门槛<em>分</em></span><input type="number" id="ruleMinScore" step="1" min="0" inputmode="numeric"></label>
+            <label class="param"><span>取前<em>名</em></span><input type="number" id="ruleTopN" step="1" min="1" max="10" inputmode="numeric"></label>
+            <button class="param-reset" id="ruleReset" type="button">恢复默认</button>
+          </div>
+
+          <ul class="rule-list rule-list-compact" id="ruleExplain"></ul>
         </div>
 
         <div class="screen-toolbar">
           <div class="chip-row" id="screenTrackFilter" role="listbox" aria-label="按赛道筛选"></div>
-          <p class="screen-count"><span id="screenCount">0</span> 只候选 · 研究底稿截面 2026-09-29</p>
+          <p class="screen-count"><span id="screenCount">0</span> 只候选 · 行情截面 <span id="screenAsOf">—</span></p>
         </div>
 
         <div class="panel table-panel">
@@ -381,12 +443,14 @@
                   <th>卖出</th>
                   <th>净买入</th>
                   <th>成交额</th>
+                  <th>关联游资</th>
                   <th>风格信号</th>
                 </tr>
               </thead>
               <tbody id="dragonBody"></tbody>
             </table>
           </div>
+          <p class="link-hint" id="dragonLinkHint" hidden></p>
           <p class="table-foot">数据来源：沪深交易所公开龙虎榜 · 仅作研究参考，不构成投资建议</p>
         </div>
       </div>
@@ -399,11 +463,48 @@
           <div>
             <p class="eyebrow">Hot Money Research</p>
             <h2 class="section-title">游资大佬交易策略</h2>
-            <p class="section-desc">基于 25+ 公开源的研究梳理：知名席位近 12 个月活跃度、打法变化，以及二板战法的阶段适配门。</p>
+            <p class="section-desc">
+              左边是「谁在买」——知名游资档期与<b>近期真实买入的个股</b>（取自龙虎榜席位—个股明细，不是人工标注）；
+              下面接「近 10 个交易日最活跃席位」和当日龙虎榜。点个股看逐日买卖，点席位跳到龙虎榜对应记录。
+            </p>
           </div>
         </header>
 
         <div class="hot-grid" id="hotGrid"></div>
+
+        <div class="panel hot-seat-panel">
+          <div class="chart-head">
+            <h3 class="panel-title">近 10 个交易日最活跃游资席位</h3>
+            <span class="chart-sub" id="hotSeatSub">—</span>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table hot-seat-table">
+              <thead>
+                <tr>
+                  <th>席位</th>
+                  <th>净买入</th>
+                  <th>买入</th>
+                  <th>卖出</th>
+                  <th>活跃天数</th>
+                  <th>个股数</th>
+                  <th>买得最重的三只</th>
+                </tr>
+              </thead>
+              <tbody id="hotSeatBody"></tbody>
+            </table>
+          </div>
+          <p class="table-foot" id="seatNote">—</p>
+        </div>
+
+        <div class="panel hot-stock-panel" id="hotStockPanel" hidden>
+          <div class="chart-head">
+            <h3 class="panel-title" id="hotStockTitle">—</h3>
+            <button class="panel-close" id="hotStockClose" type="button" aria-label="关闭">×</button>
+          </div>
+          <div class="hot-stock-metrics" id="hotStockMetrics"></div>
+          <div class="hot-stock-days" id="hotStockDays"></div>
+          <p class="table-foot">逐日买卖为龙虎榜披露口径，仅统计上榜当日；未上榜日不显示，不代表没有交易。</p>
+        </div>
 
         <div class="panel stage-gate-panel">
           <div id="stageGate"></div>

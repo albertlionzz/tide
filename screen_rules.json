@@ -1,0 +1,85 @@
+{
+  "version": "2026-11-09",
+  "owner": "飞哥",
+  "updatedAt": "2026-11-09",
+  "intro": "科技赛道中期观察池。硬条件过滤 + 加分项排序，取前 N 名作为「个股分析」的焦点标的。",
+  "default": "default",
+  "scoreRules": {
+    "a1": 1,
+    "a2": 1,
+    "a3": 1,
+    "a4": 2,
+    "a5": 2
+  },
+  "tiers": [
+    { "name": "★★★", "min": 4, "desc": "优先跟踪" },
+    { "name": "★★", "min": 2, "desc": "跟踪" },
+    { "name": "★", "min": 0, "desc": "观察" }
+  ],
+  "bonusNote": {
+    "a1": "创始人仍在管理团队（人工研究）",
+    "a2": "研发投入持续增长（人工研究）",
+    "a3": "业务稳中向上或止跌向好（人工研究）",
+    "a4": "近 10 个交易日被龙虎榜游资席位净买入（每日按龙虎榜明细自动计算）",
+    "a5": "近 5 个交易日涨幅 > 12%（每日按收盘价自动计算）"
+  },
+  "presets": [
+    {
+      "id": "default",
+      "name": "默认（既定条件）",
+      "note": "科技赛道中期观察池：市值 45–330 亿 · 换手 >2.5% · 叠加景气与加分项",
+      "mcapMin": 45,
+      "mcapMax": 330,
+      "turnoverMin": 2.5,
+      "tracks": [],
+      "excludePrefix": ["688", "689", "8", "4", "9"],
+      "preferPrefix": ["60", "00", "30"],
+      "minScore": 0,
+      "topN": 5,
+      "scoreOrder": "score-desc-mcap-asc"
+    },
+    {
+      "id": "loose",
+      "name": "宽松（扩池）",
+      "note": "放宽市值与换手，先看数量再看质量，适合板块普涨日",
+      "mcapMin": 30,
+      "mcapMax": 600,
+      "turnoverMin": 1.5,
+      "tracks": [],
+      "excludePrefix": ["688", "689", "8", "4", "9"],
+      "preferPrefix": ["60", "00", "30"],
+      "minScore": 0,
+      "topN": 5,
+      "scoreOrder": "score-desc-mcap-asc"
+    },
+    {
+      "id": "strict",
+      "name": "严格（精选）",
+      "note": "只留 ★★ 以上、市值 80–250 亿、换手 >4% 的中盘活跃票",
+      "mcapMin": 80,
+      "mcapMax": 250,
+      "turnoverMin": 4,
+      "tracks": [],
+      "excludePrefix": ["688", "689", "8", "4", "9"],
+      "preferPrefix": ["60", "00", "30"],
+      "minScore": 2,
+      "topN": 5,
+      "scoreOrder": "score-desc-mcap-asc"
+    },
+    {
+      "id": "hot",
+      "name": "游资足迹",
+      "note": "只保留近 10 个交易日被游资席位净买入的标的，按加分降序",
+      "mcapMin": 30,
+      "mcapMax": 800,
+      "turnoverMin": 2,
+      "tracks": [],
+      "excludePrefix": ["688", "689", "8", "4", "9"],
+      "preferPrefix": ["60", "00", "30"],
+      "minScore": 2,
+      "requireA4": true,
+      "topN": 5,
+      "scoreOrder": "score-desc-mcap-asc"
+    }
+  ]
+}

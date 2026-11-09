@@ -14,6 +14,7 @@ const { JSDOM, VirtualConsole } = require("jsdom");
 const DIR = __dirname;
 
 const html = fs.readFileSync(path.join(DIR, "index.html"), "utf8");
+const css = fs.readFileSync(path.join(DIR, "styles.css"), "utf8");
 const appjs = fs.readFileSync(path.join(DIR, "app.js"), "utf8");
 const tideData = JSON.parse(fs.readFileSync(path.join(DIR, "tide_data.json"), "utf8"));
 const screenPool = JSON.parse(fs.readFileSync(path.join(DIR, "screen_pool.json"), "utf8"));
@@ -21,6 +22,16 @@ const feedPath = path.join(DIR, "feed_data.json");
 const feedData = fs.existsSync(feedPath)
   ? JSON.parse(fs.readFileSync(feedPath, "utf8"))
   : null;
+
+// 新增模块的数据：缺失时允许为 null，但断言会直接判失败（不能静默放行）
+const readJSON = (f) => {
+  const fp = path.join(DIR, f);
+  return fs.existsSync(fp) ? JSON.parse(fs.readFileSync(fp, "utf8")) : null;
+};
+const historyData = readJSON("history.json");
+const poolKlineData = readJSON("pool_kline.json");
+const screenRules = readJSON("screen_rules.json");
+const top5Data = readJSON("top5.json");
 
 const errors = [];
 const warns = [];
@@ -41,6 +52,17 @@ function fakeFetch(url) {
   if (url.includes("feed_data.json")) {
     if (feedData) return Promise.resolve({ ok: true, status: 200, json: () => Promise.resolve(feedData) });
     return Promise.resolve({ ok: false, status: 404, json: () => Promise.resolve(null) });
+  }
+  const extra = {
+    "history.json": historyData,
+    "pool_kline.json": poolKlineData,
+    "screen_rules.json": screenRules,
+  };
+  for (const [k, v] of Object.entries(extra)) {
+    if (url.includes(k)) {
+      if (v) return Promise.resolve({ ok: true, status: 200, json: () => Promise.resolve(v) });
+      return Promise.resolve({ ok: false, status: 404, json: () => Promise.resolve(null) });
+    }
   }
   return Promise.resolve({ ok: false, status: 404, json: () => Promise.resolve(null) });
 }
@@ -105,7 +127,14 @@ setTimeout(() => {
   assert("成交额显示万亿", htmlOf("marketStats").includes("万亿"), "见 innerHTML");
 
   // ---- 板块 ----
-  assert("sectorList 27 个板块", count("#sectorList .sector-item") === 27, count("#sectorList .sector-item"));
+  // 板块数会随去重规则变化，跟数据比而不是写死 27
+  assert("sectorList 板块数 = 数据条数",
+    count("#sectorList .sector-item") === tideData.boards.length,
+    `${count("#sectorList .sector-item")} vs ${tideData.boards.length}`);
+  const boardNames = tideData.boards.map((b) => b.name);
+  assert("板块无重复名（Ⅱ/Ⅲ 层级已去重）",
+    new Set(boardNames).size === boardNames.length,
+    `${new Set(boardNames).size} / ${boardNames.length}`);
   assert("板块详情标题非空", txt("sectorDetailTitle") !== "—" && txt("sectorDetailTitle").length > 0, txt("sectorDetailTitle"));
   assert("板块详情涨幅已填", txt("sectorChange") !== "—", txt("sectorChange"));
 
@@ -165,6 +194,61 @@ setTimeout(() => {
   assert("被讨论个股卡片已渲染", count("#buzzGrid .buzz-card") >= 1, count("#buzzGrid .buzz-card"));
   assert("话题标签云已渲染", count("#topicCloud .topic-chip") >= 1, count("#topicCloud .topic-chip"));
   assert("重要快讯带 is-key 标记", count("#feedClsList .feed-item.is-key") >= 1, count("#feedClsList .feed-item.is-key"));
+
+  // ---- 资金与趋势图表 ----
+  const nPts = (historyData && historyData.points) ? historyData.points.length : 0;
+  assert("chartFear 画出折线", count("#chartFear polyline") === 1, count("#chartFear polyline"));
+  assert("chartFear 点数 = 历史序列长度", count("#chartFear circle") === nPts, `${count("#chartFear circle")} vs ${nPts}`);
+  assert("chartFear 分档背景 5 段", count("#chartFear rect") >= 5, count("#chartFear rect"));
+  assert("trendFearSub 含最新值", txt("trendFearSub").includes(String(tideData.fear.value)), txt("trendFearSub"));
+  assert("chartLimit 双柱 = 点数×2", count("#chartLimit rect") === nPts * 2, `${count("#chartLimit rect")} vs ${nPts * 2}`);
+  assert("chartBoards 11 行板块条", count("#chartBoards .board-bar") === 11, count("#chartBoards .board-bar"));
+  assert("chartBoards 有跌幅分隔", count("#chartBoards .bb-divider") === 1, count("#chartBoards .bb-divider"));
+  assert("chartMoney 3 类资金结构", count("#chartMoney .flow-row") === 3, count("#chartMoney .flow-row"));
+  assert("chartMoney 副标题含净额", txt("trendMoneySub").includes("合计净"), txt("trendMoneySub"));
+
+  // ---- 游资 ↔ 龙虎榜 联动 ----
+  assert("活跃席位表 10 行", count("#hotSeatBody tr") === 10, count("#hotSeatBody tr"));
+  assert("龙虎榜含「关联游资」列", htmlOf("dragonTable").includes("关联游资"), "见表头");
+  assert("存在可点的关联游资标签", count("#dragonBody .seat-link") >= 1, count("#dragonBody .seat-link"));
+  assert("游资卡显示真实买入个股", count("#hotGrid .stock-chip-mini") >= 1, count("#hotGrid .stock-chip-mini"));
+  assert("游资卡显示区间净额", htmlOf("hotGrid").includes("个交易日买入"), "见 innerHTML");
+  assert("游资个股面板默认隐藏", d.getElementById("hotStockPanel").hidden === true, d.getElementById("hotStockPanel").hidden);
+
+  // ---- 筛选条件面板 ----
+  assert("预设按钮 = 规则文件预设数",
+    count("#screenPresets .preset-btn") === ((screenRules && screenRules.presets) || []).length,
+    `${count("#screenPresets .preset-btn")} vs ${((screenRules && screenRules.presets) || []).length}`);
+  const defPreset = screenRules && screenRules.presets.find((p) => p.id === screenRules.default);
+  assert("市值下限已按默认预设填入",
+    Number(d.getElementById("ruleMcapMin").value) === Number(defPreset.mcapMin),
+    d.getElementById("ruleMcapMin").value);
+  assert("取前 N 与预设一致",
+    Number(d.getElementById("ruleTopN").value) === Number(defPreset.topN),
+    d.getElementById("ruleTopN").value);
+  assert("条件标题显示预设名", txt("rulesTitle").includes(defPreset.name), txt("rulesTitle"));
+  assert("规则说明列出加分项 A4/A5", htmlOf("ruleExplain").includes("A4") && htmlOf("ruleExplain").includes("A5"), "见 innerHTML");
+  assert("焦点池说明给出筛出数", txt("focusNote").includes("筛出"), txt("focusNote").slice(0, 40));
+
+  // ---- 个股分析跟随筛选前 5 ----
+  const picked = (top5Data && top5Data.picked) || [];
+  assert("个股分析 5 只 = 筛选前 5", count("#stockPicker .stock-chip") === picked.length && picked.length === 5,
+    `${count("#stockPicker .stock-chip")} vs ${picked.length}`);
+  const firstChipName = txt0(d.querySelector("#stockPicker .stock-chip .sc-name"));
+  assert("焦点池第 1 名与服务端一致", firstChipName === (picked[0] && picked[0].name),
+    `${firstChipName} vs ${picked[0] && picked[0].name}`);
+  assert("焦点股在筛选表中带标记", count("#screenBody .focus-dot") >= 5, count("#screenBody .focus-dot"));
+
+  // ---- 资讯分类 ----
+  assert("快讯分类筛选条已生成", count("#feedCatFilter .track-chip") >= 3, count("#feedCatFilter .track-chip"));
+  assert("分类剔除说明非空", txt("feedFilterNote").length > 4 && txt("feedFilterNote") !== "—", txt("feedFilterNote").slice(0, 40));
+  assert("快讯条目带分类标签", count("#feedClsList .feed-cat") >= 5, count("#feedClsList .feed-cat"));
+
+  // ---- 样式层回归（jsdom 不套用外部 CSS，只能查文本）----
+  // .sector-bar 是 span，若没有 display:block，inline 元素会忽略 width%，
+  // 涨跌幅条宽度恒为 0 且颜色仍是红的 —— 页面上完全看不出来，只能靠这条守住。
+  assert(".sector-bar 显式声明 block",
+    /\.sector-bar\s*\{[^}]*display:\s*block/.test(css), "见 styles.css");
 
   // ---- 输出 ----
   const pass = checks.filter((c) => c.ok).length;

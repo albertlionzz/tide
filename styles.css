@@ -633,6 +633,9 @@ button {
 }
 
 .sector-bar {
+  /* 必须是块级：span 默认 inline，inline 元素会忽略 width 百分比，
+     结果是颜色对了但宽度恒为 0 —— 涨跌幅条整整隐形了一个版本。 */
+  display: block;
   height: 100%;
   border-radius: 999px;
   transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
@@ -2184,3 +2187,770 @@ button {
   .feed-panel { max-height: 520px; }
   .buzz-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 }
+
+/* ============================================================
+ *  资讯分类筛选
+ * ============================================================ */
+
+.feed-cat-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-bottom: 20px;
+}
+
+.feed-cat-bar .chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.feed-cat-bar .track-chip i {
+  margin-left: 6px;
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+.feed-filter-note {
+  margin: 0;
+  font-size: 12px;
+  color: var(--secondary);
+  line-height: 1.6;
+}
+
+.feed-cat {
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--secondary);
+  white-space: nowrap;
+}
+
+.feed-cat.c-科技 { background: rgba(0, 113, 227, 0.1); color: #0062c4; }
+.feed-cat.c-宏观 { background: rgba(255, 159, 10, 0.14); color: #a35c00; }
+.feed-cat.c-公司 { background: rgba(255, 59, 48, 0.1); color: #c9271d; }
+.feed-cat.c-国际 { background: rgba(88, 86, 214, 0.12); color: #4b49b8; }
+.feed-cat.c-社会 { background: rgba(52, 199, 89, 0.12); color: #1d8a3c; }
+
+/* ============================================================
+ *  资金与趋势
+ * ============================================================ */
+
+.trend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.chart-panel {
+  padding: 22px 22px 18px;
+  min-width: 0;
+}
+
+.chart-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.chart-head .panel-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.chart-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--secondary);
+  text-align: right;
+  line-height: 1.5;
+}
+
+.trend-svg {
+  display: block;
+  width: 100%;
+  height: 250px;
+  overflow: visible;
+}
+
+.trend-line {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: tide-draw 1.1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+.trend-area {
+  opacity: 0;
+  animation: tide-fade 0.9s ease 0.25s forwards;
+}
+
+.trend-dot {
+  opacity: 0;
+  animation: tide-fade 0.5s ease forwards;
+}
+
+.trend-dot:nth-of-type(1) { animation-delay: 0.40s; }
+.trend-dot:nth-of-type(2) { animation-delay: 0.52s; }
+.trend-dot:nth-of-type(3) { animation-delay: 0.64s; }
+.trend-dot:nth-of-type(4) { animation-delay: 0.76s; }
+.trend-dot:nth-of-type(5) { animation-delay: 0.88s; }
+
+.trend-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: tide-grow 0.65s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes tide-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes tide-fade {
+  to { opacity: 1; }
+}
+
+@keyframes tide-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.lg-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--secondary);
+}
+
+.lg-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* 横向发散条：板块与资金结构共用 */
+.board-bars,
+.flow-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.board-bar,
+.flow-row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 64px;
+  align-items: center;
+  gap: 10px;
+}
+
+.flow-row {
+  grid-template-columns: 110px minmax(0, 1fr) 74px;
+}
+
+.bb-name,
+.fr-name {
+  font-size: 12px;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fr-name i {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--secondary);
+  margin-left: 5px;
+}
+
+.bb-track {
+  position: relative;
+  display: block;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.045);
+  overflow: hidden;
+}
+
+.bb-zero {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.bb-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 999px;
+  transform-origin: center;
+  animation: tide-grow-x 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes tide-grow-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.bb-val {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.bb-val.up { color: var(--up); }
+.bb-val.down { color: var(--down); }
+
+.bb-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 3px 0 1px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.bb-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* ============================================================
+ *  游资 ↔ 龙虎榜 联动
+ * ============================================================ */
+
+.hot-card.is-linked,
+.data-table tbody tr.is-linked {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  background: var(--accent-soft) !important;
+}
+
+.hot-recent {
+  margin: 12px 0 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.025);
+}
+
+.hb-title {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--secondary);
+  line-height: 1.6;
+}
+
+.hb-title b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.hb-title.is-muted {
+  margin: 0;
+  opacity: 0.75;
+}
+
+.hb-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stock-chip-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 12px;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stock-chip-mini i {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--secondary);
+}
+
+.stock-chip-mini:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+
+.stock-chip-mini.is-buy { border-left: 2px solid var(--up); }
+.stock-chip-mini.is-sell { border-left: 2px solid var(--down); }
+
+.hb-hint {
+  margin: 8px 0 0;
+  font-size: 10px;
+  color: var(--secondary);
+  opacity: 0.8;
+}
+
+.hot-link-btn {
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 12px;
+  border: 1px solid rgba(0, 113, 227, 0.28);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+
+.hot-link-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.hot-seat-panel {
+  margin-top: 20px;
+}
+
+.hot-seat-table {
+  min-width: 940px;
+}
+
+.hot-seat-table tbody tr {
+  cursor: pointer;
+}
+
+.seat-stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 6px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 11px;
+  color: var(--ink);
+}
+
+.seat-stock i {
+  font-style: normal;
+  font-family: var(--mono);
+  color: var(--up);
+}
+
+.seat-link {
+  padding: 3px 9px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.seat-link:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.link-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  font-size: 12px;
+  color: var(--ink);
+}
+
+.link-hint[hidden] {
+  display: none;
+}
+
+.link-clear {
+  margin-left: auto;
+  padding: 3px 10px;
+  border: 1px solid rgba(0, 113, 227, 0.3);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* 游资个股逐日买卖 */
+.hot-stock-panel {
+  margin-top: 20px;
+}
+
+.hot-stock-panel[hidden] {
+  display: none;
+}
+
+.panel-close {
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--secondary);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.panel-close:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--ink);
+}
+
+.hot-stock-metrics {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.hot-stock-days {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.day-row {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) 132px;
+  align-items: center;
+  gap: 12px;
+}
+
+.day-date {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--secondary);
+}
+
+.day-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.day-bar {
+  display: block;
+  height: 7px;
+  border-radius: 999px;
+  animation: tide-grow-x 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.day-bar.buy { background: var(--up); }
+.day-bar.sell { background: var(--down); }
+
+.day-val {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-align: right;
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.day-val b { font-weight: 600; }
+.day-val .up { color: var(--up); }
+.day-val .down { color: var(--down); }
+
+/* ============================================================
+ *  筛选条件面板
+ * ============================================================ */
+
+.rules-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.rules-title {
+  margin: 4px 0 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.rules-hint {
+  max-width: 220px;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--secondary);
+  text-align: right;
+}
+
+.preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.preset-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 9px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.16s ease, background 0.16s ease;
+}
+
+.preset-btn:hover {
+  border-color: rgba(0, 113, 227, 0.4);
+}
+
+.preset-btn.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.pb-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.preset-btn.is-active .pb-name {
+  color: var(--accent);
+}
+
+.pb-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--secondary);
+}
+
+.param-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.param {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.param span {
+  font-size: 11px;
+  color: var(--secondary);
+}
+
+.param span em {
+  font-style: normal;
+  opacity: 0.7;
+  margin-left: 3px;
+}
+
+.param input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9px;
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  -moz-appearance: textfield;
+}
+
+.param input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.param-reset {
+  grid-column: 1 / -1;
+  justify-self: start;
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--secondary);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.param-reset:hover {
+  background: rgba(0, 0, 0, 0.09);
+  color: var(--ink);
+}
+
+.rule-list-compact li {
+  font-size: 12px;
+}
+
+.rule-tag {
+  display: inline-block;
+  min-width: 30px;
+  margin-right: 8px;
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.05);
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--secondary);
+  text-align: center;
+}
+
+.screen-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 20px 0 14px;
+}
+
+.screen-toolbar .chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.focus-note {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 113, 227, 0.06);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.focus-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-left: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: middle;
+}
+
+.empty-hint {
+  font-size: 12px;
+  color: var(--secondary);
+}
+
+/* ============================================================
+ *  响应式
+ * ============================================================ */
+
+@media (max-width: 1024px) {
+  .trend-grid { grid-template-columns: minmax(0, 1fr); }
+  .param-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hot-stock-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .board-bar { grid-template-columns: 78px minmax(0, 1fr) 56px; }
+  .flow-row { grid-template-columns: 88px minmax(0, 1fr) 66px; }
+  .day-row { grid-template-columns: 74px minmax(0, 1fr) 108px; }
+  .chart-panel { padding: 18px 14px 14px; }
+  .trend-svg { height: 200px; }
+  .rules-head { flex-direction: column; }
+  .rules-hint { max-width: none; text-align: left; }
+  .param-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hot-stock-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feed-filter-note { font-size: 11px; }
+}
+
+/* 名称列不换行：中文 4 字名会被折成两行（「明阳电 / 路」），视觉上像断字 */
+.data-table .t-name,
+.data-table .t-code {
+  white-space: nowrap;
+}
+
+/* 资金结构里的「净买前三营业部」：可点，联动到龙虎榜高亮 */
+.flow-seat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.025);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.flow-seat:hover {
+  background: var(--accent-soft);
+}
+
+.fs-name {
+  font-size: 12px;
+  color: var(--ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fs-net {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.fs-net.up { color: var(--up); }

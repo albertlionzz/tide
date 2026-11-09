@@ -16,8 +16,10 @@
 import json
 import os
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime
+
+from news_filter import split as split_news
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -34,8 +36,12 @@ def main():
     cls = load("feed_cls.json")
     xq = load("feed_xueqiu.json")
 
-    cls_items = (cls or {}).get("items", [])
+    cls_raw = (cls or {}).get("items", [])
     xq_items = (xq or {}).get("items", [])
+
+    # ---- 财联社快讯过滤：只留财经/科技/社会重大，纯天气与非财经不收录 ----
+    cls_items, cls_dropped = split_news(cls_raw)
+    drop_reason = Counter(d["reason"].split("（")[0] for d in cls_dropped)
 
     # ---- 按股票聚合股民观点 ----
     buzz = defaultdict(lambda: {"name": "", "code": "", "posts": [], "authors": set()})
@@ -73,6 +79,11 @@ def main():
     # ---- 重要快讯（star>=1）单独拎出 ----
     important = [it for it in cls_items if it.get("star", 0) >= 1]
 
+    # ---- 快讯主题分布（前端做类别筛选用） ----
+    topic_count = Counter(it.get("cat", "市场") for it in cls_items)
+    cls_topics = [{"cat": k, "count": v}
+                  for k, v in sorted(topic_count.items(), key=lambda x: -x[1])]
+
     out = {
         "meta": {
             "generatedAt": datetime.now().astimezone().isoformat(timespec="seconds"),
@@ -84,6 +95,13 @@ def main():
             ],
         },
         "cls": cls_items,
+        "clsDropped": {
+            "count": len(cls_dropped),
+            "rawCount": len(cls_raw),
+            "reasons": [{"reason": k, "count": v} for k, v in drop_reason.items()],
+            "samples": cls_dropped[:8],
+        },
+        "clsTopics": cls_topics,
         "xueqiu": xq_items,
         "important": important[:12],
         "hotTopics": hot_topics[:12],
@@ -93,6 +111,8 @@ def main():
             "xueqiuCount": len(xq_items),
             "buzzStockCount": len(stock_buzz),
             "importantCount": len(important),
+            "clsRawCount": len(cls_raw),
+            "clsDroppedCount": len(cls_dropped),
         },
     }
 
@@ -100,8 +120,13 @@ def main():
     with open(p, "w", encoding="utf-8") as fh:
         json.dump(out, fh, ensure_ascii=False, indent=2)
     print("写出 feed_data.json  %d 字节" % os.path.getsize(p))
-    print("  财联社 %d 条 | 雪球 %d 条 | 重要 %d 条 | 被讨论个股 %d 只"
-          % (len(cls_items), len(xq_items), len(important), len(stock_buzz)))
+    print("  财联社 %d 条（原 %d，过滤掉 %d）| 雪球 %d 条 | 重要 %d 条 | 被讨论个股 %d 只"
+          % (len(cls_items), len(cls_raw), len(cls_dropped), len(xq_items),
+             len(important), len(stock_buzz)))
+    if cls_dropped:
+        print("  剔除原因:", "，".join("%s %d 条" % (k, v) for k, v in drop_reason.items()))
+    if cls_topics:
+        print("  主题分布:", " ".join("%s %d" % (t["cat"], t["count"]) for t in cls_topics))
     if stock_buzz:
         print("  讨论度 Top5:",
               " ".join("%s(%d)" % (b["name"], b["postCount"]) for b in stock_buzz[:5]))

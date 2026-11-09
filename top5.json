@@ -1,0 +1,46 @@
+{
+  "asOf": "2026-11-09",
+  "presetId": "default",
+  "presetName": "默认（既定条件）",
+  "presetNote": "科技赛道中期观察池：市值 45–330 亿 · 换手 >2.5% · 叠加景气与加分项",
+  "topN": 5,
+  "passed": 30,
+  "picked": [
+    {
+      "code": "300739",
+      "name": "明阳电路",
+      "score": 4,
+      "mcap": 83.7,
+      "track": "PCB"
+    },
+    {
+      "code": "603186",
+      "name": "华正新材",
+      "score": 4,
+      "mcap": 232.8,
+      "track": "覆铜板"
+    },
+    {
+      "code": "002773",
+      "name": "康弘药业",
+      "score": 3,
+      "mcap": 216.1,
+      "track": "创新生物药"
+    },
+    {
+      "code": "300358",
+      "name": "楚天科技",
+      "score": 2,
+      "mcap": 64.6,
+      "track": "制药装备"
+    },
+    {
+      "code": "605058",
+      "name": "澳弘电子",
+      "score": 2,
+      "mcap": 69.5,
+      "track": "PCB"
+    }
+  ],
+  "generatedAt": "2026-11-09T22:14:55+0800"
+}
