@@ -108,22 +108,22 @@ setTimeout(() => {
   const assert = (name, cond, got) => checks.push({ name, ok: !!cond, got: String(got).slice(0, 90) });
 
   // ---- 元信息 ----
-  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-09", txt("headerDate"));
+  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-17", txt("headerDate"));
   assert("liveText 显示已收盘时间", txt("liveText").includes("已收盘"), txt("liveText"));
   assert("dataSource 填入数据源", txt("dataSource").includes("东方财富"), txt("dataSource"));
-  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 9 日"), txt("dataDate"));
+  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 17 日"), txt("dataDate"));
   assert("offlineBanner 保持隐藏", d.getElementById("offlineBanner").hidden === true, d.getElementById("offlineBanner").hidden);
 
   // ---- 恐慌指数 ----
-  assert("fearValue = 49", txt("fearValue") === "49", txt("fearValue"));
-  assert("fearBadge = 紧张", txt("fearBadge") === "紧张", txt("fearBadge"));
+  assert("fearValue = 83", txt("fearValue") === "83", txt("fearValue"));
+  assert("fearBadge = 恐慌", txt("fearBadge") === "恐慌", txt("fearBadge"));
   assert("fearBreakdown 渲染 5 项", count("#fearBreakdown .breakdown-item") === 5, count("#fearBreakdown .breakdown-item"));
   assert("fearRaw 渲染 6 项读数", count("#fearRaw > div") === 6, count("#fearRaw > div"));
   assert("gaugeArc 有描边色", (d.getElementById("gaugeArc").style.stroke || "").length > 0, d.getElementById("gaugeArc").style.stroke);
 
   // ---- 指数 ----
   assert("marketStats 4 张卡片", count("#marketStats .stat-card") === 4, count("#marketStats .stat-card"));
-  assert("指数含上证 3660.79", htmlOf("marketStats").includes("3,660.79"), "见 innerHTML");
+  assert("指数含上证 3584.58", htmlOf("marketStats").includes("3,584.58"), "见 innerHTML");
   assert("成交额显示万亿", htmlOf("marketStats").includes("万亿"), "见 innerHTML");
 
   // ---- 板块 ----
@@ -148,10 +148,10 @@ setTimeout(() => {
 
   // ---- 涨停池 ----
   assert("poolBody 渲染 15 行", count("#poolBody tr") === 15, count("#poolBody tr"));
-  assert("池内出现 6 板个股", htmlOf("poolBody").includes("6 板"), "见 innerHTML");
+  assert("池内出现最高板个股", htmlOf("poolBody").includes(`${tideData.limit.maxBoards} 板`), `最高 ${tideData.limit.maxBoards} 板`);
 
   // ---- 龙虎榜 ----
-  assert("dragonBody 渲染 10 行", count("#dragonBody tr") === 10, count("#dragonBody tr"));
+  assert("dragonBody 行数 = 席位条数", count("#dragonBody tr") === tideData.seats.length, `${count("#dragonBody tr")} vs ${tideData.seats.length}`);
   assert("龙虎榜含北向席位", htmlOf("dragonBody").includes("北向"), "见 innerHTML");
 
   // ---- 游资 / 阶段门 ----
@@ -204,6 +204,13 @@ setTimeout(() => {
   assert("chartLimit 双柱 = 点数×2", count("#chartLimit rect") === nPts * 2, `${count("#chartLimit rect")} vs ${nPts * 2}`);
   assert("chartBoards 11 行板块条", count("#chartBoards .board-bar") === 11, count("#chartBoards .board-bar"));
   assert("chartBoards 有跌幅分隔", count("#chartBoards .bb-divider") === 1, count("#chartBoards .bb-divider"));
+  // 守住「涨跌家数按全样本」：曾把 25 个取样的涨 16/跌 9 当成全市场，
+  // 真实是 496 个行业 72 涨/423 跌，方向相反且肉眼看不出来。
+  const bsub = txt("trendBoardSub");
+  assert("板块涨跌家数按全样本",
+    bsub.includes(`${tideData.boardStats.total} 个行业`)
+    && bsub.includes(`涨 ${tideData.boardStats.up} / 跌 ${tideData.boardStats.down}`),
+    bsub);
   assert("chartMoney 3 类资金结构", count("#chartMoney .flow-row") === 3, count("#chartMoney .flow-row"));
   assert("chartMoney 副标题含净额", txt("trendMoneySub").includes("合计净"), txt("trendMoneySub"));
 

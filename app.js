@@ -1586,7 +1586,13 @@ function renderBoardBars() {
 
   const st = (STATE.data && STATE.data.boardStats) || {};
   if (sub) {
-    sub.textContent = `${boards.length} 个行业 · 涨 ${st.up || 0} / 跌 ${st.down || 0} · 分化 ${st.spread} 个百分点`;
+    // 涨跌家数按**全样本**（全市场二级行业）报，括号里注明表内只展示了取样个数。
+    // 以前这里写 `${boards.length} 个行业`，25 个取样的「涨 16 / 跌 9」被当成全市场，
+    // 而真实是 496 个行业 72 涨 / 423 跌 —— 结论方向是反的。
+    const total = st.total || boards.length;
+    const basis = st.basis === "all" ? "" : "·取样口径";
+    sub.textContent = `${total} 个行业 · 涨 ${st.up || 0} / 跌 ${st.down || 0}`
+      + ` · 分化 ${st.spread}pct · 表内 ${boards.length} 个${basis}`;
   }
 }
 

@@ -5,7 +5,7 @@
     "count": 5,
     "span": [
       "2026-10-13",
-      "2026-11-09"
+      "2026-11-17"
     ]
   },
   "points": [
@@ -94,23 +94,23 @@
       "source": "通达信(指数/涨跌停) + 东方财富(板块/龙虎榜/K线)"
     },
     {
-      "date": "2026-11-09",
-      "fear": 49,
-      "label": "紧张",
-      "limitUp": 54,
-      "limitDown": 1,
-      "maxBoards": 6,
-      "turnoverYi": 14826.0,
-      "advancers": 2077,
-      "decliners": 3028,
-      "advRatio": 39.23,
-      "amplitude": 1.46,
+      "date": "2026-11-17",
+      "fear": 83,
+      "label": "恐慌",
+      "limitUp": 37,
+      "limitDown": 67,
+      "maxBoards": 3,
+      "turnoverYi": 14577.0,
+      "advancers": 1236,
+      "decliners": 3925,
+      "advRatio": 23.35,
+      "amplitude": 2.17,
       "parts": [
         100,
-        7,
-        46,
-        35,
-        24
+        100,
+        83,
+        59,
+        51
       ],
       "source": "东方财富 + 同花顺（通达信配额未恢复）"
     }

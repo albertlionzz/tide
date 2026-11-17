@@ -196,9 +196,24 @@ def build(raw: dict) -> dict:
     # ==================== 板块（补算分化度） ====================
     boards = dedupe_boards(raw["industryBoards"])
     board_pcts = [b["pct"] for b in boards]
-    board_spread = (max(board_pcts) - min(board_pcts)) if board_pcts else 0.0
-    board_up = sum(1 for b in boards if b["pct"] > 0)
-    board_down = sum(1 for b in boards if b["pct"] < 0)
+    # ⚠️ 涨跌家数必须用**全样本**（东财 496 个二级行业），不能用快照里那 27 个取样。
+    # 取样只含涨幅前 17 + 榜尾 10，按它统计会得出「25 个行业 · 涨 16 / 跌 9」，
+    # 而真实是 496 个行业里 72 涨 / 423 跌 —— 方向完全相反，且肉眼看不出来。
+    bst = raw.get("industryBoardStats") or {}
+    if bst.get("total"):
+        board_total = bst["total"]
+        board_up = bst["up"]
+        board_down = bst["down"]
+        board_flat = bst.get("flat", board_total - board_up - board_down)
+        board_spread = bst.get("spread", (max(board_pcts) - min(board_pcts)) if board_pcts else 0.0)
+        board_basis = "all"
+    else:
+        board_total = len(boards)
+        board_up = sum(1 for b in boards if b["pct"] > 0)
+        board_down = sum(1 for b in boards if b["pct"] < 0)
+        board_flat = board_total - board_up - board_down
+        board_spread = (max(board_pcts) - min(board_pcts)) if board_pcts else 0.0
+        board_basis = "sample"
 
     # ==================== 龙虎榜席位（按净买入排序，标注性质） ====================
     seats = []
@@ -279,6 +294,10 @@ def build(raw: dict) -> dict:
         "boardStats": {
             "up": board_up,
             "down": board_down,
+            "flat": board_flat,
+            "total": board_total,
+            "shown": len(boards),
+            "basis": board_basis,          # all=全样本 / sample=旧快照按取样统计
             "spread": round(board_spread, 2),
         },
         "limitUpPool": up_pool,
