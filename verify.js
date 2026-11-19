@@ -32,6 +32,8 @@ const historyData = readJSON("history.json");
 const poolKlineData = readJSON("pool_kline.json");
 const screenRules = readJSON("screen_rules.json");
 const top5Data = readJSON("top5.json");
+const deltaData = readJSON("delta.json");
+const analysisData = readJSON("analysis.json");
 
 const errors = [];
 const warns = [];
@@ -57,6 +59,8 @@ function fakeFetch(url) {
     "history.json": historyData,
     "pool_kline.json": poolKlineData,
     "screen_rules.json": screenRules,
+    "delta.json": deltaData,
+    "analysis.json": analysisData,
   };
   for (const [k, v] of Object.entries(extra)) {
     if (url.includes(k)) {
@@ -108,22 +112,22 @@ setTimeout(() => {
   const assert = (name, cond, got) => checks.push({ name, ok: !!cond, got: String(got).slice(0, 90) });
 
   // ---- 元信息 ----
-  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-17", txt("headerDate"));
+  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-18", txt("headerDate"));
   assert("liveText 显示已收盘时间", txt("liveText").includes("已收盘"), txt("liveText"));
   assert("dataSource 填入数据源", txt("dataSource").includes("东方财富"), txt("dataSource"));
-  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 17 日"), txt("dataDate"));
+  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 18 日"), txt("dataDate"));
   assert("offlineBanner 保持隐藏", d.getElementById("offlineBanner").hidden === true, d.getElementById("offlineBanner").hidden);
 
   // ---- 恐慌指数 ----
-  assert("fearValue = 83", txt("fearValue") === "83", txt("fearValue"));
-  assert("fearBadge = 恐慌", txt("fearBadge") === "恐慌", txt("fearBadge"));
+  assert("fearValue = 80", txt("fearValue") === "80", txt("fearValue"));
+  assert("fearBadge = 偏高", txt("fearBadge") === "偏高", txt("fearBadge"));
   assert("fearBreakdown 渲染 5 项", count("#fearBreakdown .breakdown-item") === 5, count("#fearBreakdown .breakdown-item"));
   assert("fearRaw 渲染 6 项读数", count("#fearRaw > div") === 6, count("#fearRaw > div"));
   assert("gaugeArc 有描边色", (d.getElementById("gaugeArc").style.stroke || "").length > 0, d.getElementById("gaugeArc").style.stroke);
 
   // ---- 指数 ----
   assert("marketStats 4 张卡片", count("#marketStats .stat-card") === 4, count("#marketStats .stat-card"));
-  assert("指数含上证 3584.58", htmlOf("marketStats").includes("3,584.58"), "见 innerHTML");
+  assert("指数含上证 3587.83", htmlOf("marketStats").includes("3,587.83"), "见 innerHTML");
   assert("成交额显示万亿", htmlOf("marketStats").includes("万亿"), "见 innerHTML");
 
   // ---- 板块 ----
@@ -213,6 +217,46 @@ setTimeout(() => {
     bsub);
   assert("chartMoney 3 类资金结构", count("#chartMoney .flow-row") === 3, count("#chartMoney .flow-row"));
   assert("chartMoney 副标题含净额", txt("trendMoneySub").includes("合计净"), txt("trendMoneySub"));
+
+  // ---- 逐日变动（delta.json） ----
+  if (deltaData && deltaData.available) {
+    assert("deltaBlock 已显示", d.getElementById("deltaBlock").hidden === false, d.getElementById("deltaBlock").hidden);
+    assert("delta 信号条数 = 数据条数",
+      count("#deltaSignals li") === deltaData.signals.length,
+      `${count("#deltaSignals li")} vs ${deltaData.signals.length}`);
+    assert("恐慌五分量 5 行", count("#deltaFearParts .delta-row") === 5, count("#deltaFearParts .delta-row"));
+    assert("涨跌停卡含涨跌停两行", count("#deltaLimit .delta-row") >= 5, count("#deltaLimit .delta-row"));
+    assert("资金结构 3 行", count("#deltaMoney .delta-row") === 3, count("#deltaMoney .delta-row"));
+    assert("轮动表含「新进」或表头", htmlOf("deltaBoards").includes("今日涨幅居前"), "见 innerHTML");
+    assert("游资变动表含游资名", htmlOf("deltaHot").includes("章盟主"), "见 innerHTML");
+    assert("领读已生成（含恐慌与跌停）",
+      txt("deltaLead").includes("恐慌") && txt("deltaLead").includes("跌停") && txt("deltaLead").length > 30,
+      txt("deltaLead").slice(0, 50));
+  } else {
+    assert("无 delta.json 时整块隐藏", d.getElementById("deltaBlock").hidden === true, "缺数据");
+  }
+
+  // ---- 本地台账 · 持续分析（analysis.json） ----
+  if (analysisData && analysisData.available) {
+    assert("ledgerBlock 已显示", d.getElementById("ledgerBlock").hidden === false, d.getElementById("ledgerBlock").hidden);
+    assert("台账行数 = 存档日数 + 表头",
+      count("#ledgerTable .lg-row") === analysisData.series.length + 1,
+      `${count("#ledgerTable .lg-row")} vs ${analysisData.series.length + 1}`);
+    assert("台账含今日标记", htmlOf("ledgerTable").includes("今日"), "见 innerHTML");
+    assert("结论条数 = 数据条数",
+      count("#ledgerFindings li") === analysisData.findings.length,
+      `${count("#ledgerFindings li")} vs ${analysisData.findings.length}`);
+    // 恐慌条用 px 宽度（曾因 inline 元素忽略 width% 导致条宽恒为 0，肉眼看不出来）
+    const bars = [...d.querySelectorAll("#ledgerTable .lg-fear i")];
+    assert("恐慌条用 px 宽度且非零",
+      bars.length === analysisData.series.length && bars.every((b) => /px/.test(b.getAttribute("style") || "")),
+      `${bars.length} 条 / ${bars[0] ? bars[0].getAttribute("style") : "无"}`);
+    assert("台账区间文字含起止日",
+      txt("ledgerRange").includes(analysisData.range[0]) && txt("ledgerRange").includes(analysisData.range[1]),
+      txt("ledgerRange"));
+  } else {
+    assert("无 analysis.json 时台账隐藏", d.getElementById("ledgerBlock").hidden === true, "缺数据");
+  }
 
   // ---- 游资 ↔ 龙虎榜 联动 ----
   assert("活跃席位表 10 行", count("#hotSeatBody tr") === 10, count("#hotSeatBody tr"));

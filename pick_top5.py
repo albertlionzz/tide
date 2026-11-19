@@ -25,14 +25,18 @@ import sys
 import time
 import urllib.request
 
+import kline_src
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-BASE = "https://push2.eastmoney.com"
-HIS = "https://push2his.eastmoney.com"
+BASE = "http://push2.eastmoney.com"
+HIS = "http://push2his.eastmoney.com"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 CTX = ssl.create_default_context()
-CTX.check_hostname = False
-CTX.verify_mode = ssl.CERT_NONE
+# 东财自 2026-11-18 起会直接断开「关闭证书校验」的连接（RemoteDisconnected），
+# 必须用默认校验上下文
+# CTX.check_hostname = False
+# CTX.verify_mode = ssl.CERT_NONE
 
 KLINE_N = 60
 
@@ -43,7 +47,7 @@ def get_json(url, referer="https://quote.eastmoney.com/", retries=3):
     for i in range(retries):
         try:
             req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=25, context=CTX) as r:
+            with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8"))
         except Exception as e:                      # noqa: BLE001
             last = e
@@ -123,15 +127,10 @@ def fetch_quote(code):
             "turnoverRate": num(d.get("f168")), "name": d.get("f58")}
 
 
-def fetch_kline(code, n=KLINE_N):
-    url = (f"{HIS}/api/qt/stock/kline/get?secid={setcode_of(code)}.{code}"
-           "&fields1=f1,f2,f3&fields2=f51,f52,f53,f54,f55,f56,f57&klt=101&fqt=1"
-           f"&end=20500101&lmt={n}")
-    d = get_json(url).get("data")
-    if not d or not d.get("klines"):
-        raise RuntimeError(f"{code} K 线为空")
-    return [{"d": ln.split(",")[0].replace("-", ""), "c": round(float(ln.split(",")[2]), 2)}
-            for ln in d["klines"]]
+def fetch_kline(code, n=KLINE_N, trade_date=None):
+    """K 线统一走 kline_src：东财 push2his 被封时自动退腾讯，且截断到 trade_date。"""
+    return [{"d": r["d"], "c": r["c"]}
+            for r in kline_src.fetch_kline(code, setcode_of(code), n, trade_date)]
 
 
 def main():
@@ -165,7 +164,7 @@ def main():
         r = item["row"]
         code = r["code"]
         q = fetch_quote(code)
-        kl = fetch_kline(code)
+        kl = fetch_kline(code, trade_date=trade_date)
         if len(kl) != KLINE_N:
             print(f"  [!] {code} K 线只有 {len(kl)} 根（停牌或次新），按实际根数保留")
         last_d = kl[-1]["d"]

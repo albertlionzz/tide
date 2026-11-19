@@ -24,14 +24,18 @@ import sys
 import time
 import urllib.request
 
+import kline_src
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-BASE = "https://push2.eastmoney.com"
-HIS = "https://push2his.eastmoney.com"
+BASE = "http://push2.eastmoney.com"
+HIS = "http://push2his.eastmoney.com"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 CTX = ssl.create_default_context()
-CTX.check_hostname = False
-CTX.verify_mode = ssl.CERT_NONE
+# 东财自 2026-11-18 起会直接断开「关闭证书校验」的连接（RemoteDisconnected），
+# 必须用默认校验上下文
+# CTX.check_hostname = False
+# CTX.verify_mode = ssl.CERT_NONE
 
 A5_THRESHOLD = 12.0     # 近 5 日涨幅 > 12% 记 +2
 
@@ -42,7 +46,7 @@ def get_json(url, referer="https://quote.eastmoney.com/", retries=3):
     for i in range(retries):
         try:
             req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=25, context=CTX) as r:
+            with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8"))
         except Exception as e:                      # noqa: BLE001
             last = e
@@ -85,17 +89,16 @@ def fetch_quotes(codes):
     return out
 
 
-def fetch_chg5(code):
-    """近 5 个交易日涨幅：取 6 根日线，末根 / 首根 - 1。"""
-    secid = f"{setcode_of(code)}.{code}"
-    url = (f"{HIS}/api/qt/stock/kline/get?secid={secid}"
-           "&fields1=f1,f2&fields2=f51,f53&klt=101&fqt=1&end=20500101&lmt=6")
-    d = get_json(url).get("data")
-    if not d or not d.get("klines") or len(d["klines"]) < 6:
+def fetch_chg5(code, trade_date=None):
+    """近 5 个交易日涨幅：取截至 trade_date 的 6 根日线，末根 / 首根 - 1。
+
+    K 线统一走 kline_src（东财被封时自动退腾讯），并强制截断到 trade_date ——
+    盘中运行时腾讯会带上当日半根 K，不截断就会把「今天的盘中价」当成收盘算出涨幅。
+    """
+    rows = kline_src.fetch_kline(code, setcode_of(code), 6, trade_date)
+    if not rows or len(rows) < 6:
         return None, None
-    closes = [float(ln.split(",")[1]) for ln in d["klines"]]
-    dates = [ln.split(",")[0] for ln in d["klines"]]
-    return round((closes[-1] / closes[0] - 1) * 100, 2), dates[-1]
+    return round((rows[-1]["c"] / rows[0]["c"] - 1) * 100, 2), rows[-1]["d"]
 
 
 def main():
@@ -123,7 +126,7 @@ def main():
     chg5_map, miss5 = {}, []
     for c in codes:
         try:
-            v, last_date = fetch_chg5(c)
+            v, last_date = fetch_chg5(c, trade_date)
         except Exception as e:                      # noqa: BLE001
             print(f"      [!] {c} K 线失败：{e}")
             v, last_date = None, None

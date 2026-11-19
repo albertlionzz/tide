@@ -23,6 +23,7 @@ const STATE = {
   feedSource: "all",
   feedCat: "all",    // 快讯主题筛选
   history: null,     // history.json：多日恐慌/涨跌停序列
+  delta: null,       // delta.json：逐日变动（和上一交易日对比）
   trendRange: "all",
   rules: null,       // screen_rules.json
   presetId: null,
@@ -2106,6 +2107,8 @@ async function boot() {
   STATE.history = await loadHistory();
   STATE.poolKline = await loadPoolKline();
   STATE.rules = await loadRules();
+  STATE.delta = await loadDelta();   // 逐日变动：没有 delta.json 时整块隐藏
+  STATE.analysis = await loadAnalysis();   // 本地台账跨日分析
 
   renderMeta();
   initGauge();
@@ -2122,10 +2125,274 @@ async function boot() {
   renderIndices();
   initTrendRange();
   renderTrend();
+  renderDelta();
+  renderLedger();
   initScreen();            // 内部会建条件、渲染筛选表并重建焦点池与个股分析
   initFeedFilter();
   renderFeed();
   initNavHighlight();
+}
+
+
+/* ============================================================
+ *  逐日变动（delta.json）
+ *  ------------------------------------------------------------
+ *  趋势图回答「这一个多月怎么走的」，这里回答「今天这一跳变了什么」。
+ *  全部数字由 build_delta.py 用同一版 derive 重算两日快照得出，
+ *  前端只做渲染，不在这里做任何加减（避免与后端口径分叉）。
+ * ============================================================ */
+
+async function loadDelta() {
+  try {
+    const res = await fetch("delta.json", { cache: "no-store" });
+    if (!res.ok) return null;
+    const j = await res.json();
+    return j && j.available ? j : null;
+  } catch (err) {
+    console.warn("[潮汐] 日变动加载失败：", err);
+    return null;
+  }
+}
+
+const pn = (v, unit = "", digits = 2) => {
+  if (v === null || v === undefined) return "—";
+  const n = Number(v);
+  if (!Number.isFinite(n)) return "—";
+  return `${n >= 0 ? "+" : "−"}${fmtNum(Math.abs(n), digits)}${unit}`;
+};
+
+/**
+ * 金额格式化：|v| ≥ 1 亿用「亿」，否则用「万」。
+ * 游资当日上榜额常只有几百万元，统一按「亿」保留两位会全变成 0.00，
+ * 四行数字看起来像空表 —— 显示成 +500 万才有信息量。
+ */
+const fmtMoney = (v) => {
+  if (v === null || v === undefined) return "—";
+  const n = Number(v);
+  if (!Number.isFinite(n)) return "—";
+  const sign = n >= 0 ? "+" : "−";
+  const abs = Math.abs(n);
+  return abs >= 1
+    ? `${sign}${fmtNum(abs, 2)} 亿`
+    : `${sign}${fmtNum(abs * 10000, 0)} 万`;
+};
+
+const toneCls = (v) => (v > 0 ? "dr-up" : v < 0 ? "dr-down" : "dr-flat");
+
+function deltaRow(name, now, prev, delta, opts = {}) {
+  const maxAbs = opts.maxAbs || 1;
+  const w = Math.min(50, (Math.abs(delta || 0) / maxAbs) * 50);
+  const color = delta > 0 ? "var(--up)" : delta < 0 ? "var(--down)" : "var(--tertiary)";
+  const pos = (delta || 0) >= 0;
+  const barStyle = pos
+    ? `left:50%;width:${w.toFixed(2)}%;background:${color}`
+    : `right:50%;width:${w.toFixed(2)}%;background:${color}`;
+  const nowTxt = opts.fmt ? opts.fmt(now) : fmtNum(now, opts.digits ?? 2) + (opts.unit || "");
+  const prevTxt = opts.fmt ? opts.fmt(prev) : fmtNum(prev, opts.digits ?? 2) + (opts.unit || "");
+  return `
+    <div class="delta-row">
+      <span class="dr-name">${escapeHTML(name)}</span>
+      <span class="dr-val ${toneCls(delta)}">${nowTxt}
+        <span class="dr-prev">← ${prevTxt}</span></span>
+      <span class="dr-bar"><i style="${barStyle}"></i></span>
+    </div>`;
+}
+
+function renderDelta() {
+  const d = STATE.delta;
+  const block = $("deltaBlock");
+  if (!block) return;
+  if (!d) {
+    block.hidden = true;
+    return;
+  }
+  block.hidden = false;
+
+  $("deltaRange").textContent = `${d.prev} → ${d.asOf}　与上一交易日对比`;
+
+  // —— 一句话领读：指数 + 情绪 + 跌停 + 成交，都是已算好的数 ——
+  const sh = (d.market.index || []).find((i) => i.name === "上证指数") || d.market.index[0];
+  const lead = $("deltaLead");
+  if (lead) {
+    const fearDir = d.fear.delta > 0 ? "升温" : d.fear.delta < 0 ? "降温" : "持平";
+    lead.innerHTML = `上证 <b>${fmtNum(sh.close, 2)}</b>（${pn(sh.pct, "%")}，前一日 ${pn(sh.pctPrev, "%")}），`
+      + `恐慌 <b>${d.fear.prev} → ${d.fear.now}</b>（${fearDir} ${pn(d.fear.delta, "", 0).replace("−", "")} 分），`
+      + `跌停 <b>${d.limit.downPrev} → ${d.limit.down}</b> 家，`
+      + `成交 <b>${fmtNum(d.market.turnoverYi, 0)}</b> 亿（${pn(d.market.turnoverDelta, "", 0)} 亿）。`;
+  }
+
+  // —— 信号清单 ——
+  const sig = $("deltaSignals");
+  if (sig) {
+    sig.innerHTML = (d.signals || []).map((s) =>
+      `<li class="t-${s.tone === "up" ? "up" : s.tone === "down" ? "down" : s.tone === "info" ? "info" : "flat"}">${escapeHTML(s.text)}</li>`
+    ).join("");
+  }
+
+  // —— 恐慌五分量 ——
+  const parts = d.fear.parts || [];
+  const pMax = Math.max(1, ...parts.map((p) => Math.abs(p.delta)));
+  const fp = $("deltaFearParts");
+  if (fp) {
+    fp.innerHTML = parts.map((p) =>
+      deltaRow(`${p.name}（权重 ${Math.round(p.weight * 100)}%）`, p.now, p.prev, p.delta,
+        { maxAbs: pMax, digits: 0 })
+    ).join("");
+  }
+
+  // —— 涨跌停 / 成交 / 广度 ——
+  const L = d.limit;
+  const M = d.market;
+  const lMax = Math.max(1, Math.abs(L.upDelta), Math.abs(L.downDelta));
+  const rowLimit = [
+    deltaRow("涨停家数", L.up, L.upPrev, L.upDelta, { maxAbs: lMax, digits: 0, unit: " 家" }),
+    deltaRow("跌停家数", L.down, L.downPrev, L.downDelta, { maxAbs: lMax, digits: 0, unit: " 家" }),
+    deltaRow("最高连板", L.maxBoards, L.maxBoardsPrev, L.maxBoards - L.maxBoardsPrev,
+      { maxAbs: 2, digits: 0, unit: " 板" }),
+    deltaRow("20 日均振幅", M.amplitude, M.amplitudePrev,
+      Number((M.amplitude - M.amplitudePrev).toFixed(2)), { maxAbs: 1, unit: "%" }),
+    deltaRow("两市成交", M.turnoverYi, M.turnoverPrev, M.turnoverDelta,
+      { maxAbs: Math.max(1, Math.abs(M.turnoverDelta)), digits: 0, unit: " 亿" }),
+  ].join("");
+  // 广度单独一行：只报今日绝对数，不硬凑变化量（前一日的家数口径可能不同）
+  const breadth = `
+    <div class="delta-row">
+      <span class="dr-name">上涨 / 下跌家数</span>
+      <span class="dr-val">${M.adv} / ${M.dec}
+        <span class="dr-prev">← ${M.advPrev} / ${M.decPrev}</span></span>
+      <span class="dr-bar"><i style="left:0;width:${Math.min(100, M.advRatio)}%;background:var(--up)"></i></span>
+    </div>`;
+  const dl = $("deltaLimit");
+  if (dl) dl.innerHTML = rowLimit + breadth;
+
+  // —— 资金结构 ——
+  const money = d.money || [];
+  const mMax = Math.max(1, ...money.map((m) => Math.abs(m.delta || 0)));
+  const dm = $("deltaMoney");
+  if (dm) {
+    dm.innerHTML = money.map((m) =>
+      // 「机构专用」是交易所标注，不是单家营业部：席位数恒为 1，别显示成「1 席」
+      deltaRow(m.kind === "机构" ? "机构合计" : `${m.kind}（${m.sample} 席）`,
+        m.net, m.prev, m.delta, { maxAbs: mMax, unit: " 亿" })
+    ).join("");
+  }
+
+  // —— 行业轮动 ——
+  const bs = $("deltaBoardBasis");
+  if (bs) {
+    bs.textContent = d.boards.basis === "full" ? "全量行业" : "快照取样";
+  }
+  const bd = $("deltaBoards");
+  if (bd) {
+    const rows = [];
+    rows.push(`<div class="dt-row dt-head"><span>今日涨幅居前</span><span class="dt-num">今日</span><span class="dt-num">昨日</span></div>`);
+    (d.boards.top || []).slice(0, 10).forEach((b) => {
+      rows.push(`<div class="dt-row">
+        <span class="dt-name">${escapeHTML(b.name)}${b.isNew ? '<i class="dt-new">新进</i>' : ""}</span>
+        <span class="dt-num up">${b.pct > 0 ? "+" : ""}${b.pct.toFixed(2)}%</span>
+        <span class="dt-num">${b.pctPrev === null ? "—" : `${b.pctPrev > 0 ? "+" : ""}${b.pctPrev.toFixed(2)}%`}</span>
+      </div>`);
+    });
+    const drop = (d.boards.dropped || []).slice(0, 5);
+    if (drop.length) {
+      rows.push(`<div class="dt-row dt-head" style="margin-top:6px"><span>昨日居前、今日跌出</span><span class="dt-num">今日</span><span class="dt-num">昨日</span></div>`);
+      drop.forEach((b) => {
+        rows.push(`<div class="dt-row">
+          <span class="dt-name">${escapeHTML(b.name)}<i class="dt-out">跌出</i></span>
+          <span class="dt-num ${b.pct < 0 ? "down" : b.pct > 0 ? "up" : ""}">${b.pct === null ? "—" : `${b.pct > 0 ? "+" : ""}${b.pct.toFixed(2)}%`}</span>
+          <span class="dt-num">${b.pctPrev > 0 ? "+" : ""}${b.pctPrev.toFixed(2)}%</span>
+        </div>`);
+      });
+    }
+    bd.innerHTML = rows.join("");
+  }
+
+  // —— 游资 ——
+  // 用「当日净买额」对比：滚动 10 日累计每天窗口都在前移，跨日相减会混入滑动量。
+  const dh = $("deltaHot");
+  if (dh) {
+    const hm = d.hotmoney || [];
+    const rows = [`<div class="dt-row dt-head"><span>游资（当日净买 / 10 日累计）</span><span class="dt-num">当日</span><span class="dt-num">前一日</span></div>`];
+    hm.forEach((h) => {
+      const dnet = h.dayNet;
+      rows.push(`<div class="dt-row">
+        <span class="dt-name">${escapeHTML(h.name)}
+          <span class="dr-prev" style="font-size:11.5px">${dnet === null && h.net === null ? "无记录" : "累计 " + pn(h.net, " 亿")} · ${h.stocks ?? "—"} 只</span></span>
+        <span class="dt-num ${dnet > 0 ? "up" : dnet < 0 ? "down" : ""}">${fmtMoney(dnet)}</span>
+        <span class="dt-num ${toneCls(h.dayDelta)}">${fmtMoney(h.dayPrev)}</span>
+      </div>`);
+    });
+    dh.innerHTML = rows.join("");
+  }
+}
+
+
+/* ============================================================
+ *  本地台账 · 持续分析（analysis.json）
+ *  ------------------------------------------------------------
+ *  数据来自 data/daily/<YYYYMMDD>/ 的每日本地存档，由 build_analysis.py
+ *  用同一版 derive 重算全部历史日，再算「连续性」结论。
+ *  前端不做任何加减，只渲染 —— 避免与后端口径分叉。
+ * ============================================================ */
+
+async function loadAnalysis() {
+  try {
+    const res = await fetch("analysis.json", { cache: "no-store" });
+    if (!res.ok) return null;
+    const j = await res.json();
+    return j && j.available ? j : null;
+  } catch (err) {
+    console.warn("[潮汐] 本地台账加载失败：", err);
+    return null;
+  }
+}
+
+function renderLedger() {
+  const a = STATE.analysis;
+  const block = $("ledgerBlock");
+  if (!block) return;
+  if (!a) {
+    block.hidden = true;
+    return;
+  }
+  block.hidden = false;
+
+  $("ledgerRange").textContent = `${a.days} 个交易日　${a.range[0]} → ${a.range[1]}`;
+  $("ledgerNote").textContent = a.note || "";
+
+  const rows = a.series || [];
+  const head = `<div class="lg-row lg-head">
+      <span class="lg-date">交易日</span>
+      <span>恐慌</span>
+      <span>涨停 / 跌停</span>
+      <span class="lg-c-turn">成交</span>
+      <span>上涨 / 下跌</span>
+    </div>`;
+
+  const body = rows.map((r, i) => {
+    const isNow = i === rows.length - 1;
+    const fearW = Math.max(4, Math.min(44, ((r.fear || 0) / 100) * 44));
+    const total = (r.adv || 0) + (r.dec || 0);
+    const advW = total ? Math.max(2, Math.min(60, (r.adv / total) * 60)) : 2;
+    const fearColor = r.fear >= 70 ? "var(--down)" : r.fear >= 55 ? "var(--secondary)" : "var(--up)";
+    return `<div class="lg-row${isNow ? " lg-now" : ""}">
+      <span class="lg-date">${r.date.slice(5)}${isNow ? "<em>今日</em>" : ""}</span>
+      <span class="lg-fear"><b>${r.fear}</b><i style="width:${fearW.toFixed(0)}px;background:${fearColor}"></i></span>
+      <span class="lg-num ${r.up > r.down ? "up" : r.up < r.down ? "down" : "flat"}">${r.up} / ${r.down}</span>
+      <span class="lg-num lg-c-turn">${fmtNum(r.turnoverYi, 0)} 亿</span>
+      <span class="lg-adv"><i style="width:${advW.toFixed(0)}px"></i>
+        <span>${r.adv} / ${r.dec}</span></span>
+    </div>`;
+  }).join("");
+
+  $("ledgerTable").innerHTML = head + body;
+
+  const f = $("ledgerFindings");
+  if (f) {
+    f.innerHTML = (a.findings || []).map((x) =>
+      `<li class="t-${x.tone === "up" ? "up" : x.tone === "down" ? "down" : x.tone === "info" ? "info" : "flat"}">${escapeHTML(x.text)}</li>`
+    ).join("");
+  }
 }
 
 document.addEventListener("DOMContentLoaded", boot);

@@ -22,15 +22,22 @@ import time
 import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-BASE = "https://push2.eastmoney.com"
-HIS = "https://push2his.eastmoney.com"
+BASE = "http://push2.eastmoney.com"
+HIS = "http://push2his.eastmoney.com"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 CTX = ssl.create_default_context()
-CTX.check_hostname = False
-CTX.verify_mode = ssl.CERT_NONE
+# 东财自 2026-11-18 起会直接断开「关闭证书校验」的连接（RemoteDisconnected），
+# 必须用默认校验上下文
+# CTX.check_hostname = False
+# CTX.verify_mode = ssl.CERT_NONE
 
 N = 60
+
+# 目标交易日：以 raw_snapshot 的 tradeDate 为准，不用「今天」——
+# 盘中跑脚本时「今天」那根 K 还没收盘，混进去会让区间涨幅全错。
+with open(os.path.join(HERE, "raw_snapshot.json"), "r", encoding="utf-8") as _f:
+    TRADE_DATE = json.load(_f)["tradeDate"]
 
 
 def get_json(url, referer="https://quote.eastmoney.com/", retries=3):
@@ -39,7 +46,7 @@ def get_json(url, referer="https://quote.eastmoney.com/", retries=3):
     for i in range(retries):
         try:
             req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=25, context=CTX) as r:
+            with urllib.request.urlopen(req, timeout=25) as r:
                 return json.loads(r.read().decode("utf-8"))
         except Exception as e:                      # noqa: BLE001
             last = e
@@ -56,22 +63,37 @@ def setcode_of(code):
 
 
 def fetch_kline(code):
-    url = (f"{HIS}/api/qt/stock/kline/get?secid={setcode_of(code)}.{code}"
-           "&fields1=f1,f2,f3&fields2=f51,f53,f56,f57&klt=101&fqt=1"
-           f"&end=20500101&lmt={N}")
-    d = get_json(url).get("data")
-    if not d or not d.get("klines"):
-        raise RuntimeError("K 线为空")
-    out = []
-    for ln in d["klines"]:
-        p = ln.split(",")
-        out.append({
-            "d": p[0].replace("-", ""),
-            "c": round(float(p[1]), 2),
-            "v": int(float(p[2] or 0)),          # 手
-            "a": round(float(p[3] or 0) / 1e8, 3),  # 亿元
-        })
-    return out
+    """60 根日线前复权，只取 raw_snapshot 里那个交易日及之前。
+
+    东财 push2his 被封时退回腾讯：qfqday 每行 [日期,开,收,高,低,量(手)]，
+    没有成交额字段 —— 前端只用 d/c 画折线，a 置 0 不影响，也不去编一个假数。
+    """
+    limit = TRADE_DATE.replace("-", "")
+    try:
+        url = (f"{HIS}/api/qt/stock/kline/get?secid={setcode_of(code)}.{code}"
+               "&fields1=f1,f2,f3&fields2=f51,f53,f56,f57&klt=101&fqt=1"
+               f"&end={limit}&lmt={N}")
+        d = get_json(url, retries=1).get("data")
+        if d and d.get("klines"):
+            out = []
+            for ln in d["klines"]:
+                p = ln.split(",")
+                out.append({"d": p[0].replace("-", ""), "c": round(float(p[1]), 2),
+                            "v": int(float(p[2] or 0)), "a": round(float(p[3] or 0) / 1e8, 3)})
+            return [r for r in out if r["d"] <= limit][-N:]
+    except Exception:                              # noqa: BLE001
+        pass
+    mkt = "sh" if setcode_of(code) == "1" else ("bj" if code.startswith(("4", "8", "9")) else "sz")
+    d = get_json(f"https://web.ifzq.gtimg.cn/appstock/app/fqkline/get"
+                 f"?param={mkt}{code},day,,,{N + 5},qfq",
+                 referer="https://gu.qq.com/").get("data") or {}
+    node = d.get(f"{mkt}{code}") or {}
+    rows = node.get("qfqday") or node.get("day") or []
+    if not rows:
+        raise RuntimeError("K 线为空（东财+腾讯均无）")
+    out = [{"d": r[0].replace("-", ""), "c": round(float(r[2]), 2),
+            "v": int(float(r[5] or 0)), "a": 0.0} for r in rows]
+    return [r for r in out if r["d"] <= limit][-N:]
 
 
 def fetch_quotes(codes):

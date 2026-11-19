@@ -53,3 +53,6 @@ no_serve
 # 部署打包产物
 _pkg/
 deploy/*.tar.gz
+_cache/
+_probe.html
+_probe2.html

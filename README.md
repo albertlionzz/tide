@@ -102,19 +102,26 @@ bash serve.sh          # 默认 8768 端口
 ### 更新一个交易日
 
 ```bash
-python fetch_seat_stocks.py     # ① 龙虎榜席位×个股明细（近 10 个交易日，写回快照）
-python build_snapshot_1104.py   # ② 组装快照（需通达信 MCP；额度不足改用 fetch_em_<日期>.py）
+python fetch_em_<YYYYMMDD>.py   # ① 组装快照（东财+同花顺+新浪三源核对；通达信有额度也可走 build_snapshot_*）
+python fetch_seat_stocks.py     # ② 龙虎榜席位×个股明细（近 10 个交易日，写回快照）
 python derive.py                # ③ 派生指标（恐慌指数、板块、席位结构）
-python refresh_screen.py        # ④ 刷新研究池行情 + 动态加分 A4/A5
+python refresh_screen.py        # ④ 刷新研究池行情 + 动态加分 A4/A5（含 5 日涨幅）
 python fetch_pool_kline.py      # ⑤ 候选池全量 60 日 K 线（前端切条件后要能立刻换标的）
 python pick_top5.py             # ⑥ 按规则取前 N，写 watchlist + top5.json
 python fetch_feed.py && python build_feed.py   # ⑦ 资讯抓取 + 分类过滤
 python build_history.py         # ⑧ 多日序列（趋势图数据源）
-node verify.js                  # ⑨ 渲染校验（75 条断言）
+python build_delta.py           # ⑨ 逐日变动（今日 vs 上一交易日）→ delta.json
+python build_analysis.py        # ⑩ 本地台账跨日分析 → analysis.json
+python archive_daily.py         # ⑪ 当日归档到 data/daily/<YYYYMMDD>/
+node verify.js                  # ⑫ 渲染校验（90 条断言）
 ```
 
 顺序有依赖：`fetch_seat_stocks` 要在 `derive` 前（A4 加分读它），`refresh_screen` 要在
-`pick_top5` 前（排序读刷新后的行情）。
+`pick_top5` 前（排序读刷新后的行情）；`build_delta` / `build_analysis` / `archive_daily`
+必须在 `derive` 之后，且 `archive_daily` 放最后（它要读 delta.json）。
+
+**补档**：漏跑某天时 `python archive_daily.py --snapshot raw_snapshot_MMDD.json`，
+索引会按交易日排序，不覆盖其他日期。
 
 通达信额度不足时，① 换成 `fetch_em_1106.py`（东方财富补齐版，脚本内自带日期断言，
 会拿东财上证收盘与通达信已抓值比对，不一致直接中止）。
@@ -371,6 +378,11 @@ curl -X DELETE https://artsi.site/api/posts/12 -H "X-Admin-Token: <口令>"
 ├── pick_top5.py            按规则排序取前 N → watchlist + top5.json
 ├── screen_rules.json       筛选规则（预设 + 参数 + 加分权重，前后端共用）
 ├── build_history.py        多日序列 → history.json（趋势图数据源）
+├── build_delta.py          逐日变动（今日 vs 上一交易日）→ delta.json
+├── build_analysis.py       本地台账跨日分析 → analysis.json
+├── archive_daily.py        每交易日归档 → data/daily/<YYYYMMDD>/
+├── kline_src.py            日线统一入口（东财优先 + 腾讯兜底 + 截断到目标交易日）
+├── data/daily/             本地台账：每日快照 + 加工结果 + 全量行业 + index.json
 ├── news_filter.py          财联社电报分类过滤（含自测用例）
 ├── fetch_feed.py           资讯抓取（Edge 无头）
 ├── build_feed.py           资讯聚合 + 接过滤器

@@ -2954,3 +2954,332 @@ button {
 }
 
 .fs-net.up { color: var(--up); }
+
+/* ============================================================
+ *  逐日变动（delta）
+ *  与趋势图的区别：趋势图看「多日形状」，这里看「今天这一跳」。
+ * ============================================================ */
+
+.delta-block {
+  margin-top: 28px;
+  padding-top: 26px;
+  border-top: 1px solid var(--tertiary);
+}
+
+.delta-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.delta-head .panel-title {
+  margin: 0 0 4px;
+}
+
+.delta-range {
+  margin: 0;
+  font-size: 13px;
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.delta-lead {
+  margin: 0;
+  flex: 1 1 420px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--tertiary);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+
+.delta-lead b { font-weight: 600; }
+
+/* —— 信号清单 —— */
+.delta-signals {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.delta-signals li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.delta-signals li::before {
+  content: "";
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: 50%;
+  background: var(--tertiary);
+}
+
+.delta-signals li.t-up::before { background: var(--up); }
+.delta-signals li.t-down::before { background: var(--down); }
+.delta-signals li.t-info::before { background: var(--accent); }
+.delta-signals li.t-flat::before { background: var(--secondary); }
+
+/* —— 三列变动卡 —— */
+.delta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.delta-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.delta-card { padding: 16px 18px; }
+
+.delta-title {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.delta-hint {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--secondary);
+  white-space: nowrap;
+}
+
+.delta-rows { display: grid; gap: 9px; }
+
+.delta-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-size: 13px;
+}
+
+.delta-row .dr-name {
+  color: var(--secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.delta-row .dr-val {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.delta-row .dr-val .dr-prev {
+  font-weight: 400;
+  color: var(--secondary);
+  font-size: 12px;
+}
+
+.delta-row .dr-bar {
+  grid-column: 1 / -1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--bg);
+  overflow: hidden;
+  position: relative;
+}
+
+.delta-row .dr-bar i {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 2px;
+  display: block;
+}
+
+.dr-up { color: var(--up); }
+.dr-down { color: var(--down); }
+.dr-flat { color: var(--secondary); }
+
+/* —— 轮动 / 游资表 —— */
+.delta-table { display: grid; gap: 7px; }
+
+.dt-row {
+  display: grid;
+  grid-template-columns: 1fr 62px 62px;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.dt-row.dt-head {
+  font-size: 11.5px;
+  color: var(--secondary);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--tertiary);
+}
+
+.dt-row .dt-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dt-row .dt-num { text-align: right; }
+
+.dt-new {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 5px;
+  font-size: 10.5px;
+  line-height: 15px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  vertical-align: 1px;
+}
+
+.dt-out {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 5px;
+  font-size: 10.5px;
+  line-height: 15px;
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--secondary);
+  vertical-align: 1px;
+}
+
+.delta-empty {
+  font-size: 13px;
+  color: var(--secondary);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .delta-grid,
+  .delta-grid.two { grid-template-columns: 1fr; }
+  .delta-head { flex-direction: column; gap: 10px; }
+  .delta-lead { flex: 1 1 auto; }
+}
+
+@media (max-width: 560px) {
+  .dt-row { grid-template-columns: 1fr 54px 54px; font-size: 12.5px; }
+}
+
+/* ============================================================
+ *  本地台账 · 持续分析
+ *  data/daily/ 每交易日一份存档，跨日算「连续性」，不是单日快照。
+ * ============================================================ */
+
+.ledger-block { border-top: 1px solid var(--tertiary); }
+
+.ledger-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.ledger-table {
+  display: grid;
+  gap: 0;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.lg-row {
+  display: grid;
+  grid-template-columns: 86px 96px 78px 84px minmax(0, 1fr);
+  min-width: 0;
+  gap: 8px;
+  align-items: center;
+  padding: 7px 6px;
+  border-bottom: 1px solid var(--tertiary);
+}
+
+.lg-row.lg-head {
+  padding-top: 0;
+  font-size: 11.5px;
+  color: var(--secondary);
+  border-bottom: 1px solid var(--secondary);
+}
+
+.lg-row.lg-now {
+  background: var(--accent-soft);
+  border-radius: 4px;
+}
+
+.lg-date { white-space: nowrap; }
+.lg-date em {
+  font-style: normal;
+  font-size: 10.5px;
+  color: var(--secondary);
+  margin-left: 5px;
+}
+
+/* 恐慌条：必须 display:block，inline 元素会忽略 width% —— 这个坑踩过 */
+.lg-fear { display: flex; align-items: center; gap: 7px; }
+
+.lg-fear b { font-weight: 600; min-width: 20px; }
+
+.lg-fear i {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--secondary);
+  flex: 0 0 auto;
+}
+
+.lg-num { white-space: nowrap; }
+.lg-num.up { color: var(--up); }
+.lg-num.down { color: var(--down); }
+.lg-num.flat { color: var(--secondary); }
+
+.lg-adv { display: flex; align-items: center; gap: 7px; min-width: 0; }
+
+.lg-adv i {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--up);
+  flex: 0 0 auto;
+}
+
+.lg-adv span {
+  color: var(--secondary);
+  font-size: 11.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ledger-findings { margin: 0; }
+
+/* 1024 档时两栏会把表格挤到 ~45% 宽，5 列排不下（实测溢出 25px）——
+   台账这块宽度需求比同页其它两栏区更大，提前退成单栏。 */
+@media (max-width: 1180px) {
+  .ledger-wrap { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 560px) {
+  .lg-row {
+    grid-template-columns: 74px 74px 66px minmax(0, 1fr);
+    font-size: 12px;
+  }
+  .lg-row .lg-c-turn { display: none; }
+}

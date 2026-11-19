@@ -1,0 +1,128 @@
+{
+ "note": "每个交易日一行；由 archive_daily.py 生成，可重复运行。",
+ "days": [
+  {
+   "date": "2026-10-13",
+   "fear": 63,
+   "label": "偏高",
+   "sh": 3800.86,
+   "shPct": 0.1,
+   "up": 70,
+   "down": 10,
+   "maxBoards": 3,
+   "adv": 2820,
+   "dec": 2296,
+   "turnoverYi": 16759.0,
+   "boardUp": 17,
+   "boardDown": 9,
+   "boardTotal": 26,
+   "files": [
+    "raw_snapshot.json",
+    "tide_data.json"
+   ]
+  },
+  {
+   "date": "2026-10-21",
+   "fear": 62,
+   "label": "偏高",
+   "sh": 3713.03,
+   "shPct": -0.6,
+   "up": 50,
+   "down": 5,
+   "maxBoards": 4,
+   "adv": 1967,
+   "dec": 3092,
+   "turnoverYi": 14293.0,
+   "boardUp": 22,
+   "boardDown": 5,
+   "boardTotal": 27,
+   "files": [
+    "raw_snapshot.json",
+    "tide_data.json"
+   ]
+  },
+  {
+   "date": "2026-11-04",
+   "fear": 40,
+   "label": "平稳",
+   "sh": 3686.17,
+   "shPct": 2.16,
+   "up": 121,
+   "down": 10,
+   "maxBoards": 3,
+   "adv": 4396,
+   "dec": 771,
+   "turnoverYi": 20377.0,
+   "boardUp": 25,
+   "boardDown": 0,
+   "boardTotal": 25,
+   "files": [
+    "raw_snapshot.json",
+    "tide_data.json"
+   ]
+  },
+  {
+   "date": "2026-11-06",
+   "fear": 79,
+   "label": "偏高",
+   "sh": 3649.18,
+   "shPct": -1.1,
+   "up": 33,
+   "down": 15,
+   "maxBoards": 5,
+   "adv": 725,
+   "dec": 4483,
+   "turnoverYi": 16578.0,
+   "boardUp": 16,
+   "boardDown": 10,
+   "boardTotal": 26,
+   "files": [
+    "raw_snapshot.json",
+    "tide_data.json"
+   ]
+  },
+  {
+   "date": "2026-11-17",
+   "fear": 83,
+   "label": "恐慌",
+   "sh": 3584.58,
+   "shPct": -0.5,
+   "up": 37,
+   "down": 67,
+   "maxBoards": 3,
+   "adv": 1236,
+   "dec": 3925,
+   "turnoverYi": 14577.0,
+   "boardUp": 72,
+   "boardDown": 423,
+   "boardTotal": 496,
+   "files": [
+    "raw_snapshot.json",
+    "tide_data.json"
+   ]
+  },
+  {
+   "date": "2026-11-18",
+   "fear": 80,
+   "label": "偏高",
+   "sh": 3587.83,
+   "shPct": 0.09,
+   "up": 41,
+   "down": 40,
+   "maxBoards": 4,
+   "adv": 1310,
+   "dec": 3853,
+   "turnoverYi": 13697.0,
+   "boardUp": 32,
+   "boardDown": 463,
+   "boardTotal": 496,
+   "files": [
+    "raw_snapshot.json",
+    "tide_data.json",
+    "delta.json",
+    "top5.json"
+   ]
+  }
+ ],
+ "count": 6
+}

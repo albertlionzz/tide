@@ -33,13 +33,15 @@ from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = "https://datacenter-web.eastmoney.com"
-BASE = "https://push2.eastmoney.com"
+BASE = "http://push2.eastmoney.com"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 
 CTX = ssl.create_default_context()
-CTX.check_hostname = False
-CTX.verify_mode = ssl.CERT_NONE
+# 东财自 2026-11-18 起会直接断开「关闭证书校验」的连接（RemoteDisconnected），
+# 必须用默认校验上下文
+# CTX.check_hostname = False
+# CTX.verify_mode = ssl.CERT_NONE
 
 WINDOW_DAYS = 10          # 回看交易日（自然日跨度由接口返回决定，实际按交易日集合计算）
 
@@ -123,7 +125,7 @@ def get_json(url, referer="https://data.eastmoney.com/", retries=3):
     for i in range(retries):
         try:
             req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=30, context=CTX) as r:
+            with urllib.request.urlopen(req, timeout=30) as r:
                 return json.loads(r.read().decode("utf-8"))
         except Exception as e:                      # noqa: BLE001
             last = e

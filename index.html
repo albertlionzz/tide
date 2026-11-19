@@ -256,6 +256,61 @@
             <div class="legend-row" id="chartMoneyLegend"></div>
           </div>
         </div>
+
+        <!-- 逐日变动：和上一个交易日比，什么变了、变成什么方向 -->
+        <div class="delta-block" id="deltaBlock" hidden>
+          <div class="delta-head">
+            <div>
+              <h3 class="panel-title">逐日变动</h3>
+              <p class="delta-range" id="deltaRange">—</p>
+            </div>
+            <p class="delta-lead" id="deltaLead">—</p>
+          </div>
+
+          <ul class="delta-signals" id="deltaSignals"></ul>
+
+          <div class="delta-grid">
+            <div class="panel delta-card">
+              <h4 class="delta-title">恐慌五分量</h4>
+              <div class="delta-rows" id="deltaFearParts"></div>
+            </div>
+            <div class="panel delta-card">
+              <h4 class="delta-title">涨跌停 · 成交 · 广度</h4>
+              <div class="delta-rows" id="deltaLimit"></div>
+            </div>
+            <div class="panel delta-card">
+              <h4 class="delta-title">龙虎榜资金结构<span class="delta-hint">当日样本</span></h4>
+              <div class="delta-rows" id="deltaMoney"></div>
+            </div>
+          </div>
+
+          <div class="delta-grid two">
+            <div class="panel delta-card">
+              <h4 class="delta-title">行业轮动<span class="delta-hint" id="deltaBoardBasis"></span></h4>
+              <div class="delta-table" id="deltaBoards"></div>
+            </div>
+            <div class="panel delta-card">
+              <h4 class="delta-title">游资当日净买<span class="delta-hint">当日仅计上榜部分 · 括注为 10 日累计</span></h4>
+              <div class="delta-table" id="deltaHot"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 本地台账：每交易日归档一份，跨日连续分析 -->
+        <div class="delta-block ledger-block" id="ledgerBlock" hidden>
+          <div class="delta-head">
+            <div>
+              <h3 class="panel-title">本地台账 · 持续分析</h3>
+              <p class="delta-range" id="ledgerRange">—</p>
+            </div>
+            <p class="delta-lead" id="ledgerNote">—</p>
+          </div>
+
+          <div class="ledger-wrap">
+            <div class="ledger-table" id="ledgerTable"></div>
+            <ul class="delta-signals ledger-findings" id="ledgerFindings"></ul>
+          </div>
+        </div>
       </div>
     </section>
 
