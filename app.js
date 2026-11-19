@@ -114,6 +114,12 @@ function fmtDateCN(iso) {
   return `${m[1]} 年 ${Number(m[2])} 月 ${Number(m[3])} 日`;
 }
 
+function fmtShortStamp(iso) {
+  if (!iso) return "";
+  const m = /-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(iso);
+  return m ? `${m[1]}-${m[2]} ${m[3]}:${m[4]}` : "";
+}
+
 function fmtTimeHM(iso) {
   if (!iso) return "";
   const m = /T(\d{2}):(\d{2})/.exec(iso);
@@ -231,7 +237,9 @@ function renderMeta() {
   if (metaText) {
     metaText.textContent = STATE.offline
       ? "离线样本"
-      : `已收盘 ${fmtTimeHM(d.meta.capturedAt)}`;
+      // 抓取时间可能晚于交易日（隔日补抓/盘中补抓），只写 HH:MM 会被当成收盘时刻，
+      // 带上月日才不会被误读成「12:56 就收盘了」。
+      : `已收盘 · 抓取于 ${fmtShortStamp(d.meta.capturedAt)}`;
   }
 
   setText("dataDate", fmtDateCN(d.meta.tradeDate));
