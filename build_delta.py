@@ -40,21 +40,31 @@ def load_raw(path):
 
 
 def pick_prev(cur_date):
-    """当日之前最近的一份 raw_snapshot_MMDD.json。"""
-    best = None
+    """当日之前最近的一份快照。
+
+    两个来源都要扫：根目录 raw_snapshot_MMDD.json（未归档）+ data/daily/<YYYYMMDD>/raw_snapshot.json
+    （archive_daily.py 归档后根目录那份就没了）。只扫根目录会跳过归档日 —— 11-19 就曾误比 11-17。
+    """
+    cands = {}
     for f in glob.glob(os.path.join(HERE, "raw_snapshot_*.json")):
-        m = re.fullmatch(r"raw_snapshot_(\d{4})\.json", os.path.basename(f))
-        if not m:
+        if not re.fullmatch(r"raw_snapshot_\d{4}\.json", os.path.basename(f)):
             continue
         try:
             d = load_raw(f)["tradeDate"]
         except Exception:                       # noqa: BLE001
             continue
-        if d >= cur_date:
+        cands.setdefault(d, f)
+    for f in glob.glob(os.path.join(DAILY, "*", "raw_snapshot.json")):
+        try:
+            d = load_raw(f)["tradeDate"]
+        except Exception:                       # noqa: BLE001
             continue
-        if best is None or d > best[0]:
-            best = (d, f)
-    return best
+        cands.setdefault(d, f)
+    older = [d for d in cands if d < cur_date]
+    if not older:
+        return None
+    d = max(older)
+    return (d, cands[d])
 
 
 def industry_map(date_str):

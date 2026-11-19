@@ -112,14 +112,14 @@ setTimeout(() => {
   const assert = (name, cond, got) => checks.push({ name, ok: !!cond, got: String(got).slice(0, 90) });
 
   // ---- 元信息 ----
-  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-18", txt("headerDate"));
+  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-19", txt("headerDate"));
   assert("liveText 显示已收盘时间", txt("liveText").includes("已收盘"), txt("liveText"));
   assert("dataSource 填入数据源", txt("dataSource").includes("东方财富"), txt("dataSource"));
-  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 18 日"), txt("dataDate"));
+  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 19 日"), txt("dataDate"));
   assert("offlineBanner 保持隐藏", d.getElementById("offlineBanner").hidden === true, d.getElementById("offlineBanner").hidden);
 
   // ---- 恐慌指数 ----
-  assert("fearValue = 80", txt("fearValue") === "80", txt("fearValue"));
+  assert("fearValue = 77", txt("fearValue") === "77", txt("fearValue"));
   assert("fearBadge = 偏高", txt("fearBadge") === "偏高", txt("fearBadge"));
   assert("fearBreakdown 渲染 5 项", count("#fearBreakdown .breakdown-item") === 5, count("#fearBreakdown .breakdown-item"));
   assert("fearRaw 渲染 6 项读数", count("#fearRaw > div") === 6, count("#fearRaw > div"));
@@ -127,7 +127,7 @@ setTimeout(() => {
 
   // ---- 指数 ----
   assert("marketStats 4 张卡片", count("#marketStats .stat-card") === 4, count("#marketStats .stat-card"));
-  assert("指数含上证 3587.83", htmlOf("marketStats").includes("3,587.83"), "见 innerHTML");
+  assert("指数含上证 3577.62", htmlOf("marketStats").includes("3,577.62"), "见 innerHTML");
   assert("成交额显示万亿", htmlOf("marketStats").includes("万亿"), "见 innerHTML");
 
   // ---- 板块 ----
@@ -151,7 +151,7 @@ setTimeout(() => {
   assert("stockNote 为真实解读", txt("stockNote").includes("%"), txt("stockNote").slice(0, 40));
 
   // ---- 涨停池 ----
-  assert("poolBody 渲染 15 行", count("#poolBody tr") === 15, count("#poolBody tr"));
+  assert("poolBody 行数 = 涨停池样本数", count("#poolBody tr") === tideData.limitUpPool.length, `${count("#poolBody tr")} vs ${tideData.limitUpPool.length}`);
   assert("池内出现最高板个股", htmlOf("poolBody").includes(`${tideData.limit.maxBoards} 板`), `最高 ${tideData.limit.maxBoards} 板`);
 
   // ---- 龙虎榜 ----

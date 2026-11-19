@@ -2,10 +2,10 @@
   "meta": {
     "generatedBy": "build_history.py",
     "note": "全部点用当前 derive.py 重算，口径一致；板块分类跨月不同源，故不入库。",
-    "count": 6,
+    "count": 7,
     "span": [
       "2026-10-13",
-      "2026-11-18"
+      "2026-11-19"
     ]
   },
   "points": [
@@ -132,6 +132,27 @@
         70,
         59,
         41
+      ],
+      "source": "东方财富 + 同花顺（通达信配额未恢复）"
+    },
+    {
+      "date": "2026-11-19",
+      "fear": 77,
+      "label": "偏高",
+      "limitUp": 23,
+      "limitDown": 68,
+      "maxBoards": 3,
+      "turnoverYi": 13051.0,
+      "advancers": 647,
+      "decliners": 4594,
+      "advRatio": 12.22,
+      "amplitude": 1.46,
+      "parts": [
+        100,
+        100,
+        75,
+        49,
+        25
       ],
       "source": "东方财富 + 同花顺（通达信配额未恢复）"
     }

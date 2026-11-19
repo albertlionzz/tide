@@ -1,0 +1,46 @@
+{
+  "asOf": "2026-11-19",
+  "presetId": "default",
+  "presetName": "默认（既定条件）",
+  "presetNote": "科技赛道中期观察池：市值 45–330 亿 · 换手 >2.5% · 叠加景气与加分项",
+  "topN": 5,
+  "passed": 25,
+  "picked": [
+    {
+      "code": "002913",
+      "name": "奥士康",
+      "score": 4,
+      "mcap": 172.7,
+      "track": "PCB"
+    },
+    {
+      "code": "603283",
+      "name": "赛腾股份",
+      "score": 3,
+      "mcap": 135.7,
+      "track": "半导体检测设备"
+    },
+    {
+      "code": "605058",
+      "name": "澳弘电子",
+      "score": 2,
+      "mcap": 56.3,
+      "track": "PCB"
+    },
+    {
+      "code": "603690",
+      "name": "至纯科技",
+      "score": 2,
+      "mcap": 71.0,
+      "track": "半导体设备"
+    },
+    {
+      "code": "300739",
+      "name": "明阳电路",
+      "score": 2,
+      "mcap": 72.0,
+      "track": "PCB"
+    }
+  ],
+  "generatedAt": "2026-11-19T23:42:46+0800"
+}

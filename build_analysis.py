@@ -29,8 +29,13 @@ DAILY = os.path.join(HERE, "data", "daily")
 
 
 def load_series():
-    rows = []
-    for p in sorted(glob.glob(os.path.join(DAILY, "*", "raw_snapshot.json"))):
+    # 归档日 + 当日根目录快照（当日尚未归档时也要算进来，否则分析永远停在昨天）
+    paths = sorted(glob.glob(os.path.join(DAILY, "*", "raw_snapshot.json")))
+    cur = os.path.join(HERE, "raw_snapshot.json")
+    if os.path.exists(cur):
+        paths.append(cur)
+    rows, seen = [], set()
+    for p in paths:
         try:
             with open(p, "r", encoding="utf-8") as fh:
                 raw = json.load(fh)
@@ -38,6 +43,9 @@ def load_series():
         except Exception as e:                   # noqa: BLE001
             print(f"  [!] 跳过 {p}: {e}")
             continue
+        if raw["tradeDate"] in seen:
+            continue
+        seen.add(raw["tradeDate"])
         idx = {i["name"]: i for i in d["indices"]}
         sh = idx.get("上证指数") or {}
         bs = d.get("boardStats") or {}
@@ -185,11 +193,30 @@ def main():
             else:
                 break
         if run >= 2:
-            findings.append({
-                "tone": "down" if last_dir > 0 else "up",
-                "text": f"恐慌已连续 {run} 个记录日{'抬升' if last_dir > 0 else '回落'}，"
-                        f"最新一次 {prev['fear']} → {cur['fear']}。",
-            })
+            def _ar(r):
+                t = (r.get("adv") or 0) + (r.get("dec") or 0)
+                return (r["adv"] / t * 100) if t else None
+
+            prev_ar, cur_ar = _ar(prev), _ar(cur)
+            if last_dir > 0:
+                findings.append({
+                    "tone": "down",
+                    "text": f"恐慌已连续 {run} 个记录日抬升，最新一次 {prev['fear']} → {cur['fear']}。",
+                })
+            elif prev_ar is not None and cur_ar is not None and cur_ar < prev_ar - 1:
+                # 恐慌降而宽度也降 —— 指数跌幅小掩盖了普跌，不能算情绪修复
+                findings.append({
+                    "tone": "down",
+                    "text": f"恐慌自 {prev['fear']} 回落至 {cur['fear']}（连续 {run} 个记录日），"
+                            f"但上涨家数占比同步走低 {prev_ar:.1f}% → {cur_ar:.1f}%，"
+                            f"指数跌幅小掩盖了普跌，不构成情绪修复。",
+                })
+            else:
+                findings.append({
+                    "tone": "up",
+                    "text": f"恐慌已连续 {run} 个记录日回落，最新一次 {prev['fear']} → {cur['fear']}，"
+                            f"且上涨家数未继续恶化。",
+                })
 
     out = {
         "available": True,

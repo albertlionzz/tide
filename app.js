@@ -1635,7 +1635,7 @@ function renderMoneyChart() {
       : `right:50%;width:${w.toFixed(2)}%;background:var(--down)`;
     return `
       <div class="flow-row">
-        <span class="fr-name">${r.name}<i>${r.n} 席</i></span>
+        <span class="fr-name">${r.name}<i>${r.kind === "机构" ? "合计" : `${r.n} 席`}</i></span>
         <span class="bb-track"><i class="bb-zero"></i><i class="bb-fill" style="${fill}"></i></span>
         <span class="bb-val ${pos ? "up" : "down"}">${pos ? "+" : "−"}${fmtNum(Math.abs(r.net))} 亿</span>
       </div>`;

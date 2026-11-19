@@ -39,11 +39,16 @@ def main():
         f for f in glob.glob(os.path.join(HERE, "raw_snapshot_*.json"))
         if re.fullmatch(r"raw_snapshot_\d{4}\.json", os.path.basename(f))
     )
+    # 已归档日（archive_daily.py 会把根目录快照移进 data/daily/<YYYYMMDD>/，
+    # 11-18 就是这样「丢了」一个点 —— 必须一并扫归档目录）
+    archived = sorted(
+        glob.glob(os.path.join(HERE, "data", "daily", "*", "raw_snapshot.json"))
+    )
     # 当日快照单独追加（它就是当前交易日的原始数据）
     cur = os.path.join(HERE, "raw_snapshot.json")
 
     points, seen = [], set()
-    for path in files + [cur]:
+    for path in files + archived + [cur]:
         try:
             with open(path, "r", encoding="utf-8") as fh:
                 raw = json.load(fh)

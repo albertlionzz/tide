@@ -1,13 +1,13 @@
 {
-  "asOf": "2026-11-18",
-  "prev": "2026-11-17",
+  "asOf": "2026-11-19",
+  "prev": "2026-11-18",
   "available": true,
   "fear": {
-    "now": 80,
-    "prev": 83,
+    "now": 77,
+    "prev": 80,
     "delta": -3,
     "label": "偏高",
-    "labelPrev": "恐慌",
+    "labelPrev": "偏高",
     "parts": [
       {
         "name": "涨跌家数失衡",
@@ -25,24 +25,24 @@
       },
       {
         "name": "连板高度",
-        "now": 70,
-        "prev": 83,
+        "now": 75,
+        "prev": 70,
         "weight": 0.18,
-        "delta": -13
+        "delta": 5
       },
       {
         "name": "赚钱效应",
-        "now": 59,
+        "now": 49,
         "prev": 59,
         "weight": 0.15,
-        "delta": 0
+        "delta": -10
       },
       {
         "name": "指数振幅",
-        "now": 41,
-        "prev": 51,
+        "now": 25,
+        "prev": 41,
         "weight": 0.15,
-        "delta": -10
+        "delta": -16
       }
     ]
   },
@@ -50,317 +50,292 @@
     "index": [
       {
         "name": "上证指数",
-        "close": 3587.83,
-        "pct": 0.09,
-        "pctPrev": -0.5,
-        "deltaPct": 0.59
+        "close": 3577.62,
+        "pct": -0.28,
+        "pctPrev": 0.09,
+        "deltaPct": -0.37
       },
       {
         "name": "深证成指",
-        "close": 10659.41,
-        "pct": 0.2,
-        "pctPrev": -0.49,
-        "deltaPct": 0.69
+        "close": 10583.2,
+        "pct": -0.71,
+        "pctPrev": 0.2,
+        "deltaPct": -0.91
       },
       {
         "name": "创业板指",
-        "close": 2311.62,
-        "pct": 0.85,
-        "pctPrev": -1.2,
-        "deltaPct": 2.05
+        "close": 2293.34,
+        "pct": -0.79,
+        "pctPrev": 0.85,
+        "deltaPct": -1.64
       }
     ],
-    "turnoverYi": 13697.0,
-    "turnoverPrev": 14577.0,
-    "turnoverDelta": -880.0,
-    "turnoverDeltaPct": -6.0,
-    "adv": 1310,
-    "advPrev": 1236,
-    "dec": 3853,
-    "decPrev": 3925,
-    "advRatio": 24.74,
-    "advRatioPrev": 23.35,
-    "amplitude": 1.92,
-    "amplitudePrev": 2.17
+    "turnoverYi": 13051.0,
+    "turnoverPrev": 13697.0,
+    "turnoverDelta": -646.0,
+    "turnoverDeltaPct": -4.7,
+    "adv": 647,
+    "advPrev": 1310,
+    "dec": 4594,
+    "decPrev": 3853,
+    "advRatio": 12.22,
+    "advRatioPrev": 24.74,
+    "amplitude": 1.46,
+    "amplitudePrev": 1.92
   },
   "limit": {
-    "up": 41,
-    "upPrev": 37,
-    "upDelta": 4,
-    "down": 40,
-    "downPrev": 67,
-    "downDelta": -27,
-    "maxBoards": 4,
-    "maxBoardsPrev": 3,
-    "highBoardCount": 1,
+    "up": 23,
+    "upPrev": 41,
+    "upDelta": -18,
+    "down": 68,
+    "downPrev": 40,
+    "downDelta": 28,
+    "maxBoards": 3,
+    "maxBoardsPrev": 4,
+    "highBoardCount": 3,
     "highBoardCountPrev": 1,
-    "sealedRatio": 13.3,
+    "sealedRatio": 18.8,
     "sealedRatioPrev": 13.3,
-    "avgSealYi": 1.72,
-    "avgSealYiPrev": 1.54
+    "avgSealYi": 1.03,
+    "avgSealYiPrev": 1.72
   },
   "boards": {
-    "basis": "sample",
+    "basis": "full",
     "comparable": true,
-    "up": 32,
-    "down": 463,
+    "up": 22,
+    "down": 472,
     "total": 496,
-    "upPrev": 72,
-    "downPrev": 423,
-    "upDelta": -40,
-    "downDelta": 40,
-    "spread": 13.27,
-    "spreadPrev": 17.03,
+    "upPrev": 32,
+    "downPrev": 463,
+    "upDelta": -10,
+    "downDelta": 9,
+    "spread": 12.16,
+    "spreadPrev": 13.27,
     "top": [
       {
         "name": "集成电路制造",
-        "pct": 6.94,
-        "pctPrev": 5.82,
+        "pct": 5.0,
+        "pctPrev": 6.94,
         "isNew": false
       },
       {
         "name": "集成电路封测",
-        "pct": 4.36,
-        "pctPrev": 1.9,
+        "pct": 2.65,
+        "pctPrev": 4.36,
+        "isNew": false
+      },
+      {
+        "name": "氨纶",
+        "pct": 2.05,
+        "pctPrev": 1.71,
         "isNew": false
       },
       {
         "name": "稀土",
-        "pct": 2.1,
-        "pctPrev": null,
-        "isNew": true
-      },
-      {
-        "name": "氨纶",
-        "pct": 1.71,
-        "pctPrev": null,
-        "isNew": true
-      },
-      {
-        "name": "半导体设备",
-        "pct": 1.5,
-        "pctPrev": 2.19,
+        "pct": 1.69,
+        "pctPrev": 2.1,
         "isNew": false
       },
       {
         "name": "航空运输",
-        "pct": 1.42,
-        "pctPrev": null,
-        "isNew": true
-      },
-      {
-        "name": "彩电",
-        "pct": 1.38,
-        "pctPrev": null,
-        "isNew": true
-      },
-      {
-        "name": "分立器件",
         "pct": 1.32,
-        "pctPrev": null,
-        "isNew": true
-      },
-      {
-        "name": "电子化学品Ⅲ",
-        "pct": 1.26,
-        "pctPrev": 1.86,
+        "pctPrev": 1.42,
         "isNew": false
       },
       {
-        "name": "电子化学品Ⅱ",
-        "pct": 1.26,
-        "pctPrev": 1.86,
+        "name": "半导体设备",
+        "pct": 1.07,
+        "pctPrev": 1.5,
         "isNew": false
       },
       {
-        "name": "涂料",
-        "pct": 1.26,
-        "pctPrev": null,
+        "name": "光伏主材",
+        "pct": 0.67,
+        "pctPrev": -1.13,
         "isNew": true
       },
       {
-        "name": "国际工程",
-        "pct": 1.14,
-        "pctPrev": null,
-        "isNew": true
-      },
-      {
-        "name": "半导体",
-        "pct": 0.74,
-        "pctPrev": null,
+        "name": "空调",
+        "pct": 0.63,
+        "pctPrev": 0.42,
         "isNew": true
       },
       {
         "name": "航空机场",
-        "pct": 0.72,
-        "pctPrev": null,
+        "pct": 0.63,
+        "pctPrev": 0.72,
+        "isNew": false
+      },
+      {
+        "name": "彩电",
+        "pct": 0.6,
+        "pctPrev": 1.38,
+        "isNew": false
+      },
+      {
+        "name": "涂料",
+        "pct": 0.52,
+        "pctPrev": 1.26,
+        "isNew": false
+      },
+      {
+        "name": "快递",
+        "pct": 0.38,
+        "pctPrev": 0.56,
         "isNew": true
       },
       {
-        "name": "保健品",
-        "pct": 0.65,
-        "pctPrev": null,
+        "name": "纺织鞋类制造",
+        "pct": 0.3,
+        "pctPrev": 0.43,
         "isNew": true
+      },
+      {
+        "name": "白色家电",
+        "pct": 0.29,
+        "pctPrev": -0.76,
+        "isNew": true
+      },
+      {
+        "name": "电子化学品Ⅲ",
+        "pct": 0.23,
+        "pctPrev": 1.26,
+        "isNew": false
       }
     ],
     "dropped": [
       {
-        "name": "橡胶助剂",
-        "pctPrev": 3.32,
-        "pct": 0.35
+        "name": "分立器件",
+        "pctPrev": 1.32,
+        "pct": 0.01
       },
       {
-        "name": "厨房小家电",
-        "pctPrev": 3.2,
-        "pct": -3.27
+        "name": "电子化学品Ⅱ",
+        "pctPrev": 1.26,
+        "pct": 0.23
       },
       {
-        "name": "半导体材料",
-        "pctPrev": 2.67,
-        "pct": 0.57
+        "name": "国际工程",
+        "pctPrev": 1.14,
+        "pct": 0.08
       },
       {
-        "name": "钼",
-        "pctPrev": 2.38,
-        "pct": -1.48
+        "name": "半导体",
+        "pctPrev": 0.74,
+        "pct": -0.63
       },
       {
-        "name": "品牌消费电子",
-        "pctPrev": 2.35,
-        "pct": -1.29
-      },
-      {
-        "name": "纯碱",
-        "pctPrev": 2.28,
-        "pct": -3.12
-      },
-      {
-        "name": "冰洗",
-        "pctPrev": 1.9,
-        "pct": -1.44
-      },
-      {
-        "name": "纺织鞋类制造",
-        "pctPrev": 1.89,
-        "pct": 0.43
-      },
-      {
-        "name": "黄金",
-        "pctPrev": 1.87,
-        "pct": -1.52
-      },
-      {
-        "name": "贵金属",
-        "pctPrev": 1.84,
-        "pct": -1.72
+        "name": "保健品",
+        "pctPrev": 0.65,
+        "pct": -0.47
       }
     ]
   },
   "money": [
     {
       "kind": "机构",
-      "net": 12.96,
-      "prev": -30.27,
-      "delta": 43.23,
+      "net": -17.28,
+      "prev": 12.96,
+      "delta": -30.24,
       "sample": 1,
       "samplePrev": 1
     },
     {
       "kind": "北向",
-      "net": -0.6,
-      "prev": 6.74,
-      "delta": -7.34,
+      "net": 3.78,
+      "prev": -0.6,
+      "delta": 4.38,
       "sample": 2,
       "samplePrev": 2
     },
     {
       "kind": "营业部",
-      "net": 1.65,
-      "prev": 19.21,
-      "delta": -17.56,
+      "net": 14.99,
+      "prev": 1.65,
+      "delta": 13.34,
       "sample": 11,
       "samplePrev": 11
     }
   ],
   "hotmoney": [
     {
-      "name": "赵老哥",
-      "net": -0.71,
-      "netPrev": -0.76,
-      "dayNet": 0.05,
+      "name": "炒股养家",
+      "net": -0.34,
+      "netPrev": -0.45,
+      "dayNet": 0.11,
       "dayPrev": null,
       "dayDelta": null,
-      "stocks": 6,
-      "activeDays": 6,
+      "stocks": 4,
+      "activeDays": 4,
+      "topStock": "贝特利"
+    },
+    {
+      "name": "赵老哥",
+      "net": -0.76,
+      "netPrev": -0.71,
+      "dayNet": -0.05,
+      "dayPrev": 0.05,
+      "dayDelta": -0.1,
+      "stocks": 7,
+      "activeDays": 7,
       "topStock": "红太阳"
     },
     {
       "name": "章盟主",
-      "net": 19.69,
-      "netPrev": 19.08,
-      "dayNet": -0.69,
-      "dayPrev": 2.86,
-      "dayDelta": -3.55,
-      "stocks": 87,
+      "net": 17.8,
+      "netPrev": 19.69,
+      "dayNet": -0.24,
+      "dayPrev": -0.69,
+      "dayDelta": 0.45,
+      "stocks": 85,
       "activeDays": 10,
       "topStock": "浙文影业"
     },
     {
       "name": "桑田路",
-      "net": -1.43,
-      "netPrev": -1.7,
-      "dayNet": null,
-      "dayPrev": 0.06,
-      "dayDelta": null,
-      "stocks": 10,
-      "activeDays": 8,
-      "topStock": "九阳股份"
-    },
-    {
-      "name": "炒股养家",
-      "net": -0.45,
-      "netPrev": -0.45,
+      "net": -1.3,
+      "netPrev": -1.43,
       "dayNet": null,
       "dayPrev": null,
       "dayDelta": null,
-      "stocks": 3,
-      "activeDays": 3,
-      "topStock": "贝特利"
+      "stocks": 8,
+      "activeDays": 7,
+      "topStock": "九阳股份"
     }
   ],
   "hotmoneyWindow": {
-    "from": "2026-11-05",
-    "to": "2026-11-18",
+    "from": "2026-11-06",
+    "to": "2026-11-19",
     "days": 10
   },
   "signals": [
     {
       "tone": "up",
-      "text": "恐慌 83 → 80（-3），小幅变动"
+      "text": "恐慌 80 → 77（-3），小幅变动"
     },
     {
-      "tone": "up",
-      "text": "跌停 67 → 40 家（-27），风险收敛"
+      "tone": "down",
+      "text": "跌停 40 → 68 家（+28），风险在扩散"
     },
     {
-      "tone": "up",
-      "text": "涨停 37 → 41 家（+4）"
+      "tone": "down",
+      "text": "涨停 41 → 23 家（-18）"
     },
     {
-      "tone": "up",
-      "text": "最高板 3 → 4 板，空间打开"
+      "tone": "down",
+      "text": "最高板 4 → 3 板，空间压缩"
     },
     {
-      "tone": "up",
-      "text": "机构合计由净卖 30.27 亿转为净买 12.96 亿"
-    },
-    {
-      "tone": "info",
-      "text": "涨幅前八新进 5 个：稀土、氨纶、航空运输、彩电…"
+      "tone": "down",
+      "text": "机构合计由净买 12.96 亿转为净卖 17.28 亿"
     },
     {
       "tone": "info",
-      "text": "全市场上涨行业 72 → 32 个，下跌 423 → 463 个"
+      "text": "涨幅前八新进 2 个：光伏主材、空调"
+    },
+    {
+      "tone": "info",
+      "text": "全市场上涨行业 32 → 22 个，下跌 463 → 472 个"
     }
   ]
 }
