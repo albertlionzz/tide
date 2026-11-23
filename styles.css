@@ -2264,6 +2264,8 @@ button {
   margin: 0;
   font-size: 15px;
   font-weight: 600;
+  flex: 0 0 auto;
+  white-space: nowrap;   /* 副标题变长时不许把标题挤成两行 */
 }
 
 .chart-sub {

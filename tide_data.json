@@ -1,939 +1,2030 @@
 {
   "meta": {
-    "tradeDate": "2026-11-19",
-    "capturedAt": "2026-11-19T23:41:41+08:00",
+    "tradeDate": "2026-11-23",
+    "capturedAt": "2026-11-24T01:14:41+08:00",
     "source": "东方财富 + 同花顺（通达信配额未恢复）",
     "generatedBy": "derive.py"
   },
   "fear": {
-    "value": 77,
-    "label": "偏高",
-    "caption": "避险升温，控制仓位",
+    "value": 37,
+    "label": "平稳",
+    "caption": "正常轮动，按计划执行",
     "parts": [
       {
         "name": "涨跌家数失衡",
-        "value": 100,
+        "value": 0,
         "weight": 0.3
       },
       {
         "name": "跌停扩散度",
-        "value": 100,
+        "value": 8,
         "weight": 0.22
       },
       {
         "name": "连板高度",
-        "value": 75,
+        "value": 50,
         "weight": 0.18
       },
       {
         "name": "赚钱效应",
-        "value": 49,
+        "value": 72,
         "weight": 0.15
       },
       {
         "name": "指数振幅",
-        "value": 25,
+        "value": 100,
         "weight": 0.15
       }
     ]
   },
   "breadth": {
-    "advancers": 647,
-    "decliners": 4594,
-    "unchanged": 53,
-    "total": 5294,
-    "advRatio": 12.22
+    "advancers": 4344,
+    "decliners": 806,
+    "unchanged": 140,
+    "total": 5290,
+    "advRatio": 82.12
   },
   "limit": {
-    "upTotal": 23,
-    "downTotal": 68,
-    "upShown": 16,
-    "downShown": 10,
-    "maxBoards": 3,
+    "upTotal": 146,
+    "downTotal": 3,
+    "upShown": 18,
+    "downShown": 3,
+    "maxBoards": 5,
     "highBoardCount": 3,
-    "sealedRatio": 18.8,
-    "avgSealYi": 1.03,
-    "openTimesShown": 19
+    "sealedRatio": 5.6,
+    "avgSealYi": 1.57,
+    "openTimesShown": 34
   },
-  "amplitude": 1.46,
+  "amplitude": 3.56,
   "indices": [
     {
       "name": "上证指数",
       "code": "000001",
-      "price": 3577.62,
-      "change": -10.21,
-      "pct": -0.28,
-      "amount": 636909057689.0
+      "price": 3538.95,
+      "change": 5.16,
+      "pct": 0.15,
+      "amount": 738500418823.1
     },
     {
       "name": "深证成指",
       "code": "399001",
-      "price": 10583.2,
-      "change": -76.21,
-      "pct": -0.71,
-      "amount": 668238209597.5433
+      "price": 10454.37,
+      "change": 197.98,
+      "pct": 1.93,
+      "amount": 814379754013.7428
     },
     {
       "name": "创业板指",
       "code": "399006",
-      "price": 2293.34,
-      "change": -18.28,
-      "pct": -0.79,
-      "amount": 314380282402.48
+      "price": 2280.2,
+      "change": 68.07,
+      "pct": 3.08,
+      "amount": 404609096956.06
     }
   ],
-  "turnoverYi": 13051.47,
+  "turnoverYi": 15528.8,
   "boards": [
     {
-      "code": "BK1329",
-      "name": "集成电路制造",
-      "pct": 5.0,
-      "turnover": 3.82,
-      "advancers": 7,
-      "decliners": 1,
-      "pe": 151.79
-    },
-    {
-      "code": "BK1328",
-      "name": "集成电路封测",
-      "pct": 2.65,
-      "turnover": 5.86,
-      "advancers": 11,
-      "decliners": 2,
-      "pe": 42.13
-    },
-    {
-      "code": "BK1412",
-      "name": "氨纶",
-      "pct": 2.05,
-      "turnover": 0.51,
+      "code": "BK1296",
+      "name": "视频媒体",
+      "pct": 15.21,
+      "turnover": 14.86,
       "advancers": 1,
       "decliners": 0,
-      "pe": 12.71
+      "pe": 137.84
     },
     {
-      "code": "BK1626",
-      "name": "稀土",
-      "pct": 1.69,
-      "turnover": 1.98,
-      "advancers": 4,
-      "decliners": 0,
-      "pe": 30.47
-    },
-    {
-      "code": "BK1479",
-      "name": "航空运输",
-      "pct": 1.32,
-      "turnover": 0.69,
-      "advancers": 7,
-      "decliners": 2,
-      "pe": -29.28
-    },
-    {
-      "code": "BK1326",
-      "name": "半导体设备",
-      "pct": 1.07,
-      "turnover": 3.07,
-      "advancers": 12,
-      "decliners": 13,
-      "pe": 77.7
-    },
-    {
-      "code": "BK1318",
-      "name": "光伏主材",
-      "pct": 0.67,
-      "turnover": 0.88,
-      "advancers": 1,
-      "decliners": 0,
-      "pe": -7.15
-    },
-    {
-      "code": "BK1450",
-      "name": "空调",
-      "pct": 0.63,
-      "turnover": 0.87,
-      "advancers": 3,
-      "decliners": 1,
-      "pe": 13.31
-    },
-    {
-      "code": "BK0420",
-      "name": "航空机场",
-      "pct": 0.63,
-      "turnover": 0.65,
-      "advancers": 8,
-      "decliners": 6,
-      "pe": -57.32
-    },
-    {
-      "code": "BK1453",
-      "name": "彩电",
-      "pct": 0.6,
-      "turnover": 4.26,
-      "advancers": 3,
-      "decliners": 1,
-      "pe": 25.27
-    },
-    {
-      "code": "BK1469",
-      "name": "涂料",
-      "pct": 0.52,
-      "turnover": 0.78,
-      "advancers": 1,
-      "decliners": 1,
-      "pe": -20.36
-    },
-    {
-      "code": "BK1489",
-      "name": "快递",
-      "pct": 0.38,
-      "turnover": 0.55,
-      "advancers": 3,
-      "decliners": 1,
-      "pe": 13.19
-    },
-    {
-      "code": "BK1347",
-      "name": "纺织鞋类制造",
-      "pct": 0.3,
-      "turnover": 0.22,
-      "advancers": 1,
-      "decliners": 0,
-      "pe": 18.47
-    },
-    {
-      "code": "BK1239",
-      "name": "白色家电",
-      "pct": 0.29,
-      "turnover": 1.81,
-      "advancers": 7,
-      "decliners": 4,
-      "pe": 13.32
-    },
-    {
-      "code": "BK1039",
-      "name": "电子化学品Ⅱ",
-      "pct": 0.23,
-      "turnover": 4.61,
-      "advancers": 14,
-      "decliners": 22,
-      "pe": 66.23
-    },
-    {
-      "code": "BK1587",
-      "name": "电信运营商",
-      "pct": 0.17,
-      "turnover": 0.27,
+      "code": "BK1295",
+      "name": "其他数字媒体",
+      "pct": 14.16,
+      "turnover": 23.52,
       "advancers": 2,
-      "decliners": 1,
-      "pe": 19.26
+      "decliners": 0,
+      "pe": -100.06
     },
     {
-      "code": "BK1299",
-      "name": "影视动漫制作",
-      "pct": -5.49,
-      "turnover": 4.97,
-      "advancers": 0,
-      "decliners": 14,
-      "pe": -48.97
-    },
-    {
-      "code": "BK1220",
-      "name": "广告营销",
-      "pct": -5.5,
-      "turnover": 3.28,
-      "advancers": 0,
-      "decliners": 30,
-      "pe": 109.19
-    },
-    {
-      "code": "BK1293",
-      "name": "营销代理",
-      "pct": -5.61,
-      "turnover": 5.06,
-      "advancers": 0,
-      "decliners": 27,
-      "pe": -587.31
+      "code": "BK1408",
+      "name": "机器人",
+      "pct": 9.54,
+      "turnover": 4.07,
+      "advancers": 22,
+      "decliners": 0,
+      "pe": 662.93
     },
     {
       "code": "BK1298",
       "name": "文字媒体",
-      "pct": -5.74,
-      "turnover": 8.67,
-      "advancers": 0,
-      "decliners": 2,
-      "pe": -84.91
-    },
-    {
-      "code": "BK1222",
-      "name": "影视院线",
-      "pct": -5.86,
-      "turnover": 4.67,
-      "advancers": 0,
-      "decliners": 18,
-      "pe": -52.63
-    },
-    {
-      "code": "BK1240",
-      "name": "厨卫电器",
-      "pct": -6.18,
-      "turnover": 5.61,
-      "advancers": 1,
-      "decliners": 8,
-      "pe": 58.08
-    },
-    {
-      "code": "BK1305",
-      "name": "燃料电池",
-      "pct": -6.22,
-      "turnover": 2.86,
-      "advancers": 0,
-      "decliners": 1,
-      "pe": -5.9
-    },
-    {
-      "code": "BK1296",
-      "name": "视频媒体",
-      "pct": -6.7,
-      "turnover": 9.13,
-      "advancers": 0,
-      "decliners": 1,
-      "pe": 115.94
-    },
-    {
-      "code": "BK1451",
-      "name": "厨房电器",
-      "pct": -6.79,
-      "turnover": 4.87,
-      "advancers": 1,
-      "decliners": 5,
-      "pe": 54.35
+      "pct": 8.65,
+      "turnover": 12.47,
+      "advancers": 2,
+      "decliners": 0,
+      "pe": -90.14
     },
     {
       "code": "BK1300",
       "name": "院线",
-      "pct": -7.16,
-      "turnover": 3.18,
+      "pct": 8.3,
+      "turnover": 5.81,
+      "advancers": 4,
+      "decliners": 0,
+      "pe": -76.59
+    },
+    {
+      "code": "BK1222",
+      "name": "影视院线",
+      "pct": 7.63,
+      "turnover": 6.72,
+      "advancers": 17,
+      "decliners": 0,
+      "pe": -54.62
+    },
+    {
+      "code": "BK1299",
+      "name": "影视动漫制作",
+      "pct": 7.42,
+      "turnover": 6.91,
+      "advancers": 13,
+      "decliners": 0,
+      "pe": -50.46
+    },
+    {
+      "code": "BK1600",
+      "name": "医疗研发外包",
+      "pct": 7.23,
+      "turnover": 3.55,
+      "advancers": 29,
+      "decliners": 0,
+      "pe": 25.78
+    },
+    {
+      "code": "BK1221",
+      "name": "数字媒体",
+      "pct": 6.92,
+      "turnover": 8.07,
+      "advancers": 14,
+      "decliners": 1,
+      "pe": -583.2
+    },
+    {
+      "code": "BK1514",
+      "name": "水产养殖",
+      "pct": 6.8,
+      "turnover": 14.68,
+      "advancers": 4,
+      "decliners": 0,
+      "pe": -18.12
+    },
+    {
+      "code": "BK1542",
+      "name": "文化用品",
+      "pct": 6.59,
+      "turnover": 2.16,
+      "advancers": 4,
+      "decliners": 1,
+      "pe": 22.51
+    },
+    {
+      "code": "BK1237",
+      "name": "自动化设备",
+      "pct": 6.56,
+      "turnover": 3.39,
+      "advancers": 97,
+      "decliners": 0,
+      "pe": 64.5
+    },
+    {
+      "code": "BK1030",
+      "name": "电机Ⅱ",
+      "pct": 6.26,
+      "turnover": 3.39,
+      "advancers": 27,
+      "decliners": 0,
+      "pe": 61.08
+    },
+    {
+      "code": "BK1410",
+      "name": "其他自动化设备",
+      "pct": 5.88,
+      "turnover": 3.52,
+      "advancers": 31,
+      "decliners": 0,
+      "pe": 59.49
+    },
+    {
+      "code": "BK0727",
+      "name": "医疗服务",
+      "pct": 5.79,
+      "turnover": 2.75,
+      "advancers": 52,
+      "decliners": 1,
+      "pe": 30.34
+    },
+    {
+      "code": "BK1395",
+      "name": "机床工具",
+      "pct": 5.72,
+      "turnover": 5.19,
+      "advancers": 20,
+      "decliners": 0,
+      "pe": 48.18
+    },
+    {
+      "code": "BK1417",
+      "name": "纯碱",
+      "pct": -1.33,
+      "turnover": 1.88,
+      "advancers": 2,
+      "decliners": 2,
+      "pe": -120.54
+    },
+    {
+      "code": "BK1376",
+      "name": "核力发电",
+      "pct": -1.38,
+      "turnover": 0.57,
+      "advancers": 1,
+      "decliners": 2,
+      "pe": 24.52
+    },
+    {
+      "code": "BK1520",
+      "name": "综合乘用车",
+      "pct": -1.43,
+      "turnover": 0.5,
+      "advancers": 1,
+      "decliners": 5,
+      "pe": 160.18
+    },
+    {
+      "code": "BK1450",
+      "name": "空调",
+      "pct": -1.45,
+      "turnover": 0.73,
+      "advancers": 1,
+      "decliners": 3,
+      "pe": 13.17
+    },
+    {
+      "code": "BK1466",
+      "name": "管材",
+      "pct": -1.53,
+      "turnover": 1.19,
+      "advancers": 4,
+      "decliners": 3,
+      "pe": 61.83
+    },
+    {
+      "code": "BK0474",
+      "name": "保险Ⅱ",
+      "pct": -1.72,
+      "turnover": 0.32,
+      "advancers": 1,
+      "decliners": 4,
+      "pe": 9.9
+    },
+    {
+      "code": "BK1587",
+      "name": "电信运营商",
+      "pct": -1.92,
+      "turnover": 0.31,
+      "advancers": 0,
+      "decliners": 3,
+      "pe": 19.19
+    },
+    {
+      "code": "BK1276",
+      "name": "油气开采Ⅱ",
+      "pct": -2.29,
+      "turnover": 0.74,
       "advancers": 0,
       "decliners": 4,
-      "pe": -71.95
+      "pe": 10.51
     }
   ],
   "boardStats": {
-    "up": 22,
-    "down": 472,
-    "flat": 2,
+    "up": 447,
+    "down": 49,
+    "flat": 0,
     "total": 496,
-    "shown": 26,
+    "shown": 24,
     "basis": "all",
-    "spread": 12.16
+    "spread": 17.5
   },
   "limitUpPool": [
     {
-      "code": "002420",
+      "code": "002685",
       "setcode": "0",
-      "name": "毅昌科技",
-      "price": 6.42,
-      "pct": 9.93,
+      "name": "华东重机",
+      "price": 8.14,
+      "pct": 10.0,
       "boards": 1,
-      "pattern": "首板",
-      "boardType": "一字板",
-      "sealAmount": 496066980,
-      "firstSealTime": "09:25:00",
-      "openTimes": 0,
-      "reason": "机器人结构件.储能液冷.三季报增长",
-      "detail": "综合Ⅱ · 一字板 · 首封 09:25:00"
+      "pattern": "7天5板",
+      "boardType": "换手板",
+      "sealAmount": 251708962,
+      "firstSealTime": "09:30:15",
+      "openTimes": 1,
+      "reason": "GPU芯片.港口装卸设备.定增注册",
+      "detail": "工程机械 · 换手板 · 首封 09:30:15"
     },
     {
-      "code": "002771",
+      "code": "002242",
       "setcode": "0",
-      "name": "真视通",
-      "price": 14.38,
+      "name": "九阳股份",
+      "price": 31.86,
+      "pct": 10.01,
+      "boards": 1,
+      "pattern": "5天3板",
+      "boardType": "换手板",
+      "sealAmount": 239599944,
+      "firstSealTime": "09:44:39",
+      "openTimes": 0,
+      "reason": "厨房小家电.机器人投资.“羊”字辈",
+      "detail": "小家电 · 换手板 · 首封 09:44:39"
+    },
+    {
+      "code": "688836",
+      "setcode": "1",
+      "name": "宇树科技-W",
+      "price": 708.0,
+      "pct": 20.0,
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 239543304,
+      "firstSealTime": "13:44:49",
+      "openTimes": 0,
+      "reason": "人形机器人.物理AI.具身智能",
+      "detail": "自动化设 · 换手板 · 首封 13:44:49"
+    },
+    {
+      "code": "603893",
+      "setcode": "1",
+      "name": "瑞芯微",
+      "price": 202.88,
+      "pct": 10.0,
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 212837756,
+      "firstSealTime": "11:07:47",
+      "openTimes": 0,
+      "reason": "端侧AI.机器人芯片.协处理器",
+      "detail": "半导体 · 换手板 · 首封 11:07:47"
+    },
+    {
+      "code": "002708",
+      "setcode": "0",
+      "name": "光洋股份",
+      "price": 20.99,
+      "pct": 10.01,
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 209308082,
+      "firstSealTime": "09:33:18",
+      "openTimes": 3,
+      "reason": "机器人关节.PCB.黄山国资.“羊”字辈",
+      "detail": "汽车零部 · 换手板 · 首封 09:33:18"
+    },
+    {
+      "code": "002164",
+      "setcode": "0",
+      "name": "宁波东力",
+      "price": 17.94,
+      "pct": 9.99,
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 178553232,
+      "firstSealTime": "09:32:00",
+      "openTimes": 1,
+      "reason": "人形机器人.精密减速器.尼得科合作",
+      "detail": "通用设备 · 换手板 · 首封 09:32:00"
+    },
+    {
+      "code": "000636",
+      "setcode": "0",
+      "name": "风华高科",
+      "price": 28.99,
       "pct": 10.02,
-      "boards": 3,
-      "pattern": "3天3板",
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 176434067,
+      "firstSealTime": "14:08:48",
+      "openTimes": 0,
+      "reason": "MLCC.商业航天.广东国资",
+      "detail": "元件 · 换手板 · 首封 14:08:48"
+    },
+    {
+      "code": "603960",
+      "setcode": "1",
+      "name": "克来机电",
+      "price": 15.37,
+      "pct": 10.02,
+      "boards": 2,
+      "pattern": "2天2板",
       "boardType": "一字板",
-      "sealAmount": 208336864,
+      "sealAmount": 168739545,
       "firstSealTime": "09:25:00",
       "openTimes": 0,
-      "reason": "液冷算力.华为.多媒体视讯",
-      "detail": "IT服务Ⅱ · 一字板 · 首封 09:25:00"
+      "reason": "工业机器人.柔性自动化装备.AI应用",
+      "detail": "汽车零部 · 一字板 · 首封 09:25:00"
+    },
+    {
+      "code": "603119",
+      "setcode": "1",
+      "name": "浙江荣泰",
+      "price": 50.82,
+      "pct": 10.0,
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 164048433,
+      "firstSealTime": "11:03:53",
+      "openTimes": 0,
+      "reason": "人形机器人.精密结构件.云母绝缘",
+      "detail": "汽车零部 · 换手板 · 首封 11:03:53"
+    },
+    {
+      "code": "601689",
+      "setcode": "1",
+      "name": "拓普集团",
+      "price": 52.92,
+      "pct": 10.0,
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 151201542,
+      "firstSealTime": "13:21:32",
+      "openTimes": 1,
+      "reason": "人形机器人.机器人执行器.汽车零部件",
+      "detail": "汽车零部 · 换手板 · 首封 13:21:32"
+    },
+    {
+      "code": "002642",
+      "setcode": "0",
+      "name": "荣联科技",
+      "price": 7.99,
+      "pct": 10.06,
+      "boards": 2,
+      "pattern": "2天2板",
+      "boardType": "T字板",
+      "sealAmount": 136511602,
+      "firstSealTime": "09:30:00",
+      "openTimes": 0,
+      "reason": "存储设备集采.算力服务.国企",
+      "detail": "IT服务Ⅱ · T字板 · 首封 09:30:00"
+    },
+    {
+      "code": "002931",
+      "setcode": "0",
+      "name": "锋龙股份",
+      "price": 42.46,
+      "pct": 10.0,
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 134778485,
+      "firstSealTime": "09:33:57",
+      "openTimes": 1,
+      "reason": "机器人关节.优必选.机电组件",
+      "detail": "通用设备 · 换手板 · 首封 09:33:57"
+    },
+    {
+      "code": "002086",
+      "setcode": "0",
+      "name": "东方海洋",
+      "price": 4.13,
+      "pct": 10.13,
+      "boards": 2,
+      "pattern": "2天2板",
+      "boardType": "换手板",
+      "sealAmount": 130163145,
+      "firstSealTime": "09:31:27",
+      "openTimes": 13,
+      "reason": "海洋养殖.大健康.董事会换届.“羊”字辈",
+      "detail": "农产品加 · 换手板 · 首封 09:31:27"
+    },
+    {
+      "code": "003021",
+      "setcode": "0",
+      "name": "兆威机电",
+      "price": 84.51,
+      "pct": 10.0,
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 124780705,
+      "firstSealTime": "13:25:00",
+      "openTimes": 0,
+      "reason": "人形机器人.灵巧手.微型传动",
+      "detail": "电机Ⅱ · 换手板 · 首封 13:25:00"
+    },
+    {
+      "code": "605488",
+      "setcode": "1",
+      "name": "福莱新材",
+      "price": 46.77,
+      "pct": 10.0,
+      "boards": 1,
+      "pattern": "首板",
+      "boardType": "换手板",
+      "sealAmount": 124556320,
+      "firstSealTime": "09:43:52",
+      "openTimes": 2,
+      "reason": "柔性传感.数据采集手套.人形机器人",
+      "detail": "塑料 · 换手板 · 首封 09:43:52"
     },
     {
       "code": "002579",
       "setcode": "0",
       "name": "中京电子",
-      "price": 12.17,
-      "pct": 10.04,
-      "boards": 1,
-      "pattern": "首板",
-      "boardType": "换手板",
-      "sealAmount": 101013434,
-      "firstSealTime": "10:27:21",
-      "openTimes": 0,
-      "reason": "高阶HDI.算力.存储",
-      "detail": "元件 · 换手板 · 首封 10:27:21"
-    },
-    {
-      "code": "603030",
-      "setcode": "1",
-      "name": "全筑股份",
-      "price": 2.34,
-      "pct": 9.86,
+      "price": 14.73,
+      "pct": 10.01,
       "boards": 3,
       "pattern": "3天3板",
-      "boardType": "一字板",
-      "sealAmount": 96175872,
+      "boardType": "T字板",
+      "sealAmount": 102269830,
+      "firstSealTime": "09:30:51",
+      "openTimes": 6,
+      "reason": "高阶HDI.算力.存储.人形机器人",
+      "detail": "元件 · T字板 · 首封 09:30:51"
+    },
+    {
+      "code": "002771",
+      "setcode": "0",
+      "name": "真视通",
+      "price": 17.4,
+      "pct": 9.99,
+      "boards": 5,
+      "pattern": "5天5板",
+      "boardType": "T字板",
+      "sealAmount": 46752912,
       "firstSealTime": "09:25:00",
-      "openTimes": 0,
-      "reason": "边缘AI算力.先进光源.智慧建筑",
-      "detail": "装修装饰 · 一字板 · 首封 09:25:00"
-    },
-    {
-      "code": "603931",
-      "setcode": "1",
-      "name": "格林达",
-      "price": 29.15,
-      "pct": 10.0,
-      "boards": 1,
-      "pattern": "3天2板",
-      "boardType": "换手板",
-      "sealAmount": 84415455,
-      "firstSealTime": "09:31:17",
-      "openTimes": 1,
-      "reason": "湿电子化学品.先进封装.光刻胶",
-      "detail": "电子化学 · 换手板 · 首封 09:31:17"
-    },
-    {
-      "code": "603078",
-      "setcode": "1",
-      "name": "江化微",
-      "price": 26.86,
-      "pct": 9.99,
-      "boards": 1,
-      "pattern": "3天2板",
-      "boardType": "换手板",
-      "sealAmount": 84310289,
-      "firstSealTime": "13:06:46",
-      "openTimes": 0,
-      "reason": "湿电子化学品.存储芯片.上海国资",
-      "detail": "电子化学 · 换手板 · 首封 13:06:46"
-    },
-    {
-      "code": "603813",
-      "setcode": "1",
-      "name": "原尚股份",
-      "price": 22.9,
-      "pct": 9.99,
-      "boards": 1,
-      "pattern": "首板",
-      "boardType": "换手板",
-      "sealAmount": 72489950,
-      "firstSealTime": "10:17:46",
-      "openTimes": 0,
-      "reason": "氢能物流.空港物流.跨境电商",
-      "detail": "物流 · 换手板 · 首封 10:17:46"
-    },
-    {
-      "code": "600619",
-      "setcode": "1",
-      "name": "海立股份",
-      "price": 15.07,
-      "pct": 10.0,
-      "boards": 1,
-      "pattern": "3天2板",
-      "boardType": "换手板",
-      "sealAmount": 65517849,
-      "firstSealTime": "10:48:16",
-      "openTimes": 2,
-      "reason": "光刻机冷却.空调压缩机.上海国资",
-      "detail": "家电零部 · 换手板 · 首封 10:48:16"
-    },
-    {
-      "code": "002242",
-      "setcode": "0",
-      "name": "九阳股份",
-      "price": 31.21,
-      "pct": 10.01,
-      "boards": 1,
-      "pattern": "3天2板",
-      "boardType": "换手板",
-      "sealAmount": 64486788,
-      "firstSealTime": "09:25:00",
-      "openTimes": 13,
-      "reason": "厨房小家电.机器人投资.“羊”字辈",
-      "detail": "小家电 · 换手板 · 首封 09:25:00"
-    },
-    {
-      "code": "000711",
-      "setcode": "0",
-      "name": "京蓝科技",
-      "price": 3.83,
-      "pct": 10.06,
-      "boards": 2,
-      "pattern": "2天2板",
-      "boardType": "换手板",
-      "sealAmount": 58262726,
-      "firstSealTime": "13:25:45",
-      "openTimes": 1,
-      "reason": "7N高纯铟.铟资源循环.资产出售",
-      "detail": "环境治理 · 换手板 · 首封 13:25:45"
-    },
-    {
-      "code": "605178",
-      "setcode": "1",
-      "name": "时空科技",
-      "price": 53.25,
-      "pct": 10.0,
-      "boards": 1,
-      "pattern": "首板",
-      "boardType": "换手板",
-      "sealAmount": 57853569,
-      "firstSealTime": "10:56:42",
-      "openTimes": 0,
-      "reason": "存储芯片.拟收购嘉合劲威.智慧城市",
-      "detail": "专业工程 · 换手板 · 首封 10:56:42"
-    },
-    {
-      "code": "002418",
-      "setcode": "0",
-      "name": "康盛股份",
-      "price": 4.02,
-      "pct": 10.14,
-      "boards": 1,
-      "pattern": "首板",
-      "boardType": "换手板",
-      "sealAmount": 57354546,
-      "firstSealTime": "09:35:18",
-      "openTimes": 0,
-      "reason": "液冷.算力.家电制冷",
-      "detail": "家电零部 · 换手板 · 首封 09:35:18"
-    },
-    {
-      "code": "600520",
-      "setcode": "1",
-      "name": "三佳科技",
-      "price": 22.17,
-      "pct": 10.02,
-      "boards": 1,
-      "pattern": "首板",
-      "boardType": "换手板",
-      "sealAmount": 57209685,
-      "firstSealTime": "09:42:14",
-      "openTimes": 0,
-      "reason": "先进封装.半导体封装装备.合肥国资",
-      "detail": "半导体 · 换手板 · 首封 09:42:14"
-    },
-    {
-      "code": "002077",
-      "setcode": "0",
-      "name": "大港股份",
-      "price": 12.11,
-      "pct": 9.99,
-      "boards": 1,
-      "pattern": "首板",
-      "boardType": "换手板",
-      "sealAmount": 56769802,
-      "firstSealTime": "09:40:15",
-      "openTimes": 2,
-      "reason": "集成电路测试.封测.镇江国资",
-      "detail": "半导体 · 换手板 · 首封 09:40:15"
-    },
-    {
-      "code": "002165",
-      "setcode": "0",
-      "name": "红 宝 丽",
-      "price": 6.3,
-      "pct": 9.95,
-      "boards": 1,
-      "pattern": "首板",
-      "boardType": "换手板",
-      "sealAmount": 56691772,
-      "firstSealTime": "09:32:15",
-      "openTimes": 0,
-      "reason": "环氧丙烷.异丙醇胺.聚醚",
-      "detail": "化学制品 · 换手板 · 首封 09:32:15"
+      "openTimes": 6,
+      "reason": "液冷算力.华为算力.多媒体视讯",
+      "detail": "IT服务Ⅱ · T字板 · 首封 09:25:00"
     },
     {
       "code": "603324",
       "setcode": "1",
       "name": "盛剑科技",
-      "price": 25.19,
+      "price": 30.48,
       "pct": 10.0,
-      "boards": 3,
-      "pattern": "3天3板",
+      "boards": 5,
+      "pattern": "5天5板",
       "boardType": "换手板",
-      "sealAmount": 28483844,
-      "firstSealTime": "09:37:40",
+      "sealAmount": 32572147,
+      "firstSealTime": "13:03:03",
       "openTimes": 0,
-      "reason": "光刻胶.半导体附属装备.电子化学品",
-      "detail": "环保设备 · 换手板 · 首封 09:37:40"
+      "reason": "光刻胶配套.电子化学品.半导体附属装备",
+      "detail": "环保设备 · 换手板 · 首封 13:03:03"
+    }
+  ],
+  "limitUpBrief": [
+    {
+      "code": "000593",
+      "name": "德龙汇能",
+      "board": "燃气Ⅱ",
+      "reason": "天然气.参股半导体.氢能",
+      "boards": 2,
+      "pct": 9.99
+    },
+    {
+      "code": "002036",
+      "name": "联创电子",
+      "board": "光学光电",
+      "reason": "机器视觉.车载光学.光学器件送样",
+      "boards": 1,
+      "pct": 9.93
+    },
+    {
+      "code": "002771",
+      "name": "真视通",
+      "board": "IT服务Ⅱ",
+      "reason": "液冷算力.华为算力.多媒体视讯",
+      "boards": 5,
+      "pct": 9.99
+    },
+    {
+      "code": "603960",
+      "name": "克来机电",
+      "board": "汽车零部",
+      "reason": "工业机器人.柔性自动化装备.AI应用",
+      "boards": 2,
+      "pct": 10.02
+    },
+    {
+      "code": "002642",
+      "name": "荣联科技",
+      "board": "IT服务Ⅱ",
+      "reason": "存储设备集采.算力服务.国企",
+      "boards": 2,
+      "pct": 10.06
+    },
+    {
+      "code": "001229",
+      "name": "魅视科技",
+      "board": "计算机设",
+      "reason": "算力服务.AI算力采购.专业视听",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002685",
+      "name": "华东重机",
+      "board": "工程机械",
+      "reason": "GPU芯片.港口装卸设备.定增注册",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002579",
+      "name": "中京电子",
+      "board": "元件",
+      "reason": "高阶HDI.算力.存储.人形机器人",
+      "boards": 3,
+      "pct": 10.01
+    },
+    {
+      "code": "002086",
+      "name": "东方海洋",
+      "board": "农产品加",
+      "reason": "海洋养殖.大健康.董事会换届.“羊”字辈",
+      "boards": 2,
+      "pct": 10.13
+    },
+    {
+      "code": "002164",
+      "name": "宁波东力",
+      "board": "通用设备",
+      "reason": "人形机器人.精密减速器.尼得科合作",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "002708",
+      "name": "光洋股份",
+      "board": "汽车零部",
+      "reason": "机器人关节.PCB.黄山国资.“羊”字辈",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "002983",
+      "name": "芯瑞达",
+      "board": "光学光电",
+      "reason": "MicroLED.AI眼镜.像素车灯",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002931",
+      "name": "锋龙股份",
+      "board": "通用设备",
+      "reason": "机器人关节.优必选.机电组件",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002122",
+      "name": "汇洲智能",
+      "board": "通用设备",
+      "reason": "摘帽复牌.人形机器人.物理AI.数据服务",
+      "boards": 1,
+      "pct": 10.04
+    },
+    {
+      "code": "301318",
+      "name": "维海德",
+      "board": "计算机设",
+      "reason": "AI应用.云办公.音视频设备",
+      "boards": 1,
+      "pct": 20.01
+    },
+    {
+      "code": "002815",
+      "name": "崇达技术",
+      "board": "元件",
+      "reason": "PCB.AI服务器.珠海二厂产能爬坡",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002199",
+      "name": "东晶电子",
+      "board": "元件",
+      "reason": "石英晶体元器件.碳酸锂",
+      "boards": 2,
+      "pct": 10.05
+    },
+    {
+      "code": "300829",
+      "name": "金丹科技",
+      "board": "化学制品",
+      "reason": "涨价.乳酸.聚乳酸.3D打印",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603626",
+      "name": "科森科技",
+      "board": "消费电子",
+      "reason": "机器人结构件.消费电子结构件.苹果供应链.固态电池",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "601599",
+      "name": "浙文影业",
+      "board": "纺织制造",
+      "reason": "影视业务.微短剧.国企改革",
+      "boards": 1,
+      "pct": 9.94
+    },
+    {
+      "code": "301575",
+      "name": "艾芬达",
+      "board": "家居用品",
+      "reason": "机器人结构件.卫浴毛巾架.北美头部客户",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "001278",
+      "name": "一彬科技",
+      "board": "汽车零部",
+      "reason": "半导体掩模基板.激光除草机.汽车零部件",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "605488",
+      "name": "福莱新材",
+      "board": "塑料",
+      "reason": "柔性传感.数据采集手套.人形机器人",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002242",
+      "name": "九阳股份",
+      "board": "小家电",
+      "reason": "厨房小家电.机器人投资.“羊”字辈",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "603666",
+      "name": "亿嘉和",
+      "board": "自动化设",
+      "reason": "人形机器人.华为云合作.电力机器人",
+      "boards": 1,
+      "pct": 10.02
+    },
+    {
+      "code": "605398",
+      "name": "新炬网络",
+      "board": "IT服务Ⅱ",
+      "reason": "短剧营销.AI应用.智能运维",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "605018",
+      "name": "长华集团",
+      "board": "汽车零部",
+      "reason": "人形机器人.行星滚柱丝杠.汽车零部件",
+      "boards": 2,
+      "pct": 10.04
+    },
+    {
+      "code": "002703",
+      "name": "浙江世宝",
+      "board": "汽车零部",
+      "reason": "无人驾驶.线控转向.汽车转向",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "603528",
+      "name": "多伦科技",
+      "board": "软件开发",
+      "reason": "交通机器人.具身智能.智慧交通.超跌修复",
+      "boards": 1,
+      "pct": 9.93
+    },
+    {
+      "code": "603103",
+      "name": "横店影视",
+      "board": "影视院线",
+      "reason": "AI短剧.影视全产业链.IP运营",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "688069",
+      "name": "德林海",
+      "board": "环境治理",
+      "reason": "蓝藻治理.湖泊生态医院.美人鱼AI平台",
+      "boards": 1,
+      "pct": 19.99
+    },
+    {
+      "code": "301413",
+      "name": "安培龙",
+      "board": "通用设备",
+      "reason": "人形机器人.力传感器.压力传感器",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603516",
+      "name": "淳中科技",
+      "board": "计算机设",
+      "reason": "音视频芯片.显控系统.芯片概念",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "603179",
+      "name": "新泉股份",
+      "board": "汽车零部",
+      "reason": "机器人零部件.汽车饰件.座椅业务",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "688667",
+      "name": "菱电电控",
+      "board": "汽车零部",
+      "reason": "汽车电控.低空飞行.混动电控",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "000026",
+      "name": "飞亚达",
+      "board": "饰品",
+      "reason": "人形机器人.精密减速器.中航系",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "002009",
+      "name": "天奇股份",
+      "board": "专用设备",
+      "reason": "具身智能数据.人形机器人.智能装备",
+      "boards": 1,
+      "pct": 10.03
+    },
+    {
+      "code": "601188",
+      "name": "龙江交通",
+      "board": "铁路公路",
+      "reason": "冰雪旅游保障.高速公路运营.黑龙江国资",
+      "boards": 1,
+      "pct": 10.02
+    },
+    {
+      "code": "301000",
+      "name": "肇民科技",
+      "board": "汽车零部",
+      "reason": "人形机器人.精密注塑.以塑代钢",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "002045",
+      "name": "国光电器",
+      "board": "消费电子",
+      "reason": "AI眼镜.智能音箱.声学模组",
+      "boards": 1,
+      "pct": 9.96
+    },
+    {
+      "code": "000819",
+      "name": "岳阳兴长",
+      "board": "炼化及贸",
+      "reason": "MOFs材料.茂金属聚烯烃.国企.“羊”字辈",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "601595",
+      "name": "上海电影",
+      "board": "影视院线",
+      "reason": "AI影视.即梦合作.IP运营.院线",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "002172",
+      "name": "澳洋健康",
+      "board": "医疗服务",
+      "reason": "“羊”字辈.脑机接口.医疗服务.国资控股",
+      "boards": 1,
+      "pct": 10.09
+    },
+    {
+      "code": "001283",
+      "name": "豪鹏科技",
+      "board": "电池",
+      "reason": "机器人电池.智能眼镜电池.固态电池.三季报增长",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "301313",
+      "name": "凡拓数创",
+      "board": "数字媒体",
+      "reason": "具身智能数据.物理AI数据基座.机器人训练场",
+      "boards": 2,
+      "pct": 20.0
+    },
+    {
+      "code": "300508",
+      "name": "维宏股份",
+      "board": "计算机设",
+      "reason": "灵巧手电机.人形机器人.数控系统",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603119",
+      "name": "浙江荣泰",
+      "board": "汽车零部",
+      "reason": "人形机器人.精密结构件.云母绝缘",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "603040",
+      "name": "XD新坐标",
+      "board": "汽车零部",
+      "reason": "机器人丝杠.汽车零部件",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "002414",
+      "name": "高德红外",
+      "board": "军工电子",
+      "reason": "机器人.红外芯片.军工",
+      "boards": 1,
+      "pct": 10.04
+    },
+    {
+      "code": "301261",
+      "name": "恒工精密",
+      "board": "通用设备",
+      "reason": "人形机器人.减速器.具身智能",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603893",
+      "name": "瑞芯微",
+      "board": "半导体",
+      "reason": "端侧AI.机器人芯片.协处理器",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "688203",
+      "name": "海正生材",
+      "board": "塑料",
+      "reason": "聚乳酸.3D打印.产能投产",
+      "boards": 1,
+      "pct": 19.97
+    },
+    {
+      "code": "002724",
+      "name": "海洋王",
+      "board": "照明设备",
+      "reason": "中国航展.军工.专业照明",
+      "boards": 1,
+      "pct": 9.97
+    },
+    {
+      "code": "002655",
+      "name": "共达电声",
+      "board": "消费电子",
+      "reason": "消费电子.声学元器件.拟参投硅臻芯片.控股股东增持",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "605287",
+      "name": "德才股份",
+      "board": "装修装饰",
+      "reason": "AI漫剧.互动影游.智能体.建筑装饰",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "000711",
+      "name": "京蓝科技",
+      "board": "环境治理",
+      "reason": "7N高纯铟.铟资源循环.资产出售",
+      "boards": 1,
+      "pct": 10.1
+    },
+    {
+      "code": "603920",
+      "name": "世运电路",
+      "board": "元件",
+      "reason": "AI服务器PCB.人形机器人.回购",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002289",
+      "name": "宇顺电子",
+      "board": "光学光电",
+      "reason": "算力租赁.IDC数据中心.三季报扭亏",
+      "boards": 1,
+      "pct": 10.02
+    },
+    {
+      "code": "600103",
+      "name": "青山纸业",
+      "board": "造纸",
+      "reason": "光模块.竹浆纸.福建国资",
+      "boards": 1,
+      "pct": 9.97
+    },
+    {
+      "code": "002913",
+      "name": "奥士康",
+      "board": "元件",
+      "reason": "PCB.AI服务器.南通智算项目.三季报增长",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "001358",
+      "name": "兴欣新材",
+      "board": "化学制品",
+      "reason": "光刻胶剥离液.电子化学品项目.股份回购",
+      "boards": 1,
+      "pct": 10.02
+    },
+    {
+      "code": "300721",
+      "name": "怡达股份",
+      "board": "化学制品",
+      "reason": "湿电子化学品.光刻胶.醇醚",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603004",
+      "name": "鼎龙科技",
+      "board": "化学制品",
+      "reason": "光刻胶.特种工程材料单体.染发剂原料",
+      "boards": 2,
+      "pct": 9.99
+    },
+    {
+      "code": "002584",
+      "name": "西陇科学",
+      "board": "电子化学",
+      "reason": "光刻胶配套试剂.电子化学品.化学试剂",
+      "boards": 1,
+      "pct": 9.96
+    },
+    {
+      "code": "002148",
+      "name": "北纬科技",
+      "board": "通信服务",
+      "reason": "四足机器人.物联网.手机游戏",
+      "boards": 1,
+      "pct": 10.04
+    },
+    {
+      "code": "003032",
+      "name": "传智教育",
+      "board": "教育",
+      "reason": "AI职业培训.AI具身智能.人形机器人",
+      "boards": 1,
+      "pct": 10.05
+    },
+    {
+      "code": "603324",
+      "name": "盛剑科技",
+      "board": "环保设备",
+      "reason": "光刻胶配套.电子化学品.半导体附属装备",
+      "boards": 5,
+      "pct": 10.0
+    },
+    {
+      "code": "603037",
+      "name": "凯众股份",
+      "board": "汽车零部",
+      "reason": "机器人零部件.汽车减震.拟收购拓盛",
+      "boards": 1,
+      "pct": 10.04
+    },
+    {
+      "code": "600980",
+      "name": "北矿科技",
+      "board": "专用设备",
+      "reason": "矿冶机器人.磁性材料",
+      "boards": 1,
+      "pct": 9.98
+    },
+    {
+      "code": "000700",
+      "name": "模塑科技",
+      "board": "汽车零部",
+      "reason": "人形机器人.汽车外饰件.机器人外覆盖件",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "603706",
+      "name": "东方环宇",
+      "board": "燃气Ⅱ",
+      "reason": "东方系.天然气.集中供热",
+      "boards": 1,
+      "pct": 9.98
+    },
+    {
+      "code": "002623",
+      "name": "亚玛顿",
+      "board": "光伏设备",
+      "reason": "控制权变更.光伏玻璃.电子玻璃",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "600838",
+      "name": "上海九百",
+      "board": "一般零售",
+      "reason": "商贸零售.商业地产.洗染服务.上海国资",
+      "boards": 1,
+      "pct": 10.03
+    },
+    {
+      "code": "001360",
+      "name": "南矿集团",
+      "board": "专用设备",
+      "reason": "黄金.境外金矿收购.矿山装备",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002343",
+      "name": "慈文传媒",
+      "board": "影视院线",
+      "reason": "AI影视.微短剧.江西国资",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002696",
+      "name": "百洋股份",
+      "board": "饲料",
+      "reason": "“羊”字辈.水产加工.鱼粉鱼油.青岛国资",
+      "boards": 1,
+      "pct": 10.04
+    },
+    {
+      "code": "603236",
+      "name": "移远通信",
+      "board": "通信设备",
+      "reason": "机器人.端侧AI.物联网模组",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "603278",
+      "name": "大业股份",
+      "board": "通用设备",
+      "reason": "人形机器人.胎圈钢丝.商业航天",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "603662",
+      "name": "柯力传感",
+      "board": "通用设备",
+      "reason": "六维力传感器.人形机器人.触觉传感器",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "605288",
+      "name": "凯迪股份",
+      "board": "自动化设",
+      "reason": "具身机器人.线性驱动.汽车零部件",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "605577",
+      "name": "龙版传媒",
+      "board": "出版",
+      "reason": "AI漫剧.出版发行.黑龙江国资",
+      "boards": 2,
+      "pct": 10.01
+    },
+    {
+      "code": "300703",
+      "name": "创源股份",
+      "board": "文娱用品",
+      "reason": "AI玩具.IP文创.祈福文创.国企改革",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "002687",
+      "name": "乔治白",
+      "board": "服装家纺",
+      "reason": "职业装.校服.股东户数下降",
+      "boards": 1,
+      "pct": 9.94
+    },
+    {
+      "code": "920690",
+      "name": "捷众科技",
+      "board": "汽车零部",
+      "reason": "",
+      "boards": 1,
+      "pct": 29.99
+    },
+    {
+      "code": "688611",
+      "name": "杭州柯林",
+      "board": "电网设备",
+      "reason": "人形机器人.电网数字化.增持",
+      "boards": 1,
+      "pct": 19.99
+    },
+    {
+      "code": "600814",
+      "name": "杭州解百",
+      "board": "一般零售",
+      "reason": "百货零售.间接持股中科宇航.杭州国资",
+      "boards": 1,
+      "pct": 10.05
+    },
+    {
+      "code": "601689",
+      "name": "拓普集团",
+      "board": "汽车零部",
+      "reason": "人形机器人.机器人执行器.汽车零部件",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "603667",
+      "name": "五洲新春",
+      "board": "通用设备",
+      "reason": "人形机器人.丝杠.轴承",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "301502",
+      "name": "华阳智能",
+      "board": "电机Ⅱ",
+      "reason": "机器人关节模组.无框电机.微特电机",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "301252",
+      "name": "同星科技",
+      "board": "家电零部",
+      "reason": "人形机器人.数据中心液冷.换热器",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603286",
+      "name": "日盈电子",
+      "board": "汽车零部",
+      "reason": "人形机器人.电子皮肤.汽车洗涤系统",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002173",
+      "name": "创新医疗",
+      "board": "医疗服务",
+      "reason": "脑机接口.医疗器械注册证.医疗服务",
+      "boards": 1,
+      "pct": 10.02
+    },
+    {
+      "code": "688585",
+      "name": "上纬新材",
+      "board": "塑料",
+      "reason": "人形机器人.战略合作.智元入主.风电树脂",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "003021",
+      "name": "兆威机电",
+      "board": "电机Ⅱ",
+      "reason": "人形机器人.灵巧手.微型传动",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002896",
+      "name": "中大力德",
+      "board": "通用设备",
+      "reason": "人形机器人.精密减速器.关节模组",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "603533",
+      "name": "掌阅科技",
+      "board": "数字媒体",
+      "reason": "AI短剧.短剧出海",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "603728",
+      "name": "鸣志电器",
+      "board": "电机Ⅱ",
+      "reason": "人形机器人.运动控制",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "001330",
+      "name": "博纳影业",
+      "board": "影视院线",
+      "reason": "AI影视.AI短剧.院线影院.三季报减亏",
+      "boards": 1,
+      "pct": 9.92
+    },
+    {
+      "code": "603598",
+      "name": "引力传媒",
+      "board": "广告营销",
+      "reason": "AI营销.AI短剧.广告营销",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "300006",
+      "name": "莱美药业",
+      "board": "化学制药",
+      "reason": "纳米炭铁.卡纳琳.创新药.三季报减亏",
+      "boards": 1,
+      "pct": 20.05
+    },
+    {
+      "code": "001266",
+      "name": "宏英智能",
+      "board": "自动化设",
+      "reason": "电路板设计.智能控制.液冷储能.三季报增长",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "002248",
+      "name": "华东数控",
+      "board": "通用设备",
+      "reason": "工业母机.谐波减速器.半导体订单",
+      "boards": 1,
+      "pct": 10.04
+    },
+    {
+      "code": "603901",
+      "name": "永创智能",
+      "board": "专用设备",
+      "reason": "人形机器人.智能包装.三季报增长",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "301265",
+      "name": "华新科技",
+      "board": "环境治理",
+      "reason": "存储芯片再制造.贵金属回收",
+      "boards": 1,
+      "pct": 19.99
+    },
+    {
+      "code": "688004",
+      "name": "博汇科技",
+      "board": "IT服务Ⅱ",
+      "reason": "AI视听安全.传媒安全.视听大数据",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603009",
+      "name": "北特科技",
+      "board": "汽车零部",
+      "reason": "人形机器人丝杠.昆山基地投产.汽车零部件",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "301529",
+      "name": "福赛科技",
+      "board": "汽车零部",
+      "reason": "机器人零部件.汽车内饰.新能源三电嵌件",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603131",
+      "name": "上海沪工",
+      "board": "通用设备",
+      "reason": "焊接机器人.商业航天.三季报扭亏",
+      "boards": 1,
+      "pct": 9.97
+    },
+    {
+      "code": "000559",
+      "name": "万向钱潮",
+      "board": "汽车零部",
+      "reason": "人形机器人.关节模组.汽车零部件",
+      "boards": 1,
+      "pct": 10.03
+    },
+    {
+      "code": "001400",
+      "name": "江顺科技",
+      "board": "专用设备",
+      "reason": "3D打印.铝挤压模具",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "601177",
+      "name": "杭齿前进",
+      "board": "通用设备",
+      "reason": "人形机器人关节组件.船用齿轮箱",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "603283",
+      "name": "赛腾股份",
+      "board": "自动化设",
+      "reason": "HBM检测.三星供货.电路板设备.三季报增长",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "002747",
+      "name": "埃斯顿",
+      "board": "自动化设",
+      "reason": "人形机器人.工业机器人.控股股东增持",
+      "boards": 1,
+      "pct": 10.02
+    },
+    {
+      "code": "003028",
+      "name": "振邦智能",
+      "board": "家电零部",
+      "reason": "人形机器人.智能控制器.机器人零部件",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "603337",
+      "name": "杰克科技",
+      "board": "专用设备",
+      "reason": "人形机器人.缝制机械.机器人测试",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "001331",
+      "name": "胜通能源",
+      "board": "燃气Ⅱ",
+      "reason": "七腾机器人控股.机器人产业链.LNG运贸",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002565",
+      "name": "顺灏股份",
+      "board": "包装印刷",
+      "reason": "太空算力.商业航天.特种防伪环保纸",
+      "boards": 1,
+      "pct": 10.07
+    },
+    {
+      "code": "300007",
+      "name": "汉威科技",
+      "board": "通用设备",
+      "reason": "人形机器人.柔性触觉.气体传感器",
+      "boards": 1,
+      "pct": 20.01
+    },
+    {
+      "code": "603051",
+      "name": "鹿山新材",
+      "board": "化学制品",
+      "reason": "电子皮肤.光伏胶膜.回购",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "688836",
+      "name": "宇树科技-W",
+      "board": "自动化设",
+      "reason": "人形机器人.物理AI.具身智能",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "002249",
+      "name": "大洋电机",
+      "board": "电机Ⅱ",
+      "reason": "机器人关节.散热风机.羊字辈",
+      "boards": 1,
+      "pct": 9.93
+    },
+    {
+      "code": "301052",
+      "name": "果麦文化",
+      "board": "出版",
+      "reason": "AI短剧.AI视频.图书出版",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603048",
+      "name": "浙江黎明",
+      "board": "汽车零部",
+      "reason": "关注机器人行业.汽车零部件.股权转让",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "603127",
+      "name": "昭衍新药",
+      "board": "医疗服务",
+      "reason": "创新药CRO.实验猴.在手订单增长",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "000766",
+      "name": "通化金马",
+      "board": "化学制药",
+      "reason": "阿尔茨海默病新药.医保目录.董事长增持",
+      "boards": 1,
+      "pct": 10.04
+    },
+    {
+      "code": "003033",
+      "name": "征和工业",
+      "board": "摩托车及",
+      "reason": "灵巧手.人形机器人.农机链",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "603166",
+      "name": "福达股份",
+      "board": "汽车零部",
+      "reason": "人形机器人.精密减速器.曲轴",
+      "boards": 1,
+      "pct": 9.97
+    },
+    {
+      "code": "002046",
+      "name": "国机精工",
+      "board": "通用设备",
+      "reason": "机器人轴承.金刚石散热.航天轴承",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "603175",
+      "name": "超颖电子",
+      "board": "元件",
+      "reason": "AI算力PCB.存储PCB.高阶PCB认证",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "001326",
+      "name": "联域股份",
+      "board": "照明设备",
+      "reason": "机器人.参股芯智华.植物照明.回购",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "688286",
+      "name": "敏芯股份",
+      "board": "半导体",
+      "reason": "人形机器人.六维力传感器.MEMS.浦丹光电",
+      "boards": 1,
+      "pct": 19.99
+    },
+    {
+      "code": "000530",
+      "name": "冰山冷热",
+      "board": "通用设备",
+      "reason": "冰雪工程.数据中心液冷.船舶制冷.股权受让",
+      "boards": 2,
+      "pct": 10.01
+    },
+    {
+      "code": "003041",
+      "name": "真爱美家",
+      "board": "服装家纺",
+      "reason": "回购.毛毯出口.探迹科技入主",
+      "boards": 1,
+      "pct": 10.0
+    },
+    {
+      "code": "002527",
+      "name": "新时达",
+      "board": "专用设备",
+      "reason": "人形机器人.具身智能.海尔定增",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "301218",
+      "name": "华是科技",
+      "board": "IT服务Ⅱ",
+      "reason": "AI短剧.机器人投资.智慧城市",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "603305",
+      "name": "旭升集团",
+      "board": "汽车零部",
+      "reason": "人形机器人.汽车轻量化.特斯拉概念.商业航天",
+      "boards": 1,
+      "pct": 9.97
+    },
+    {
+      "code": "000636",
+      "name": "风华高科",
+      "board": "元件",
+      "reason": "MLCC.商业航天.广东国资",
+      "boards": 1,
+      "pct": 10.02
+    },
+    {
+      "code": "301010",
+      "name": "晶雪节能",
+      "board": "装修建材",
+      "reason": "冰雪经济.数据中心.冷库围护",
+      "boards": 1,
+      "pct": 19.98
+    },
+    {
+      "code": "300243",
+      "name": "瑞丰高材",
+      "board": "塑料",
+      "reason": "电子级环氧树脂.低介电树脂.覆铜板.PVC助剂",
+      "boards": 1,
+      "pct": 20.0
+    },
+    {
+      "code": "000678",
+      "name": "襄阳轴承",
+      "board": "汽车零部",
+      "reason": "机器人轴承.湖北国资.“羊”字辈",
+      "boards": 1,
+      "pct": 10.01
+    },
+    {
+      "code": "600467",
+      "name": "好当家",
+      "board": "渔业",
+      "reason": "海参.水产养殖.预制菜",
+      "boards": 2,
+      "pct": 10.14
+    },
+    {
+      "code": "002548",
+      "name": "金新农",
+      "board": "饲料",
+      "reason": "生猪养殖.养殖机器人.猪饲料",
+      "boards": 2,
+      "pct": 10.11
+    },
+    {
+      "code": "600327",
+      "name": "大东方",
+      "board": "一般零售",
+      "reason": "百货零售.医疗服务.股份注销",
+      "boards": 2,
+      "pct": 9.94
+    },
+    {
+      "code": "603151",
+      "name": "邦基科技",
+      "board": "饲料",
+      "reason": "猪饲料.生猪养殖",
+      "boards": 1,
+      "pct": 9.99
+    },
+    {
+      "code": "600156",
+      "name": "华升股份",
+      "board": "纺织制造",
+      "reason": "算力租赁.重组推进.湖南国资",
+      "boards": 1,
+      "pct": 9.98
+    },
+    {
+      "code": "603926",
+      "name": "铁流股份",
+      "board": "汽车零部",
+      "reason": "机器人零部件.电机轴.三季报净利增长",
+      "boards": 1,
+      "pct": 10.0
     }
   ],
   "limitDownPool": [
     {
-      "code": "600881",
+      "code": "603073",
       "setcode": "1",
-      "name": "亚泰集团",
-      "price": 1.58,
-      "pct": -10.23,
+      "name": "彩蝶实业",
+      "price": 14.22,
+      "pct": -10.0,
       "days": 1,
       "boardType": "换手板",
-      "sealAmount": 739154,
+      "sealAmount": 2340612,
+      "openTimes": 27,
+      "theme": "化学纤维",
+      "detail": "化学纤维 · 最后封板 15:00:00"
+    },
+    {
+      "code": "603976",
+      "setcode": "1",
+      "name": "正川股份",
+      "price": 22.68,
+      "pct": -10.0,
+      "days": 2,
+      "boardType": "连续跌停",
+      "sealAmount": 55037556,
       "openTimes": 1,
-      "theme": "综合Ⅱ",
-      "detail": "综合Ⅱ · 最后封板 15:00:00"
+      "theme": "医疗器械",
+      "detail": "医疗器械 · 最后封板 15:00:00"
     },
     {
-      "code": "603767",
+      "code": "603358",
       "setcode": "1",
-      "name": "中马传动",
-      "price": 13.1,
-      "pct": -10.03,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 903900,
-      "openTimes": 3,
-      "theme": "汽车零部",
-      "detail": "汽车零部 · 最后封板 15:00:00"
-    },
-    {
-      "code": "600829",
-      "setcode": "1",
-      "name": "人民同泰",
-      "price": 7.85,
-      "pct": -9.98,
+      "name": "华达科技",
+      "price": 22.31,
+      "pct": -10.0,
       "days": 3,
       "boardType": "连续跌停",
-      "sealAmount": 987530,
-      "openTimes": 2,
-      "theme": "医药商业",
-      "detail": "医药商业 · 最后封板 14:56:51"
-    },
-    {
-      "code": "603818",
-      "setcode": "1",
-      "name": "曲美家居",
-      "price": 3.03,
-      "pct": -10.09,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 1187154,
-      "openTimes": 7,
-      "theme": "家居用品",
-      "detail": "家居用品 · 最后封板 14:54:55"
-    },
-    {
-      "code": "002683",
-      "setcode": "0",
-      "name": "广东宏大",
-      "price": 29.55,
-      "pct": -9.99,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 1255875,
-      "openTimes": 5,
-      "theme": "化学制品",
-      "detail": "化学制品 · 最后封板 14:03:24"
-    },
-    {
-      "code": "605398",
-      "setcode": "1",
-      "name": "新炬网络",
-      "price": 20.17,
-      "pct": -10.0,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 1470393,
-      "openTimes": 6,
-      "theme": "IT服务Ⅱ",
-      "detail": "IT服务Ⅱ · 最后封板 14:51:42"
-    },
-    {
-      "code": "002356",
-      "setcode": "0",
-      "name": "鹏飞绿能",
-      "price": 2.09,
-      "pct": -9.91,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 1776709,
-      "openTimes": 1,
-      "theme": "一般零售",
-      "detail": "一般零售 · 最后封板 14:54:51"
-    },
-    {
-      "code": "002150",
-      "setcode": "0",
-      "name": "正泰电源",
-      "price": 16.81,
-      "pct": -10.01,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 1805309,
-      "openTimes": 9,
-      "theme": "光伏设备",
-      "detail": "光伏设备 · 最后封板 14:19:33"
-    },
-    {
-      "code": "603666",
-      "setcode": "1",
-      "name": "亿嘉和",
-      "price": 25.61,
-      "pct": -9.98,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 2837588,
-      "openTimes": 4,
-      "theme": "自动化设",
-      "detail": "自动化设 · 最后封板 13:45:44"
-    },
-    {
-      "code": "603037",
-      "setcode": "1",
-      "name": "凯众股份",
-      "price": 10.62,
-      "pct": -10.0,
-      "days": 1,
-      "boardType": "换手板",
-      "sealAmount": 3129714,
-      "openTimes": 1,
+      "sealAmount": 106159279,
+      "openTimes": 0,
       "theme": "汽车零部",
-      "detail": "汽车零部 · 最后封板 13:58:38"
+      "detail": "汽车零部 · 最后封板 09:25:02"
     }
   ],
   "seats": [
     {
-      "seat": "瑞银证券有限责任公司上海花园石桥路",
-      "kind": "营业部",
-      "lists": 14,
-      "buy": 6.86,
-      "sell": 2.51,
-      "net": 4.34,
-      "turnover": 9.37,
-      "signal": "游资净买"
-    },
-    {
-      "seat": "高盛(中国)证券有限责任公司上海浦东新区世纪大道",
-      "kind": "营业部",
-      "lists": 14,
-      "buy": 4.93,
-      "sell": 1.49,
-      "net": 3.45,
-      "turnover": 6.42,
-      "signal": "游资净买"
-    },
-    {
       "seat": "深股通专用",
       "kind": "北向",
-      "lists": 22,
-      "buy": 18.79,
-      "sell": 16.17,
-      "net": 2.62,
-      "turnover": 34.96,
+      "lists": 18,
+      "buy": 22.23,
+      "sell": 16.46,
+      "net": 5.77,
+      "turnover": 38.69,
       "signal": "北向加仓"
     },
     {
-      "seat": "平安证券浙江分公司",
+      "seat": "国泰海通证券上海长宁区江苏路",
       "kind": "营业部",
-      "lists": 6,
-      "buy": 2.68,
-      "sell": 0.47,
-      "net": 2.21,
-      "turnover": 3.15,
+      "lists": 15,
+      "buy": 9.98,
+      "sell": 5.66,
+      "net": 4.32,
+      "turnover": 15.63,
       "signal": "游资净买"
     },
     {
-      "seat": "东方财富证券拉萨金融城南环路",
+      "seat": "机构专用",
+      "kind": "机构",
+      "lists": 42,
+      "buy": 47.85,
+      "sell": 43.99,
+      "net": 3.86,
+      "turnover": 91.84,
+      "signal": "机构主买"
+    },
+    {
+      "seat": "中信证券上海分公司",
       "kind": "营业部",
-      "lists": 24,
-      "buy": 3.45,
-      "sell": 1.34,
-      "net": 2.12,
-      "turnover": 4.79,
+      "lists": 11,
+      "buy": 5.35,
+      "sell": 2.32,
+      "net": 3.03,
+      "turnover": 7.68,
       "signal": "游资净买"
     },
     {
-      "seat": "国泰海通证券连云港巨龙南路",
+      "seat": "国泰海通证券总部",
       "kind": "营业部",
-      "lists": 6,
-      "buy": 2.34,
-      "sell": 0.54,
-      "net": 1.8,
-      "turnover": 2.89,
-      "signal": "游资净买"
+      "lists": 15,
+      "buy": 6.68,
+      "sell": 4.53,
+      "net": 2.15,
+      "turnover": 11.21,
+      "signal": "席位博弈"
     },
     {
-      "seat": "摩根大通证券(中国)上海银城中路",
+      "seat": "国泰海通证券成都天府大道",
       "kind": "营业部",
-      "lists": 13,
-      "buy": 3.93,
-      "sell": 2.15,
-      "net": 1.78,
-      "turnover": 6.08,
-      "signal": "游资净买"
-    },
-    {
-      "seat": "开源证券西安西大街",
-      "kind": "营业部",
-      "lists": 6,
-      "buy": 2.42,
-      "sell": 0.8,
-      "net": 1.62,
-      "turnover": 3.22,
+      "lists": 1,
+      "buy": 1.69,
+      "sell": 0.0,
+      "net": 1.69,
+      "turnover": 1.69,
       "signal": "游资净买"
     },
     {
       "seat": "沪股通专用",
       "kind": "北向",
-      "lists": 19,
-      "buy": 18.05,
-      "sell": 16.88,
-      "net": 1.16,
-      "turnover": 34.93,
+      "lists": 13,
+      "buy": 8.97,
+      "sell": 7.56,
+      "net": 1.41,
+      "turnover": 16.52,
       "signal": "北向加仓"
     },
     {
-      "seat": "中信证券上海虹口区溧阳路",
+      "seat": "民生证券宁波财神殿南路",
       "kind": "营业部",
       "lists": 1,
-      "buy": 0.11,
+      "buy": 1.41,
       "sell": 0.0,
-      "net": 0.11,
-      "turnover": 0.11,
+      "net": 1.41,
+      "turnover": 1.41,
       "signal": "游资净买"
     },
     {
-      "seat": "华鑫证券有限责任公司上海分公司",
+      "seat": "国泰海通证券北京安贞门",
+      "kind": "营业部",
+      "lists": 8,
+      "buy": 3.44,
+      "sell": 2.07,
+      "net": 1.38,
+      "turnover": 5.51,
+      "signal": "游资净买"
+    },
+    {
+      "seat": "中国银河证券绍兴鲁迅中路",
+      "kind": "营业部",
+      "lists": 1,
+      "buy": 0.31,
+      "sell": 0.0,
+      "net": 0.31,
+      "turnover": 0.31,
+      "signal": "游资净买"
+    },
+    {
+      "seat": "国盛证券宁波桑田路",
       "kind": "营业部",
       "lists": 1,
       "buy": 0.0,
-      "sell": 0.05,
-      "net": -0.05,
-      "turnover": 0.05,
+      "sell": 0.01,
+      "net": -0.01,
+      "turnover": 0.01,
       "signal": "席位出货"
     },
     {
-      "seat": "国泰海通证券上海长宁区江苏路",
-      "kind": "营业部",
-      "lists": 11,
-      "buy": 6.61,
-      "sell": 7.76,
-      "net": -1.15,
-      "turnover": 14.38,
-      "signal": "席位出货"
-    },
-    {
-      "seat": "中国银河证券北京学院南路",
+      "seat": "东方证券杭州龙井路",
       "kind": "营业部",
       "lists": 1,
       "buy": 0.0,
-      "sell": 1.24,
-      "net": -1.24,
-      "turnover": 1.24,
+      "sell": 2.25,
+      "net": -2.25,
+      "turnover": 2.25,
       "signal": "席位出货"
     },
     {
-      "seat": "机构专用",
-      "kind": "机构",
-      "lists": 47,
-      "buy": 21.99,
-      "sell": 39.26,
-      "net": -17.28,
-      "turnover": 61.25,
-      "signal": "机构撤退"
+      "seat": "东莞证券南京分公司",
+      "kind": "营业部",
+      "lists": 2,
+      "buy": 1.23,
+      "sell": 4.33,
+      "net": -3.11,
+      "turnover": 5.56,
+      "signal": "席位出货"
+    },
+    {
+      "seat": "国新证券北京分公司",
+      "kind": "营业部",
+      "lists": 9,
+      "buy": 3.13,
+      "sell": 8.43,
+      "net": -5.3,
+      "turnover": 11.56,
+      "signal": "席位出货"
     }
   ],
   "stockActivity": [
     {
-      "code": "002242",
+      "code": "000530",
       "setcode": "0",
-      "name": "九阳股份",
-      "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 138866.42,
-      "sellAmount": 117605.78
+      "name": "冰山冷热",
+      "lists": 3,
+      "lastDate": "2026-11-23",
+      "buyAmount": 151722.44,
+      "sellAmount": 160134.68
     },
     {
-      "code": "688801",
+      "code": "301313",
+      "setcode": "0",
+      "name": "凡拓数创",
+      "lists": 3,
+      "lastDate": "2026-11-23",
+      "buyAmount": 112914.69,
+      "sellAmount": 99756.69
+    },
+    {
+      "code": "301052",
+      "setcode": "0",
+      "name": "果麦文化",
+      "lists": 3,
+      "lastDate": "2026-11-23",
+      "buyAmount": 73614.53,
+      "sellAmount": 68845.65
+    },
+    {
+      "code": "600467",
       "setcode": "1",
-      "name": "燧原科技",
-      "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 126403.1,
-      "sellAmount": 162829.45
+      "name": "好当家",
+      "lists": 3,
+      "lastDate": "2026-11-23",
+      "buyAmount": 50840.03,
+      "sellAmount": 65485.79
+    },
+    {
+      "code": "920690",
+      "setcode": "2",
+      "name": "捷众科技",
+      "lists": 3,
+      "lastDate": "2026-11-23",
+      "buyAmount": 16450.47,
+      "sellAmount": 10780.35
     },
     {
       "code": "000678",
       "setcode": "0",
       "name": "襄阳轴承",
       "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 116778.5,
-      "sellAmount": 78218.31
+      "lastDate": "2026-11-23",
+      "buyAmount": 117939.31,
+      "sellAmount": 151293.9
     },
     {
-      "code": "600619",
-      "setcode": "1",
-      "name": "海立股份",
-      "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 65404.07,
-      "sellAmount": 46728.21
-    },
-    {
-      "code": "601929",
-      "setcode": "1",
-      "name": "吉视传媒",
-      "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 37478.39,
-      "sellAmount": 48856.49
-    },
-    {
-      "code": "600103",
-      "setcode": "1",
-      "name": "青山纸业",
-      "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 35277.22,
-      "sellAmount": 16126.12
-    },
-    {
-      "code": "000711",
+      "code": "002579",
       "setcode": "0",
-      "name": "京蓝科技",
+      "name": "中京电子",
       "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 30904.93,
-      "sellAmount": 28413.24
+      "lastDate": "2026-11-23",
+      "buyAmount": 78123.35,
+      "sellAmount": 74215.08
     },
     {
-      "code": "600156",
+      "code": "601188",
       "setcode": "1",
-      "name": "华升股份",
+      "name": "龙江交通",
       "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 22103.9,
-      "sellAmount": 18055.15
+      "lastDate": "2026-11-23",
+      "buyAmount": 63671.56,
+      "sellAmount": 19618.34
     },
     {
-      "code": "601599",
-      "setcode": "1",
-      "name": "浙文影业",
+      "code": "301218",
+      "setcode": "0",
+      "name": "华是科技",
       "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 19091.6,
-      "sellAmount": 35867.64
+      "lastDate": "2026-11-23",
+      "buyAmount": 57724.17,
+      "sellAmount": 103042.2
     },
     {
-      "code": "603324",
+      "code": "600715",
       "setcode": "1",
-      "name": "盛剑科技",
+      "name": "文投控股",
       "lists": 2,
-      "lastDate": "2026-11-19",
-      "buyAmount": 5334.78,
-      "sellAmount": 7980.17
+      "lastDate": "2026-11-23",
+      "buyAmount": 46650.95,
+      "sellAmount": 42461.48
     }
   ],
   "watchlist": [
@@ -942,18 +2033,10 @@
       "setcode": "1",
       "name": "时代万恒",
       "industry": "电池",
-      "price": 7.44,
-      "pct": -6.06,
-      "turnoverRate": 6.9,
+      "price": 7.31,
+      "pct": 3.25,
+      "turnoverRate": 6.62,
       "kline60": [
-        {
-          "d": "20260820",
-          "c": 7.29
-        },
-        {
-          "d": "20260821",
-          "c": 7.44
-        },
         {
           "d": "20260824",
           "c": 7.28
@@ -1185,6 +2268,14 @@
         {
           "d": "20261119",
           "c": 7.44
+        },
+        {
+          "d": "20261120",
+          "c": 7.08
+        },
+        {
+          "d": "20261123",
+          "c": 7.31
         }
       ]
     },
@@ -1193,18 +2284,10 @@
       "setcode": "0",
       "name": "雄韬股份",
       "industry": "电池",
-      "price": 13.83,
-      "pct": -3.56,
-      "turnoverRate": 2.26,
+      "price": 13.44,
+      "pct": 4.02,
+      "turnoverRate": 2.95,
       "kline60": [
-        {
-          "d": "20260820",
-          "c": 18.24
-        },
-        {
-          "d": "20260821",
-          "c": 18.42
-        },
         {
           "d": "20260824",
           "c": 18.57
@@ -1436,6 +2519,14 @@
         {
           "d": "20261119",
           "c": 13.83
+        },
+        {
+          "d": "20261120",
+          "c": 12.92
+        },
+        {
+          "d": "20261123",
+          "c": 13.44
         }
       ]
     },
@@ -1444,18 +2535,10 @@
       "setcode": "0",
       "name": "东岳硅材",
       "industry": "化学制品",
-      "price": 12.22,
-      "pct": 0.16,
-      "turnoverRate": 2.69,
+      "price": 11.79,
+      "pct": 3.06,
+      "turnoverRate": 3.52,
       "kline60": [
-        {
-          "d": "20260820",
-          "c": 17.31
-        },
-        {
-          "d": "20260821",
-          "c": 16.95
-        },
         {
           "d": "20260824",
           "c": 16.29
@@ -1687,6 +2770,14 @@
         {
           "d": "20261119",
           "c": 12.22
+        },
+        {
+          "d": "20261120",
+          "c": 11.44
+        },
+        {
+          "d": "20261123",
+          "c": 11.79
         }
       ]
     },
@@ -1695,18 +2786,10 @@
       "setcode": "0",
       "name": "芒果超媒",
       "industry": "文化传媒",
-      "price": 26.31,
-      "pct": -6.7,
-      "turnoverRate": 9.13,
+      "price": 31.28,
+      "pct": 15.21,
+      "turnoverRate": 14.86,
       "kline60": [
-        {
-          "d": "20260820",
-          "c": 15.25
-        },
-        {
-          "d": "20260821",
-          "c": 15.03
-        },
         {
           "d": "20260824",
           "c": 13.98
@@ -1938,6 +3021,14 @@
         {
           "d": "20261119",
           "c": 26.31
+        },
+        {
+          "d": "20261120",
+          "c": 27.15
+        },
+        {
+          "d": "20261123",
+          "c": 31.28
         }
       ]
     },
@@ -1946,18 +3037,10 @@
       "setcode": "1",
       "name": "龙版传媒",
       "industry": "文化传媒",
-      "price": 14.72,
-      "pct": 3.81,
-      "turnoverRate": 10.58,
+      "price": 17.81,
+      "pct": 10.01,
+      "turnoverRate": 11.13,
       "kline60": [
-        {
-          "d": "20260817",
-          "c": 9.78
-        },
-        {
-          "d": "20260818",
-          "c": 10.76
-        },
         {
           "d": "20260819",
           "c": 10.14
@@ -2189,14 +3272,22 @@
         {
           "d": "20261119",
           "c": 14.72
+        },
+        {
+          "d": "20261120",
+          "c": 16.19
+        },
+        {
+          "d": "20261123",
+          "c": 17.81
         }
       ]
     }
   ],
   "seatStocks": {
     "window": {
-      "from": "2026-11-06",
-      "to": "2026-11-19",
+      "from": "2026-11-10",
+      "to": "2026-11-23",
       "days": 10
     },
     "note": "席位与人名的对应为市场公开共识，非交易所或券商官方披露；金额取自东方财富龙虎榜明细，单位亿元；已剔除可转债。",
@@ -2217,22 +3308,93 @@
           "国泰海通证券股份有限公司江苏南京广州路营业部"
         ],
         "matched": true,
-        "buy": 71.28,
-        "sell": 53.47,
-        "net": 17.8,
+        "buy": 67.09,
+        "sell": 54.14,
+        "net": 12.96,
         "activeDays": 10,
-        "stockCount": 85,
+        "stockCount": 84,
         "stocks": [
+          {
+            "code": "600715",
+            "name": "文投控股",
+            "buy": 5.96,
+            "sell": 7.18,
+            "net": -1.22,
+            "times": 7,
+            "lastDate": "2026-11-23",
+            "close": 2.85,
+            "pct": 4.01,
+            "daily": [
+              {
+                "d": "2026-11-12",
+                "buy": 1.44,
+                "sell": 1.87
+              },
+              {
+                "d": "2026-11-13",
+                "buy": 1.6,
+                "sell": 1.83
+              },
+              {
+                "d": "2026-11-17",
+                "buy": 0.0,
+                "sell": 0.63
+              },
+              {
+                "d": "2026-11-19",
+                "buy": 0.0,
+                "sell": 0.63
+              },
+              {
+                "d": "2026-11-20",
+                "buy": 1.32,
+                "sell": 0.0
+              },
+              {
+                "d": "2026-11-23",
+                "buy": 0.0,
+                "sell": 1.32
+              }
+            ]
+          },
+          {
+            "code": "000678",
+            "name": "襄阳轴承",
+            "buy": 5.23,
+            "sell": 2.79,
+            "net": 2.44,
+            "times": 3,
+            "lastDate": "2026-11-23",
+            "close": 18.68,
+            "pct": 10.01,
+            "daily": [
+              {
+                "d": "2026-11-19",
+                "buy": 3.41,
+                "sell": 0.0
+              },
+              {
+                "d": "2026-11-20",
+                "buy": 0.0,
+                "sell": 1.22
+              },
+              {
+                "d": "2026-11-23",
+                "buy": 1.83,
+                "sell": 1.57
+              }
+            ]
+          },
           {
             "code": "601599",
             "name": "浙文影业",
-            "buy": 6.93,
-            "sell": 6.58,
-            "net": 0.34,
-            "times": 9,
+            "buy": 4.96,
+            "sell": 5.85,
+            "net": -0.9,
+            "times": 7,
             "lastDate": "2026-11-19",
-            "close": 3.69,
-            "pct": -10.0,
+            "close": 3.65,
+            "pct": 9.94,
             "daily": [
               {
                 "d": "2026-11-10",
@@ -2267,90 +3429,14 @@
             ]
           },
           {
-            "code": "600715",
-            "name": "文投控股",
-            "buy": 5.36,
-            "sell": 5.86,
-            "net": -0.5,
-            "times": 6,
-            "lastDate": "2026-11-19",
-            "close": 2.73,
-            "pct": -9.9,
-            "daily": [
-              {
-                "d": "2026-11-10",
-                "buy": 0.73,
-                "sell": 0.0
-              },
-              {
-                "d": "2026-11-11",
-                "buy": 0.87,
-                "sell": 0.89
-              },
-              {
-                "d": "2026-11-12",
-                "buy": 1.44,
-                "sell": 1.87
-              },
-              {
-                "d": "2026-11-13",
-                "buy": 1.6,
-                "sell": 1.83
-              },
-              {
-                "d": "2026-11-17",
-                "buy": 0.0,
-                "sell": 0.63
-              },
-              {
-                "d": "2026-11-19",
-                "buy": 0.0,
-                "sell": 0.63
-              }
-            ]
-          },
-          {
-            "code": "002343",
-            "name": "慈文传媒",
-            "buy": 3.63,
-            "sell": 2.73,
-            "net": 0.9,
-            "times": 4,
-            "lastDate": "2026-11-19",
-            "close": 7.38,
-            "pct": -10.0,
-            "daily": [
-              {
-                "d": "2026-11-06",
-                "buy": 0.0,
-                "sell": 0.53
-              },
-              {
-                "d": "2026-11-16",
-                "buy": 1.73,
-                "sell": 0.0
-              },
-              {
-                "d": "2026-11-17",
-                "buy": 0.95,
-                "sell": 0.77
-              },
-              {
-                "d": "2026-11-19",
-                "buy": 0.95,
-                "sell": 1.43
-              }
-            ]
-          },
-          {
             "code": "002242",
             "name": "九阳股份",
-            "buy": 3.49,
+            "buy": 4.42,
             "sell": 4.03,
-            "net": -0.54,
-            "times": 3,
-            "lastDate": "2026-11-19",
-            "close": 31.21,
+            "net": 0.39,
+            "times": 4,
+            "lastDate": "2026-11-23",
+            "close": 31.86,
             "pct": 10.01,
             "daily": [
               {
@@ -2367,128 +3453,128 @@
                 "d": "2026-11-19",
                 "buy": 0.0,
                 "sell": 1.73
+              },
+              {
+                "d": "2026-11-23",
+                "buy": 0.93,
+                "sell": 0.0
               }
             ]
           },
           {
-            "code": "600327",
-            "name": "大东方",
-            "buy": 3.42,
-            "sell": 2.98,
-            "net": 0.44,
-            "times": 5,
-            "lastDate": "2026-11-17",
-            "close": 4.39,
-            "pct": -6.79,
+            "code": "002343",
+            "name": "慈文传媒",
+            "buy": 3.63,
+            "sell": 2.34,
+            "net": 1.29,
+            "times": 4,
+            "lastDate": "2026-11-20",
+            "close": 7.37,
+            "pct": 10.0,
             "daily": [
               {
-                "d": "2026-11-06",
-                "buy": 1.46,
+                "d": "2026-11-16",
+                "buy": 1.73,
                 "sell": 0.0
               },
               {
-                "d": "2026-11-09",
-                "buy": 0.73,
-                "sell": 0.81
+                "d": "2026-11-17",
+                "buy": 0.95,
+                "sell": 0.77
               },
+              {
+                "d": "2026-11-19",
+                "buy": 0.95,
+                "sell": 1.43
+              },
+              {
+                "d": "2026-11-20",
+                "buy": 0.0,
+                "sell": 0.14
+              }
+            ]
+          },
+          {
+            "code": "301313",
+            "name": "凡拓数创",
+            "buy": 2.77,
+            "sell": 0.0,
+            "net": 2.77,
+            "times": 3,
+            "lastDate": "2026-11-23",
+            "close": 70.99,
+            "pct": 20.0,
+            "daily": [
+              {
+                "d": "2026-11-23",
+                "buy": 2.77,
+                "sell": 0.0
+              }
+            ]
+          },
+          {
+            "code": "600936",
+            "name": "北投科技",
+            "buy": 2.24,
+            "sell": 1.49,
+            "net": 0.75,
+            "times": 2,
+            "lastDate": "2026-11-20",
+            "close": 3.49,
+            "pct": 3.25,
+            "daily": [
+              {
+                "d": "2026-11-16",
+                "buy": 0.8,
+                "sell": 0.0
+              },
+              {
+                "d": "2026-11-17",
+                "buy": 1.44,
+                "sell": 0.9
+              },
+              {
+                "d": "2026-11-20",
+                "buy": 0.0,
+                "sell": 0.59
+              }
+            ]
+          },
+          {
+            "code": "002148",
+            "name": "北纬科技",
+            "buy": 2.05,
+            "sell": 3.49,
+            "net": -1.45,
+            "times": 4,
+            "lastDate": "2026-11-20",
+            "close": 11.07,
+            "pct": 10.04,
+            "daily": [
               {
                 "d": "2026-11-12",
-                "buy": 1.23,
-                "sell": 0.0
-              },
-              {
-                "d": "2026-11-13",
-                "buy": 0.0,
-                "sell": 1.23
+                "buy": 0.81,
+                "sell": 1.78
               },
               {
                 "d": "2026-11-16",
-                "buy": 0.0,
-                "sell": 0.16
-              },
-              {
-                "d": "2026-11-17",
-                "buy": 0.0,
-                "sell": 0.78
-              }
-            ]
-          },
-          {
-            "code": "000678",
-            "name": "襄阳轴承",
-            "buy": 3.41,
-            "sell": 0.0,
-            "net": 3.41,
-            "times": 2,
-            "lastDate": "2026-11-19",
-            "close": 16.74,
-            "pct": 9.99,
-            "daily": [
-              {
-                "d": "2026-11-19",
-                "buy": 3.41,
-                "sell": 0.0
-              }
-            ]
-          },
-          {
-            "code": "002086",
-            "name": "东方海洋",
-            "buy": 3.05,
-            "sell": 4.19,
-            "net": -1.15,
-            "times": 5,
-            "lastDate": "2026-11-18",
-            "close": 3.41,
-            "pct": -8.58,
-            "daily": [
-              {
-                "d": "2026-11-06",
-                "buy": 2.01,
-                "sell": 2.97
-              },
-              {
-                "d": "2026-11-12",
-                "buy": 0.0,
-                "sell": 0.73
-              },
-              {
-                "d": "2026-11-17",
-                "buy": 1.04,
+                "buy": 1.23,
                 "sell": 0.0
               },
               {
                 "d": "2026-11-18",
                 "buy": 0.0,
-                "sell": 0.49
-              }
-            ]
-          },
-          {
-            "code": "600261",
-            "name": "阳光照明",
-            "buy": 2.25,
-            "sell": 0.44,
-            "net": 1.82,
-            "times": 4,
-            "lastDate": "2026-11-17",
-            "close": 4.62,
-            "pct": -9.94,
-            "daily": [
-              {
-                "d": "2026-11-06",
-                "buy": 0.42,
-                "sell": 0.0
+                "sell": 0.84
               },
               {
-                "d": "2026-11-09",
+                "d": "2026-11-19",
                 "buy": 0.0,
-                "sell": 0.44
+                "sell": 0.21
               },
               {
-                "d": "2026-11-17",
-                "buy": 1.83,
-                "sell": 0.0
+                "d": "2026-11-20",
+                "buy": 0.0,
+                "sell": 0.66
               }
             ]
           }
@@ -2507,11 +3593,11 @@
           "国盛证券股份有限公司宁波桑田路证券营业部"
         ],
         "matched": true,
-        "buy": 4.05,
-        "sell": 5.36,
-        "net": -1.3,
-        "activeDays": 7,
-        "stockCount": 8,
+        "buy": 2.64,
+        "sell": 4.81,
+        "net": -2.17,
+        "activeDays": 6,
+        "stockCount": 6,
         "stocks": [
           {
             "code": "002242",
@@ -2521,7 +3607,7 @@
             "net": 0.06,
             "times": 2,
             "lastDate": "2026-11-17",
-            "close": 31.21,
+            "close": 31.86,
             "pct": 10.01,
             "daily": [
               {
@@ -2539,8 +3625,8 @@
             "net": -2.12,
             "times": 2,
             "lastDate": "2026-11-16",
-            "close": 16.74,
-            "pct": 9.99,
+            "close": 18.68,
+            "pct": 10.01,
             "daily": [
               {
                 "d": "2026-11-11",
@@ -2565,65 +3651,6 @@
             ]
           },
           {
-            "code": "000525",
-            "name": "红太阳",
-            "buy": 0.8,
-            "sell": 0.0,
-            "net": 0.8,
-            "times": 2,
-            "lastDate": "2026-11-09",
-            "close": 4.09,
-            "pct": -4.22,
-            "daily": [
-              {
-                "d": "2026-11-09",
-                "buy": 0.8,
-                "sell": 0.0
-              }
-            ]
-          },
-          {
-            "code": "300118",
-            "name": "东方日升",
-            "buy": 0.35,
-            "sell": 0.0,
-            "net": 0.35,
-            "times": 1,
-            "lastDate": "2026-11-06",
-            "close": 7.2,
-            "pct": -5.01,
-            "daily": [
-              {
-                "d": "2026-11-06",
-                "buy": 0.35,
-                "sell": 0.0
-              }
-            ]
-          },
-          {
-            "code": "600371",
-            "name": "万向德农",
-            "buy": 0.27,
-            "sell": 0.55,
-            "net": -0.28,
-            "times": 1,
-            "lastDate": "2026-11-09",
-            "close": 9.72,
-            "pct": -5.54,
-            "daily": [
-              {
-                "d": "2026-11-06",
-                "buy": 0.27,
-                "sell": 0.0
-              },
-              {
-                "d": "2026-11-09",
-                "buy": 0.0,
-                "sell": 0.55
-              }
-            ]
-          },
-          {
             "code": "002148",
             "name": "北纬科技",
             "buy": 0.13,
@@ -2631,8 +3658,8 @@
             "net": 0.13,
             "times": 1,
             "lastDate": "2026-11-12",
-            "close": 9.3,
-            "pct": 4.26,
+            "close": 11.07,
+            "pct": 10.04,
             "daily": [
               {
                 "d": "2026-11-12",
@@ -2649,13 +3676,31 @@
             "net": -0.17,
             "times": 0,
             "lastDate": "2026-11-11",
-            "close": 18.07,
-            "pct": 7.37,
+            "close": 17.92,
+            "pct": 5.97,
             "daily": [
               {
                 "d": "2026-11-11",
                 "buy": 0.0,
                 "sell": 0.17
+              }
+            ]
+          },
+          {
+            "code": "600340",
+            "name": "*ST华幸",
+            "buy": 0.0,
+            "sell": 0.01,
+            "net": -0.01,
+            "times": 0,
+            "lastDate": "2026-11-23",
+            "close": 0.94,
+            "pct": 10.59,
+            "daily": [
+              {
+                "d": "2026-11-23",
+                "buy": 0.0,
+                "sell": 0.01
               }
             ]
           },
@@ -2667,8 +3712,8 @@
             "net": -0.06,
             "times": 0,
             "lastDate": "2026-11-12",
-            "close": 2.6,
-            "pct": -6.14,
+            "close": 3.15,
+            "pct": 10.14,
             "daily": [
               {
                 "d": "2026-11-12",
@@ -2692,35 +3737,12 @@
           "中信证券股份有限公司上海虹口区溧阳路证券营业部"
         ],
         "matched": true,
-        "buy": 0.5,
+        "buy": 0.11,
         "sell": 0.84,
-        "net": -0.34,
-        "activeDays": 4,
+        "net": -0.73,
+        "activeDays": 3,
         "stockCount": 4,
         "stocks": [
-          {
-            "code": "301697",
-            "name": "贝特利",
-            "buy": 0.39,
-            "sell": 0.24,
-            "net": 0.15,
-            "times": 2,
-            "lastDate": "2026-11-13",
-            "close": 24.99,
-            "pct": -0.24,
-            "daily": [
-              {
-                "d": "2026-11-06",
-                "buy": 0.39,
-                "sell": 0.0
-              },
-              {
-                "d": "2026-11-13",
-                "buy": 0.0,
-                "sell": 0.24
-              }
-            ]
-          },
           {
             "code": "301391",
             "name": "卡莱特",
@@ -2729,13 +3751,31 @@
             "net": 0.11,
             "times": 1,
             "lastDate": "2026-11-19",
-            "close": 55.98,
-            "pct": 19.97,
+            "close": 57.88,
+            "pct": 12.52,
             "daily": [
               {
                 "d": "2026-11-19",
                 "buy": 0.11,
                 "sell": 0.0
+              }
+            ]
+          },
+          {
+            "code": "301697",
+            "name": "贝特利",
+            "buy": 0.0,
+            "sell": 0.24,
+            "net": -0.24,
+            "times": 0,
+            "lastDate": "2026-11-13",
+            "close": 26.95,
+            "pct": 10.86,
+            "daily": [
+              {
+                "d": "2026-11-13",
+                "buy": 0.0,
+                "sell": 0.24
               }
             ]
           },
@@ -2747,8 +3787,8 @@
             "net": -0.28,
             "times": 0,
             "lastDate": "2026-11-16",
-            "close": 47.31,
-            "pct": -3.65,
+            "close": 48.06,
+            "pct": 14.67,
             "daily": [
               {
                 "d": "2026-11-16",
@@ -2765,8 +3805,8 @@
             "net": -0.32,
             "times": 0,
             "lastDate": "2026-11-13",
-            "close": 46.93,
-            "pct": -3.24,
+            "close": 45.76,
+            "pct": 8.95,
             "daily": [
               {
                 "d": "2026-11-13",
@@ -2791,26 +3831,26 @@
           "中国银河证券股份有限公司绍兴鲁迅中路证券营业部"
         ],
         "matched": true,
-        "buy": 0.28,
+        "buy": 0.47,
         "sell": 1.04,
-        "net": -0.76,
+        "net": -0.56,
         "activeDays": 7,
         "stockCount": 7,
         "stocks": [
           {
-            "code": "000525",
-            "name": "红太阳",
-            "buy": 0.12,
+            "code": "002771",
+            "name": "真视通",
+            "buy": 0.31,
             "sell": 0.0,
-            "net": 0.12,
+            "net": 0.31,
             "times": 1,
-            "lastDate": "2026-11-06",
-            "close": 4.09,
-            "pct": -4.22,
+            "lastDate": "2026-11-23",
+            "close": 17.4,
+            "pct": 9.99,
             "daily": [
               {
-                "d": "2026-11-06",
-                "buy": 0.12,
+                "d": "2026-11-23",
+                "buy": 0.31,
                 "sell": 0.0
               }
             ]
@@ -2823,7 +3863,7 @@
             "net": 0.0,
             "times": 1,
             "lastDate": "2026-11-16",
-            "close": 28.55,
+            "close": 28.88,
             "pct": 10.02,
             "daily": [
               {
@@ -2846,8 +3886,8 @@
             "net": 0.05,
             "times": 1,
             "lastDate": "2026-11-18",
-            "close": 5.91,
-            "pct": -3.75,
+            "close": 5.13,
+            "pct": -3.57,
             "daily": [
               {
                 "d": "2026-11-18",
@@ -2864,8 +3904,8 @@
             "net": -0.05,
             "times": 0,
             "lastDate": "2026-11-19",
-            "close": 4.42,
-            "pct": -4.33,
+            "close": 3.89,
+            "pct": -2.26,
             "daily": [
               {
                 "d": "2026-11-19",
@@ -2882,8 +3922,8 @@
             "net": -0.14,
             "times": 0,
             "lastDate": "2026-11-12",
-            "close": 9.48,
-            "pct": 1.83,
+            "close": 9.17,
+            "pct": 7.13,
             "daily": [
               {
                 "d": "2026-11-12",
@@ -2900,8 +3940,8 @@
             "net": -0.53,
             "times": 0,
             "lastDate": "2026-11-13",
-            "close": 4.39,
-            "pct": -6.79,
+            "close": 5.31,
+            "pct": 9.94,
             "daily": [
               {
                 "d": "2026-11-11",
@@ -2923,8 +3963,8 @@
             "net": -0.21,
             "times": 0,
             "lastDate": "2026-11-16",
-            "close": 51.1,
-            "pct": -1.35,
+            "close": 48.14,
+            "pct": 0.06,
             "daily": [
               {
                 "d": "2026-11-16",
@@ -2943,238 +3983,46 @@
           "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
           "国泰海通证券股份有限公司长宁区江苏路证券营业部"
         ],
-        "buy": 71.24,
-        "sell": 53.28,
-        "net": 17.96,
+        "buy": 67.06,
+        "sell": 54.03,
+        "net": 13.03,
         "activeDays": 10,
-        "stockCount": 83,
+        "stockCount": 82,
         "stocks": [
-          {
-            "code": "601599",
-            "name": "浙文影业",
-            "buy": 6.93,
-            "times": 9,
-            "lastDate": "2026-11-19"
-          },
           {
             "code": "600715",
             "name": "文投控股",
-            "buy": 5.36,
-            "times": 6,
+            "buy": 5.96,
+            "times": 7,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "000678",
+            "name": "襄阳轴承",
+            "buy": 5.23,
+            "times": 3,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "601599",
+            "name": "浙文影业",
+            "buy": 4.96,
+            "times": 7,
             "lastDate": "2026-11-19"
+          },
+          {
+            "code": "002242",
+            "name": "九阳股份",
+            "buy": 4.42,
+            "times": 4,
+            "lastDate": "2026-11-23"
           },
           {
             "code": "002343",
             "name": "慈文传媒",
             "buy": 3.63,
             "times": 4,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "002242",
-            "name": "九阳股份",
-            "buy": 3.49,
-            "times": 3,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "600327",
-            "name": "大东方",
-            "buy": 3.42,
-            "times": 5,
-            "lastDate": "2026-11-17"
-          }
-        ]
-      },
-      {
-        "seat": "开源证券股份有限公司西安西大街证券营业部",
-        "aliases": [
-          "开源证券股份有限公司西安西大街证券营业部"
-        ],
-        "buy": 35.56,
-        "sell": 22.28,
-        "net": 13.28,
-        "activeDays": 10,
-        "stockCount": 61,
-        "stocks": [
-          {
-            "code": "002929",
-            "name": "润建股份",
-            "buy": 2.1,
-            "times": 3,
-            "lastDate": "2026-11-18"
-          },
-          {
-            "code": "002843",
-            "name": "泰嘉股份",
-            "buy": 2.09,
-            "times": 3,
-            "lastDate": "2026-11-18"
-          },
-          {
-            "code": "300324",
-            "name": "旋极信息",
-            "buy": 1.58,
-            "times": 2,
-            "lastDate": "2026-11-18"
-          },
-          {
-            "code": "601595",
-            "name": "上海电影",
-            "buy": 1.55,
-            "times": 2,
-            "lastDate": "2026-11-09"
-          },
-          {
-            "code": "000158",
-            "name": "常山北明",
-            "buy": 1.33,
-            "times": 1,
-            "lastDate": "2026-11-19"
-          }
-        ]
-      },
-      {
-        "seat": "国信证券股份有限公司浙江互联网分公司",
-        "aliases": [
-          "国信证券股份有限公司浙江互联网分公司"
-        ],
-        "buy": 45.15,
-        "sell": 33.33,
-        "net": 11.83,
-        "activeDays": 10,
-        "stockCount": 73,
-        "stocks": [
-          {
-            "code": "000530",
-            "name": "冰山冷热",
-            "buy": 6.11,
-            "times": 11,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "002086",
-            "name": "东方海洋",
-            "buy": 5.24,
-            "times": 10,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "000678",
-            "name": "襄阳轴承",
-            "buy": 4.08,
-            "times": 9,
-            "lastDate": "2026-11-17"
-          },
-          {
-            "code": "002242",
-            "name": "九阳股份",
-            "buy": 2.93,
-            "times": 4,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "600327",
-            "name": "大东方",
-            "buy": 2.46,
-            "times": 7,
-            "lastDate": "2026-11-19"
-          }
-        ]
-      },
-      {
-        "seat": "中国国际金融股份有限公司上海分公司",
-        "aliases": [
-          "中国国际金融股份有限公司上海分公司"
-        ],
-        "buy": 27.33,
-        "sell": 19.36,
-        "net": 7.98,
-        "activeDays": 10,
-        "stockCount": 58,
-        "stocks": [
-          {
-            "code": "688801",
-            "name": "燧原科技-U",
-            "buy": 7.87,
-            "times": 4,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "600183",
-            "name": "生益科技",
-            "buy": 2.78,
-            "times": 1,
-            "lastDate": "2026-11-17"
-          },
-          {
-            "code": "002384",
-            "name": "东山精密",
-            "buy": 2.03,
-            "times": 1,
-            "lastDate": "2026-11-11"
-          },
-          {
-            "code": "605488",
-            "name": "福莱新材",
-            "buy": 1.42,
-            "times": 1,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "603228",
-            "name": "景旺电子",
-            "buy": 0.98,
-            "times": 1,
-            "lastDate": "2026-11-17"
-          }
-        ]
-      },
-      {
-        "seat": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-        "aliases": [
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部"
-        ],
-        "buy": 24.88,
-        "sell": 17.65,
-        "net": 7.22,
-        "activeDays": 10,
-        "stockCount": 100,
-        "stocks": [
-          {
-            "code": "002086",
-            "name": "东方海洋",
-            "buy": 2.11,
-            "times": 7,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "600327",
-            "name": "大东方",
-            "buy": 1.67,
-            "times": 7,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "601091",
-            "name": "沈鼓集团",
-            "buy": 1.1,
-            "times": 2,
-            "lastDate": "2026-11-18"
-          },
-          {
-            "code": "301052",
-            "name": "果麦文化",
-            "buy": 1.01,
-            "times": 7,
-            "lastDate": "2026-11-18"
-          },
-          {
-            "code": "000995",
-            "name": "皇台酒业",
-            "buy": 0.91,
-            "times": 7,
-            "lastDate": "2026-11-19"
+            "lastDate": "2026-11-20"
           }
         ]
       },
@@ -3183,11 +4031,11 @@
         "aliases": [
           "高盛(中国)证券有限责任公司上海浦东新区世纪大道证券营业部"
         ],
-        "buy": 32.5,
-        "sell": 25.48,
-        "net": 7.02,
+        "buy": 33.92,
+        "sell": 22.76,
+        "net": 11.16,
         "activeDays": 10,
-        "stockCount": 81,
+        "stockCount": 82,
         "stocks": [
           {
             "code": "688498",
@@ -3211,17 +4059,209 @@
             "lastDate": "2026-11-19"
           },
           {
-            "code": "600641",
-            "name": "先导基电",
-            "buy": 1.83,
-            "times": 1,
-            "lastDate": "2026-11-06"
+            "code": "601599",
+            "name": "浙文影业",
+            "buy": 2.04,
+            "times": 4,
+            "lastDate": "2026-11-20"
           },
           {
-            "code": "600838",
-            "name": "上海九百",
-            "buy": 1.8,
-            "times": 6,
+            "code": "601188",
+            "name": "龙江交通",
+            "buy": 1.77,
+            "times": 2,
+            "lastDate": "2026-11-23"
+          }
+        ]
+      },
+      {
+        "seat": "开源证券股份有限公司西安西大街证券营业部",
+        "aliases": [
+          "开源证券股份有限公司西安西大街证券营业部"
+        ],
+        "buy": 34.02,
+        "sell": 23.01,
+        "net": 11.01,
+        "activeDays": 10,
+        "stockCount": 62,
+        "stocks": [
+          {
+            "code": "002148",
+            "name": "北纬科技",
+            "buy": 2.23,
+            "times": 5,
+            "lastDate": "2026-11-20"
+          },
+          {
+            "code": "002579",
+            "name": "中京电子",
+            "buy": 2.09,
+            "times": 2,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "002843",
+            "name": "泰嘉股份",
+            "buy": 2.09,
+            "times": 3,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "300324",
+            "name": "旋极信息",
+            "buy": 1.58,
+            "times": 2,
+            "lastDate": "2026-11-18"
+          },
+          {
+            "code": "000158",
+            "name": "常山北明",
+            "buy": 1.33,
+            "times": 1,
+            "lastDate": "2026-11-19"
+          }
+        ]
+      },
+      {
+        "seat": "国信证券股份有限公司浙江互联网分公司",
+        "aliases": [
+          "国信证券股份有限公司浙江互联网分公司"
+        ],
+        "buy": 47.69,
+        "sell": 39.27,
+        "net": 8.42,
+        "activeDays": 10,
+        "stockCount": 69,
+        "stocks": [
+          {
+            "code": "000530",
+            "name": "冰山冷热",
+            "buy": 6.74,
+            "times": 12,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "002086",
+            "name": "东方海洋",
+            "buy": 5.24,
+            "times": 10,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "000678",
+            "name": "襄阳轴承",
+            "buy": 4.45,
+            "times": 10,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "600715",
+            "name": "文投控股",
+            "buy": 4.18,
+            "times": 10,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "002242",
+            "name": "九阳股份",
+            "buy": 2.93,
+            "times": 4,
+            "lastDate": "2026-11-23"
+          }
+        ]
+      },
+      {
+        "seat": "国泰海通证券股份有限公司连云港巨龙南路证券营业部",
+        "aliases": [
+          "国泰海通证券股份有限公司连云港巨龙南路证券营业部"
+        ],
+        "buy": 12.27,
+        "sell": 5.48,
+        "net": 6.79,
+        "activeDays": 10,
+        "stockCount": 28,
+        "stocks": [
+          {
+            "code": "000530",
+            "name": "冰山冷热",
+            "buy": 2.56,
+            "times": 3,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "000678",
+            "name": "襄阳轴承",
+            "buy": 2.01,
+            "times": 3,
+            "lastDate": "2026-11-19"
+          },
+          {
+            "code": "002861",
+            "name": "瀛通通讯",
+            "buy": 0.74,
+            "times": 2,
+            "lastDate": "2026-11-19"
+          },
+          {
+            "code": "002843",
+            "name": "泰嘉股份",
+            "buy": 0.64,
+            "times": 2,
+            "lastDate": "2026-11-18"
+          },
+          {
+            "code": "603725",
+            "name": "天安新材",
+            "buy": 0.61,
+            "times": 2,
+            "lastDate": "2026-11-17"
+          }
+        ]
+      },
+      {
+        "seat": "中国国际金融股份有限公司上海分公司",
+        "aliases": [
+          "中国国际金融股份有限公司上海分公司"
+        ],
+        "buy": 27.31,
+        "sell": 20.63,
+        "net": 6.68,
+        "activeDays": 10,
+        "stockCount": 64,
+        "stocks": [
+          {
+            "code": "688801",
+            "name": "燧原科技-U",
+            "buy": 6.49,
+            "times": 3,
+            "lastDate": "2026-11-19"
+          },
+          {
+            "code": "600183",
+            "name": "生益科技",
+            "buy": 2.78,
+            "times": 1,
+            "lastDate": "2026-11-17"
+          },
+          {
+            "code": "688836",
+            "name": "宇树科技-W",
+            "buy": 2.05,
+            "times": 1,
+            "lastDate": "2026-11-23"
+          },
+          {
+            "code": "002384",
+            "name": "东山精密",
+            "buy": 2.03,
+            "times": 1,
+            "lastDate": "2026-11-11"
+          },
+          {
+            "code": "605488",
+            "name": "福莱新材",
+            "buy": 1.42,
+            "times": 1,
             "lastDate": "2026-11-19"
           }
         ]
@@ -3231,11 +4271,11 @@
         "aliases": [
           "平安证券股份有限公司浙江分公司"
         ],
-        "buy": 12.66,
-        "sell": 5.67,
-        "net": 6.99,
+        "buy": 11.77,
+        "sell": 5.11,
+        "net": 6.66,
         "activeDays": 10,
-        "stockCount": 41,
+        "stockCount": 36,
         "stocks": [
           {
             "code": "600619",
@@ -3245,11 +4285,11 @@
             "lastDate": "2026-11-19"
           },
           {
-            "code": "002708",
-            "name": "光洋股份",
-            "buy": 1.25,
+            "code": "002579",
+            "name": "中京电子",
+            "buy": 1.09,
             "times": 2,
-            "lastDate": "2026-11-11"
+            "lastDate": "2026-11-23"
           },
           {
             "code": "000533",
@@ -3266,11 +4306,11 @@
             "lastDate": "2026-11-18"
           },
           {
-            "code": "600371",
-            "name": "万向德农",
-            "buy": 0.78,
+            "code": "600156",
+            "name": "华升股份",
+            "buy": 0.72,
             "times": 2,
-            "lastDate": "2026-11-09"
+            "lastDate": "2026-11-20"
           }
         ]
       },
@@ -3279,17 +4319,17 @@
         "aliases": [
           "瑞银证券有限责任公司上海花园石桥路证券营业部"
         ],
-        "buy": 23.15,
-        "sell": 17.16,
-        "net": 5.99,
+        "buy": 20.5,
+        "sell": 14.03,
+        "net": 6.47,
         "activeDays": 10,
-        "stockCount": 53,
+        "stockCount": 58,
         "stocks": [
           {
             "code": "688801",
             "name": "燧原科技-U",
-            "buy": 4.88,
-            "times": 4,
+            "buy": 4.27,
+            "times": 3,
             "lastDate": "2026-11-19"
           },
           {
@@ -3307,119 +4347,133 @@
             "lastDate": "2026-11-19"
           },
           {
+            "code": "603466",
+            "name": "风语筑",
+            "buy": 1.39,
+            "times": 2,
+            "lastDate": "2026-11-23"
+          },
+          {
             "code": "603228",
             "name": "景旺电子",
             "buy": 1.35,
             "times": 1,
             "lastDate": "2026-11-17"
-          },
-          {
-            "code": "600641",
-            "name": "先导基电",
-            "buy": 1.29,
-            "times": 1,
-            "lastDate": "2026-11-06"
           }
         ]
       },
       {
-        "seat": "东方财富证券股份有限公司山南香曲东路证券营业部",
+        "seat": "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
         "aliases": [
-          "东方财富证券股份有限公司山南香曲东路证券营业部"
+          "东方财富证券股份有限公司拉萨金融城南环路证券营业部"
         ],
-        "buy": 17.92,
-        "sell": 12.82,
-        "net": 5.11,
+        "buy": 26.17,
+        "sell": 20.6,
+        "net": 5.56,
         "activeDays": 10,
-        "stockCount": 62,
+        "stockCount": 100,
         "stocks": [
+          {
+            "code": "600715",
+            "name": "文投控股",
+            "buy": 2.4,
+            "times": 7,
+            "lastDate": "2026-11-23"
+          },
           {
             "code": "002086",
             "name": "东方海洋",
-            "buy": 2.89,
-            "times": 9,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "000530",
-            "name": "冰山冷热",
-            "buy": 2.34,
-            "times": 5,
-            "lastDate": "2026-11-19"
+            "buy": 2.11,
+            "times": 7,
+            "lastDate": "2026-11-20"
           },
           {
             "code": "600327",
             "name": "大东方",
-            "buy": 1.71,
+            "buy": 1.67,
             "times": 7,
-            "lastDate": "2026-11-19"
-          },
-          {
-            "code": "601188",
-            "name": "龙江交通",
-            "buy": 0.88,
-            "times": 4,
-            "lastDate": "2026-11-18"
+            "lastDate": "2026-11-20"
           },
           {
             "code": "601091",
             "name": "沈鼓集团",
-            "buy": 0.85,
-            "times": 3,
-            "lastDate": "2026-11-17"
+            "buy": 1.1,
+            "times": 2,
+            "lastDate": "2026-11-18"
+          },
+          {
+            "code": "600410",
+            "name": "华胜天成",
+            "buy": 1.05,
+            "times": 2,
+            "lastDate": "2026-11-23"
           }
         ]
       },
       {
-        "seat": "华泰证券股份有限公司长沙湘江中路证券营业部",
+        "seat": "国泰海通证券股份有限公司上海自贸试验区第二分公司",
         "aliases": [
-          "华泰证券股份有限公司长沙湘江中路证券营业部"
+          "国泰海通证券股份有限公司上海自贸试验区第二分公司"
         ],
-        "buy": 7.98,
-        "sell": 3.55,
-        "net": 4.43,
-        "activeDays": 8,
-        "stockCount": 8,
+        "buy": 7.61,
+        "sell": 2.91,
+        "net": 4.71,
+        "activeDays": 7,
+        "stockCount": 14,
         "stocks": [
           {
-            "code": "600261",
-            "name": "阳光照明",
-            "buy": 3.18,
-            "times": 3,
-            "lastDate": "2026-11-17"
+            "code": "002384",
+            "name": "东山精密",
+            "buy": 1.43,
+            "times": 1,
+            "lastDate": "2026-11-16"
           },
           {
-            "code": "002086",
-            "name": "东方海洋",
-            "buy": 2.54,
-            "times": 5,
+            "code": "002463",
+            "name": "沪电股份",
+            "buy": 1.34,
+            "times": 1,
+            "lastDate": "2026-11-13"
+          },
+          {
+            "code": "000678",
+            "name": "襄阳轴承",
+            "buy": 1.25,
+            "times": 3,
+            "lastDate": "2026-11-12"
+          },
+          {
+            "code": "600715",
+            "name": "文投控股",
+            "buy": 0.43,
+            "times": 1,
             "lastDate": "2026-11-19"
           },
           {
-            "code": "603703",
-            "name": "盛洋科技",
-            "buy": 1.13,
+            "code": "002343",
+            "name": "慈文传媒",
+            "buy": 0.42,
             "times": 2,
-            "lastDate": "2026-11-10"
-          },
-          {
-            "code": "002696",
-            "name": "百洋股份",
-            "buy": 0.57,
-            "times": 1,
-            "lastDate": "2026-11-06"
-          },
-          {
-            "code": "601599",
-            "name": "浙文影业",
-            "buy": 0.56,
-            "times": 1,
-            "lastDate": "2026-11-09"
+            "lastDate": "2026-11-16"
           }
         ]
       }
     ],
     "stockHot": [
+      {
+        "code": "002384",
+        "buy": 5.59,
+        "sell": 0.0,
+        "seatCount": 3,
+        "seats": [
+          "中国国际金融股份有限公司上海分公司",
+          "国泰海通证券股份有限公司上海自贸试验区第二分公司",
+          "国泰海通证券股份有限公司三亚迎宾路证券营业部"
+        ],
+        "lastDate": "2026-11-16",
+        "net": 5.59,
+        "name": "东山精密"
+      },
       {
         "code": "300324",
         "buy": 6.02,
@@ -3451,9 +4505,24 @@
         "name": "景旺电子"
       },
       {
+        "code": "600261",
+        "buy": 14.29,
+        "sell": 9.97,
+        "seatCount": 8,
+        "seats": [
+          "东方财富证券股份有限公司山南香曲东路证券营业部",
+          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "国泰海通证券股份有限公司北京安贞门证券营业部"
+        ],
+        "lastDate": "2026-11-20",
+        "net": 4.32,
+        "name": "阳光照明"
+      },
+      {
         "code": "688801",
-        "buy": 16.36,
-        "sell": 11.64,
+        "buy": 14.37,
+        "sell": 10.09,
         "seatCount": 5,
         "seats": [
           "中国国际金融股份有限公司上海分公司",
@@ -3462,51 +4531,23 @@
           "摩根大通证券(中国)有限公司上海银城中路证券营业部"
         ],
         "lastDate": "2026-11-19",
-        "net": 4.72,
+        "net": 4.28,
         "name": "燧原科技-U"
       },
       {
-        "code": "002384",
-        "buy": 7.65,
-        "sell": 3.21,
-        "seatCount": 2,
-        "seats": [
-          "中国国际金融股份有限公司上海分公司",
-          "国泰海通证券股份有限公司三亚迎宾路证券营业部"
-        ],
-        "lastDate": "2026-11-16",
-        "net": 4.44,
-        "name": "东山精密"
-      },
-      {
-        "code": "600261",
-        "buy": 15.27,
-        "sell": 11.16,
-        "seatCount": 7,
+        "code": "002086",
+        "buy": 24.82,
+        "sell": 21.89,
+        "seatCount": 12,
         "seats": [
           "东方财富证券股份有限公司山南香曲东路证券营业部",
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
           "国泰海通证券股份有限公司北京安贞门证券营业部",
+          "国信证券股份有限公司浙江互联网分公司",
           "国新证券股份有限公司北京分公司"
         ],
-        "lastDate": "2026-11-17",
-        "net": 4.11,
-        "name": "阳光照明"
-      },
-      {
-        "code": "000678",
-        "buy": 17.4,
-        "sell": 14.3,
-        "seatCount": 10,
-        "seats": [
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "国泰海通证券股份有限公司北京安贞门证券营业部",
-          "国信证券股份有限公司浙江互联网分公司"
-        ],
-        "lastDate": "2026-11-19",
-        "net": 3.1,
-        "name": "襄阳轴承"
+        "lastDate": "2026-11-23",
+        "net": 2.93,
+        "name": "东方海洋"
       },
       {
         "code": "605488",
@@ -3516,27 +4557,12 @@
         "seats": [
           "中国国际金融股份有限公司上海分公司",
           "华泰证券股份有限公司上海浦东新区世纪大道证券营业部",
-          "中信证券股份有限公司上海分公司",
-          "摩根大通证券(中国)有限公司上海银城中路证券营业部"
+          "摩根大通证券(中国)有限公司上海银城中路证券营业部",
+          "中信证券股份有限公司上海分公司"
         ],
         "lastDate": "2026-11-19",
         "net": 2.92,
         "name": "福莱新材"
-      },
-      {
-        "code": "002929",
-        "buy": 5.64,
-        "sell": 2.94,
-        "seatCount": 6,
-        "seats": [
-          "平安证券股份有限公司浙江分公司",
-          "开源证券股份有限公司西安西大街证券营业部",
-          "国泰海通证券股份有限公司湛江万豪世家证券营业部",
-          "中信证券股份有限公司北京紫竹院路证券营业部"
-        ],
-        "lastDate": "2026-11-18",
-        "net": 2.7,
-        "name": "润建股份"
       },
       {
         "code": "600619",
@@ -3569,6 +4595,21 @@
         "name": "四川长虹"
       },
       {
+        "code": "000678",
+        "buy": 19.82,
+        "sell": 17.19,
+        "seatCount": 10,
+        "seats": [
+          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "国泰海通证券股份有限公司北京安贞门证券营业部",
+          "国信证券股份有限公司浙江互联网分公司"
+        ],
+        "lastDate": "2026-11-23",
+        "net": 2.63,
+        "name": "襄阳轴承"
+      },
+      {
         "code": "600408",
         "buy": 4.26,
         "sell": 1.72,
@@ -3577,41 +4618,41 @@
           "开源证券股份有限公司西安西大街证券营业部",
           "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
           "华鑫证券有限责任公司上海徐汇区瑞平路证券营业部",
-          "国泰海通证券股份有限公司广州琶洲证券营业部"
+          "华源证券股份有限公司武汉分公司"
         ],
         "lastDate": "2026-11-18",
         "net": 2.54,
         "name": "安泰集团"
       },
       {
-        "code": "600410",
-        "buy": 7.11,
-        "sell": 4.77,
-        "seatCount": 6,
+        "code": "301052",
+        "buy": 7.05,
+        "sell": 4.76,
+        "seatCount": 8,
         "seats": [
           "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "国信证券股份有限公司浙江互联网分公司",
-          "国泰海通证券股份有限公司湛江万豪世家证券营业部",
-          "东亚前海证券有限责任公司上海分公司"
+          "国新证券股份有限公司北京分公司",
+          "东吴证券股份有限公司苏州石路证券营业部",
+          "长江证券股份有限公司台州市府大道证券营业部"
         ],
-        "lastDate": "2026-11-19",
-        "net": 2.34,
-        "name": "华胜天成"
+        "lastDate": "2026-11-23",
+        "net": 2.29,
+        "name": "果麦文化"
       },
       {
-        "code": "603366",
-        "buy": 6.22,
-        "sell": 3.94,
-        "seatCount": 15,
+        "code": "301313",
+        "buy": 6.05,
+        "sell": 3.84,
+        "seatCount": 5,
         "seats": [
-          "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "东方财富证券股份有限公司山南香曲东路证券营业部",
-          "开源证券股份有限公司西安西大街证券营业部",
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部"
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "东方财富证券股份有限公司拉萨团结路第一证券营业部",
+          "广发证券股份有限公司郑州农业路证券营业部",
+          "中信建投证券股份有限公司福州东街证券营业部"
         ],
-        "lastDate": "2026-11-18",
-        "net": 2.28,
-        "name": "日出东方"
+        "lastDate": "2026-11-23",
+        "net": 2.21,
+        "name": "凡拓数创"
       },
       {
         "code": "600103",
@@ -3629,19 +4670,48 @@
         "name": "青山纸业"
       },
       {
-        "code": "301052",
-        "buy": 7.49,
-        "sell": 5.51,
+        "code": "002579",
+        "buy": 7.65,
+        "sell": 5.5,
+        "seatCount": 3,
+        "seats": [
+          "平安证券股份有限公司浙江分公司",
+          "国泰海通证券股份有限公司成都天府大道证券营业部",
+          "国泰海通证券股份有限公司上海普陀区大渡河路证券营业部"
+        ],
+        "lastDate": "2026-11-23",
+        "net": 2.15,
+        "name": "中京电子"
+      },
+      {
+        "code": "002425",
+        "buy": 9.24,
+        "sell": 7.18,
         "seatCount": 9,
         "seats": [
-          "东方财富证券股份有限公司拉萨团结路第二证券营业部",
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "国新证券股份有限公司北京分公司",
-          "东方财富证券股份有限公司拉萨东环路第一证券营业部"
+          "东方财富证券股份有限公司山南香曲东路证券营业部",
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "东莞证券股份有限公司常熟东南大道证券营业部",
+          "国信证券股份有限公司浙江互联网分公司"
         ],
-        "lastDate": "2026-11-19",
-        "net": 1.98,
-        "name": "果麦文化"
+        "lastDate": "2026-11-20",
+        "net": 2.06,
+        "name": "凯撒文化"
+      },
+      {
+        "code": "600327",
+        "buy": 18.13,
+        "sell": 16.14,
+        "seatCount": 12,
+        "seats": [
+          "东方财富证券股份有限公司山南香曲东路证券营业部",
+          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "国信证券股份有限公司浙江互联网分公司",
+          "国新证券股份有限公司北京分公司"
+        ],
+        "lastDate": "2026-11-23",
+        "net": 1.99,
+        "name": "大东方"
       },
       {
         "code": "688025",
@@ -3672,21 +4742,6 @@
         "name": "常山北明"
       },
       {
-        "code": "300825",
-        "buy": 3.38,
-        "sell": 1.46,
-        "seatCount": 4,
-        "seats": [
-          "开源证券股份有限公司西安西大街证券营业部",
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "长城证券股份有限公司杭州民心路证券营业部",
-          "广发证券股份有限公司成都天府大道北段证券营业部"
-        ],
-        "lastDate": "2026-11-11",
-        "net": 1.92,
-        "name": "阿尔特"
-      },
-      {
         "code": "002281",
         "buy": 1.9,
         "sell": 0.0,
@@ -3715,19 +4770,49 @@
         "name": "中坚科技"
       },
       {
-        "code": "600327",
-        "buy": 15.38,
-        "sell": 13.6,
-        "seatCount": 13,
+        "code": "600156",
+        "buy": 5.36,
+        "sell": 3.67,
+        "seatCount": 14,
         "seats": [
+          "平安证券股份有限公司浙江分公司",
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "国新证券股份有限公司北京分公司",
+          "中国国际金融股份有限公司上海分公司"
+        ],
+        "lastDate": "2026-11-23",
+        "net": 1.69,
+        "name": "华升股份"
+      },
+      {
+        "code": "002771",
+        "buy": 3.71,
+        "sell": 2.22,
+        "seatCount": 7,
+        "seats": [
+          "开源证券股份有限公司西安西大街证券营业部",
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "国泰海通证券股份有限公司上海静安区新闸路证券营业部",
+          "民生证券股份有限公司上海虹口区杨树浦路证券营业部"
+        ],
+        "lastDate": "2026-11-23",
+        "net": 1.49,
+        "name": "真视通"
+      },
+      {
+        "code": "603366",
+        "buy": 5.15,
+        "sell": 3.71,
+        "seatCount": 11,
+        "seats": [
+          "东方财富证券股份有限公司拉萨东环路第二证券营业部",
           "东方财富证券股份有限公司山南香曲东路证券营业部",
           "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
           "国信证券股份有限公司浙江互联网分公司"
         ],
-        "lastDate": "2026-11-19",
-        "net": 1.78,
-        "name": "大东方"
+        "lastDate": "2026-11-18",
+        "net": 1.44,
+        "name": "日出东方"
       },
       {
         "code": "000156",
@@ -3745,36 +4830,6 @@
         "name": "华数传媒"
       },
       {
-        "code": "600156",
-        "buy": 3.81,
-        "sell": 2.39,
-        "seatCount": 10,
-        "seats": [
-          "平安证券股份有限公司浙江分公司",
-          "国新证券股份有限公司北京分公司",
-          "国新证券股份有限公司北京亦庄证券营业部",
-          "中信建投证券股份有限公司安徽分公司"
-        ],
-        "lastDate": "2026-11-19",
-        "net": 1.42,
-        "name": "华升股份"
-      },
-      {
-        "code": "002843",
-        "buy": 3.68,
-        "sell": 2.26,
-        "seatCount": 5,
-        "seats": [
-          "开源证券股份有限公司西安西大街证券营业部",
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "平安证券股份有限公司绍兴解放大道证券营业部",
-          "华鑫证券有限责任公司上海东大名路证券营业部"
-        ],
-        "lastDate": "2026-11-18",
-        "net": 1.42,
-        "name": "泰嘉股份"
-      },
-      {
         "code": "002520",
         "buy": 1.54,
         "sell": 0.19,
@@ -3789,19 +4844,19 @@
         "name": "日发精机"
       },
       {
-        "code": "002712",
-        "buy": 1.79,
-        "sell": 0.44,
-        "seatCount": 5,
+        "code": "300812",
+        "buy": 1.65,
+        "sell": 0.3,
+        "seatCount": 4,
         "seats": [
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "东亚前海证券有限责任公司苏州分公司",
-          "国新证券股份有限公司北京分公司",
-          "中国国际金融股份有限公司上海分公司"
+          "开源证券股份有限公司西安西大街证券营业部",
+          "华鑫证券有限责任公司上海徐汇区瑞平路证券营业部",
+          "国泰海通证券股份有限公司重庆民生路证券营业部",
+          "东亚前海证券有限责任公司深圳分公司"
         ],
-        "lastDate": "2026-11-19",
+        "lastDate": "2026-11-20",
         "net": 1.35,
-        "name": "思美传媒"
+        "name": "易天股份"
       },
       {
         "code": "002463",
@@ -3816,93 +4871,19 @@
         "name": "沪电股份"
       },
       {
-        "code": "600609",
-        "buy": 1.66,
-        "sell": 0.33,
-        "seatCount": 6,
+        "code": "600410",
+        "buy": 11.92,
+        "sell": 10.64,
+        "seatCount": 9,
         "seats": [
-          "开源证券股份有限公司西安西大街证券营业部",
-          "国泰海通证券股份有限公司上海自贸试验区第二分公司",
-          "中信证券股份有限公司深圳深南中路中信大厦证券营业部",
-          "摩根大通证券(中国)有限公司上海银城中路证券营业部"
-        ],
-        "lastDate": "2026-11-10",
-        "net": 1.33,
-        "name": "金杯汽车"
-      },
-      {
-        "code": "000823",
-        "buy": 1.72,
-        "sell": 0.4,
-        "seatCount": 3,
-        "seats": [
-          "开源证券股份有限公司西安西大街证券营业部",
           "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "国泰海通证券股份有限公司上海自贸试验区第二分公司"
-        ],
-        "lastDate": "2026-11-09",
-        "net": 1.32,
-        "name": "超声电子"
-      },
-      {
-        "code": "600936",
-        "buy": 4.15,
-        "sell": 2.85,
-        "seatCount": 8,
-        "seats": [
-          "平安证券股份有限公司浙江分公司",
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "国新证券股份有限公司北京分公司",
-          "华鑫证券有限责任公司上海徐汇区瑞平路证券营业部"
-        ],
-        "lastDate": "2026-11-19",
-        "net": 1.3,
-        "name": "北投科技"
-      },
-      {
-        "code": "600715",
-        "buy": 27.94,
-        "sell": 26.66,
-        "seatCount": 16,
-        "seats": [
-          "东方财富证券股份有限公司山南香曲东路证券营业部",
-          "开源证券股份有限公司西安西大街证券营业部",
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "国信证券股份有限公司浙江互联网分公司"
-        ],
-        "lastDate": "2026-11-19",
-        "net": 1.28,
-        "name": "文投控股"
-      },
-      {
-        "code": "002696",
-        "buy": 5.45,
-        "sell": 4.2,
-        "seatCount": 12,
-        "seats": [
-          "东方财富证券股份有限公司山南香曲东路证券营业部",
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
           "国泰海通证券股份有限公司北京安贞门证券营业部",
-          "国信证券股份有限公司浙江互联网分公司"
-        ],
-        "lastDate": "2026-11-17",
-        "net": 1.25,
-        "name": "百洋股份"
-      },
-      {
-        "code": "002685",
-        "buy": 7.42,
-        "sell": 6.18,
-        "seatCount": 10,
-        "seats": [
-          "东方财富证券股份有限公司山南香曲东路证券营业部",
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "东莞证券股份有限公司常熟东南大道证券营业部",
+          "国信证券股份有限公司浙江互联网分公司",
           "国泰海通证券股份有限公司湛江万豪世家证券营业部"
         ],
-        "lastDate": "2026-11-19",
-        "net": 1.24,
-        "name": "华东重机"
+        "lastDate": "2026-11-23",
+        "net": 1.28,
+        "name": "华胜天成"
       },
       {
         "code": "002623",
@@ -3911,57 +4892,58 @@
         "seatCount": 8,
         "seats": [
           "东莞证券股份有限公司南京分公司",
-          "浙商证券股份有限公司宁波分公司",
           "国泰海通证券股份有限公司重庆南坪惠工路证券营业部",
-          "联储证券股份有限公司上海松林路证券营业部"
+          "联储证券股份有限公司上海松林路证券营业部",
+          "东亚前海证券有限责任公司上海分公司"
         ],
         "lastDate": "2026-11-18",
         "net": 1.23,
         "name": "亚玛顿"
       },
       {
-        "code": "002579",
-        "buy": 1.22,
-        "sell": 0.0,
-        "seatCount": 3,
+        "code": "002685",
+        "buy": 9.53,
+        "sell": 8.37,
+        "seatCount": 14,
         "seats": [
-          "国新证券股份有限公司北京分公司",
-          "东方证券股份有限公司深圳金田路证券营业部",
-          "中信证券股份有限公司东阳吴宁西路证券营业部"
-        ],
-        "lastDate": "2026-11-19",
-        "net": 1.22,
-        "name": "中京电子"
-      },
-      {
-        "code": "301718",
-        "buy": 3.57,
-        "sell": 2.4,
-        "seatCount": 8,
-        "seats": [
-          "东方财富证券股份有限公司拉萨东环路第二证券营业部",
+          "东方财富证券股份有限公司山南香曲东路证券营业部",
           "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
           "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "国泰海通证券股份有限公司常州健身路证券营业部"
+          "东莞证券股份有限公司常熟东南大道证券营业部"
         ],
-        "lastDate": "2026-11-11",
-        "net": 1.17,
-        "name": "通则康威"
+        "lastDate": "2026-11-20",
+        "net": 1.16,
+        "name": "华东重机"
       },
       {
-        "code": "002425",
-        "buy": 7.23,
-        "sell": 6.06,
-        "seatCount": 9,
+        "code": "002929",
+        "buy": 1.49,
+        "sell": 0.34,
+        "seatCount": 4,
         "seats": [
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "东莞证券股份有限公司常熟东南大道证券营业部",
-          "国信证券股份有限公司浙江互联网分公司",
-          "东莞证券股份有限公司南京分公司"
+          "平安证券股份有限公司浙江分公司",
+          "开源证券股份有限公司西安西大街证券营业部",
+          "中信证券股份有限公司北京紫竹院路证券营业部",
+          "兴业证券股份有限公司福州工业路证券营业部"
         ],
         "lastDate": "2026-11-18",
-        "net": 1.17,
-        "name": "凯撒文化"
+        "net": 1.15,
+        "name": "润建股份"
+      },
+      {
+        "code": "300237",
+        "buy": 1.45,
+        "sell": 0.32,
+        "seatCount": 5,
+        "seats": [
+          "开源证券股份有限公司西安西大街证券营业部",
+          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "甬兴证券有限公司天津解放北路证券营业部"
+        ],
+        "lastDate": "2026-11-13",
+        "net": 1.13,
+        "name": "美晨科技"
       },
       {
         "code": "002916",
@@ -3977,18 +4959,34 @@
         "name": "深南电路"
       },
       {
-        "code": "603466",
-        "buy": 3.62,
-        "sell": 2.51,
-        "seatCount": 3,
+        "code": "001358",
+        "buy": 1.76,
+        "sell": 0.65,
+        "seatCount": 12,
         "seats": [
-          "高盛(中国)证券有限责任公司上海浦东新区世纪大道证券营业部",
-          "中信证券股份有限公司上海分公司",
-          "瑞银证券有限责任公司上海花园石桥路证券营业部"
+          "开源证券股份有限公司西安西大街证券营业部",
+          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "国信证券股份有限公司浙江互联网分公司"
         ],
-        "lastDate": "2026-11-12",
+        "lastDate": "2026-11-23",
         "net": 1.11,
-        "name": "风语筑"
+        "name": "兴欣新材"
+      },
+      {
+        "code": "002642",
+        "buy": 1.51,
+        "sell": 0.44,
+        "seatCount": 4,
+        "seats": [
+          "开源证券股份有限公司西安西大街证券营业部",
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "国信证券股份有限公司赣州红旗大道证券营业部",
+          "国投证券股份有限公司西安曲江池南路证券营业部"
+        ],
+        "lastDate": "2026-11-23",
+        "net": 1.07,
+        "name": "荣联科技"
       },
       {
         "code": "603283",
@@ -4032,19 +5030,17 @@
         "name": "德尔股份"
       },
       {
-        "code": "300686",
-        "buy": 1.02,
-        "sell": 0.0,
-        "seatCount": 4,
+        "code": "300825",
+        "buy": 1.98,
+        "sell": 0.96,
+        "seatCount": 2,
         "seats": [
-          "平安证券股份有限公司浙江分公司",
           "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "中信建投证券股份有限公司烟台南大街证券营业部",
-          "中泰证券股份有限公司聊城柳园南路证券营业部"
+          "广发证券股份有限公司成都天府大道北段证券营业部"
         ],
-        "lastDate": "2026-11-06",
+        "lastDate": "2026-11-11",
         "net": 1.02,
-        "name": "智动力"
+        "name": "阿尔特"
       },
       {
         "code": "000026",
@@ -4061,6 +5057,19 @@
         "name": "飞亚达"
       },
       {
+        "code": "000823",
+        "buy": 3.27,
+        "sell": 2.28,
+        "seatCount": 2,
+        "seats": [
+          "开源证券股份有限公司西安西大街证券营业部",
+          "国信证券股份有限公司浙江互联网分公司"
+        ],
+        "lastDate": "2026-11-23",
+        "net": 0.99,
+        "name": "超声电子"
+      },
+      {
         "code": "300862",
         "buy": 2.12,
         "sell": 1.13,
@@ -4074,6 +5083,21 @@
         "lastDate": "2026-11-16",
         "net": 0.99,
         "name": "蓝盾光电"
+      },
+      {
+        "code": "600609",
+        "buy": 1.19,
+        "sell": 0.21,
+        "seatCount": 6,
+        "seats": [
+          "开源证券股份有限公司西安西大街证券营业部",
+          "国泰海通证券股份有限公司上海自贸试验区第二分公司",
+          "中信证券股份有限公司深圳深南中路中信大厦证券营业部",
+          "摩根大通证券(中国)有限公司上海银城中路证券营业部"
+        ],
+        "lastDate": "2026-11-10",
+        "net": 0.98,
+        "name": "金杯汽车"
       },
       {
         "code": "603330",
@@ -4105,19 +5129,34 @@
         "name": "有研新材"
       },
       {
-        "code": "002310",
-        "buy": 4.32,
-        "sell": 3.36,
-        "seatCount": 8,
+        "code": "002843",
+        "buy": 3.68,
+        "sell": 2.73,
+        "seatCount": 5,
         "seats": [
-          "东方财富证券股份有限公司山南香曲东路证券营业部",
           "开源证券股份有限公司西安西大街证券营业部",
           "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部"
+          "平安证券股份有限公司绍兴解放大道证券营业部",
+          "华鑫证券有限责任公司上海东大名路证券营业部"
         ],
-        "lastDate": "2026-11-17",
-        "net": 0.96,
-        "name": "东方新能"
+        "lastDate": "2026-11-23",
+        "net": 0.95,
+        "name": "泰嘉股份"
+      },
+      {
+        "code": "002741",
+        "buy": 2.27,
+        "sell": 1.34,
+        "seatCount": 4,
+        "seats": [
+          "平安证券股份有限公司绍兴解放大道证券营业部",
+          "国泰海通证券股份有限公司南京太平南路证券营业部",
+          "浙商证券股份有限公司杭州五星路证券营业部",
+          "华鑫证券有限责任公司上海东大名路证券营业部"
+        ],
+        "lastDate": "2026-11-20",
+        "net": 0.93,
+        "name": "光华科技"
       },
       {
         "code": "002124",
@@ -4133,21 +5172,6 @@
         "lastDate": "2026-11-13",
         "net": 0.91,
         "name": "天邦食品"
-      },
-      {
-        "code": "000525",
-        "buy": 4.19,
-        "sell": 3.31,
-        "seatCount": 7,
-        "seats": [
-          "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "华鑫证券有限责任公司上海分公司",
-          "东亚前海证券有限责任公司苏州分公司"
-        ],
-        "lastDate": "2026-11-13",
-        "net": 0.88,
-        "name": "红太阳"
       },
       {
         "code": "300613",
@@ -4192,34 +5216,33 @@
         "name": "杰克科技"
       },
       {
-        "code": "603381",
-        "buy": 2.44,
-        "sell": 1.62,
-        "seatCount": 12,
+        "code": "301132",
+        "buy": 0.83,
+        "sell": 0.0,
+        "seatCount": 3,
         "seats": [
-          "东方财富证券股份有限公司拉萨东环路第二证券营业部",
-          "东方财富证券股份有限公司山南香曲东路证券营业部",
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "国信证券股份有限公司浙江互联网分公司"
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "国新证券股份有限公司北京分公司",
+          "国新证券股份有限公司北京亦庄证券营业部"
         ],
-        "lastDate": "2026-11-17",
-        "net": 0.82,
-        "name": "永臻股份"
+        "lastDate": "2026-11-20",
+        "net": 0.83,
+        "name": "满坤科技"
       },
       {
-        "code": "603706",
-        "buy": 2.36,
-        "sell": 1.56,
-        "seatCount": 13,
+        "code": "000766",
+        "buy": 2.0,
+        "sell": 1.22,
+        "seatCount": 5,
         "seats": [
-          "国泰海通证券股份有限公司成都天府大道证券营业部",
-          "国信证券股份有限公司浙江互联网分公司",
-          "平安证券股份有限公司深圳香蜜湖证券营业部",
-          "国泰海通证券股份有限公司上海自贸试验区第二分公司"
+          "平安证券股份有限公司浙江分公司",
+          "开源证券股份有限公司西安西大街证券营业部",
+          "平安证券股份有限公司绍兴解放大道证券营业部",
+          "民生证券股份有限公司辽宁分公司"
         ],
-        "lastDate": "2026-11-18",
-        "net": 0.8,
-        "name": "东方环宇"
+        "lastDate": "2026-11-23",
+        "net": 0.78,
+        "name": "通化金马"
       },
       {
         "code": "301486",
@@ -4255,73 +5278,28 @@
         "seatCount": 12,
         "seats": [
           "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "东莞证券股份有限公司四川分公司",
           "国泰海通证券股份有限公司广州珠江新城证券营业部",
-          "浙商证券股份有限公司杭州五星路证券营业部",
-          "兴业证券股份有限公司深圳分公司"
+          "浙商证券股份有限公司杭州五星路证券营业部"
         ],
         "lastDate": "2026-11-17",
         "net": 0.75,
         "name": "天安新材"
       },
       {
-        "code": "000766",
-        "buy": 1.6,
-        "sell": 0.87,
+        "code": "301660",
+        "buy": 1.48,
+        "sell": 0.78,
         "seatCount": 5,
         "seats": [
-          "平安证券股份有限公司浙江分公司",
-          "开源证券股份有限公司西安西大街证券营业部",
-          "平安证券股份有限公司绍兴解放大道证券营业部",
-          "方正证券股份有限公司通化新华大街证券营业部"
-        ],
-        "lastDate": "2026-11-18",
-        "net": 0.73,
-        "name": "通化金马"
-      },
-      {
-        "code": "001358",
-        "buy": 1.2,
-        "sell": 0.47,
-        "seatCount": 11,
-        "seats": [
-          "开源证券股份有限公司西安西大街证券营业部",
+          "东方财富证券股份有限公司拉萨东环路第二证券营业部",
           "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "国信证券股份有限公司浙江互联网分公司",
-          "华鑫证券有限责任公司上海分公司"
+          "国泰海通证券股份有限公司常州健身路证券营业部",
+          "东莞证券股份有限公司南京分公司"
         ],
-        "lastDate": "2026-11-19",
-        "net": 0.73,
-        "name": "兴欣新材"
-      },
-      {
-        "code": "000893",
-        "buy": 0.7,
-        "sell": 0.0,
-        "seatCount": 4,
-        "seats": [
-          "华泰证券股份有限公司无锡解放西路证券营业部",
-          "国泰海通证券股份有限公司肇庆星湖东路证券营业部",
-          "招商证券股份有限公司上海徐汇区云锦路证券营业部",
-          "华泰证券股份有限公司昆山黑龙江北路证券营业部"
-        ],
-        "lastDate": "2026-11-10",
+        "lastDate": "2026-11-23",
         "net": 0.7,
-        "name": "亚钾国际"
-      },
-      {
-        "code": "601595",
-        "buy": 4.32,
-        "sell": 3.63,
-        "seatCount": 7,
-        "seats": [
-          "开源证券股份有限公司西安西大街证券营业部",
-          "国信证券股份有限公司浙江互联网分公司",
-          "甬兴证券有限公司天津解放北路证券营业部",
-          "华鑫证券有限责任公司上海徐汇区瑞平路证券营业部"
-        ],
-        "lastDate": "2026-11-12",
-        "net": 0.69,
-        "name": "上海电影"
+        "name": "粤芯半导-U"
       },
       {
         "code": "000595",
@@ -4337,6 +5315,21 @@
         "lastDate": "2026-11-18",
         "net": 0.67,
         "name": "新能股份"
+      },
+      {
+        "code": "600360",
+        "buy": 1.5,
+        "sell": 0.83,
+        "seatCount": 4,
+        "seats": [
+          "国泰海通证券股份有限公司常州健身路证券营业部",
+          "中信证券股份有限公司东阳吴宁西路证券营业部",
+          "平安证券股份有限公司济南解放路证券营业部",
+          "开源证券股份有限公司西安太华路证券营业部"
+        ],
+        "lastDate": "2026-11-20",
+        "net": 0.67,
+        "name": "华微电子"
       },
       {
         "code": "600776",
@@ -4390,48 +5383,6 @@
         "lastDate": "2026-11-13",
         "net": 0.65,
         "name": "宁波东力"
-      },
-      {
-        "code": "301010",
-        "buy": 0.86,
-        "sell": 0.22,
-        "seatCount": 4,
-        "seats": [
-          "开源证券股份有限公司西安西大街证券营业部",
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "华鑫证券有限责任公司上海徐汇区瑞平路证券营业部",
-          "东方财富证券股份有限公司拉萨东城区江苏大道证券营业部"
-        ],
-        "lastDate": "2026-11-19",
-        "net": 0.64,
-        "name": "晶雪节能"
-      },
-      {
-        "code": "002488",
-        "buy": 0.71,
-        "sell": 0.09,
-        "seatCount": 2,
-        "seats": [
-          "国新证券股份有限公司北京分公司",
-          "国新证券股份有限公司北京亦庄证券营业部"
-        ],
-        "lastDate": "2026-11-09",
-        "net": 0.62,
-        "name": "金固股份"
-      },
-      {
-        "code": "002889",
-        "buy": 0.73,
-        "sell": 0.11,
-        "seatCount": 3,
-        "seats": [
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "国泰海通证券股份有限公司连云港巨龙南路证券营业部",
-          "甬兴证券有限公司天津解放北路证券营业部"
-        ],
-        "lastDate": "2026-11-09",
-        "net": 0.62,
-        "name": "东方嘉盛"
       },
       {
         "code": "688220",
@@ -4528,21 +5479,6 @@
         "name": "科森科技"
       },
       {
-        "code": "300237",
-        "buy": 2.54,
-        "sell": 2.0,
-        "seatCount": 8,
-        "seats": [
-          "开源证券股份有限公司西安西大街证券营业部",
-          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
-          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
-          "甬兴证券有限公司天津解放北路证券营业部"
-        ],
-        "lastDate": "2026-11-13",
-        "net": 0.54,
-        "name": "美晨科技"
-      },
-      {
         "code": "002748",
         "buy": 1.03,
         "sell": 0.51,
@@ -4571,6 +5507,106 @@
         "lastDate": "2026-11-17",
         "net": 0.52,
         "name": "索辰科技"
+      },
+      {
+        "code": "002584",
+        "buy": 0.97,
+        "sell": 0.46,
+        "seatCount": 4,
+        "seats": [
+          "东方财富证券股份有限公司山南香曲东路证券营业部",
+          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "国泰海通证券股份有限公司北京安贞门证券营业部",
+          "东方财富证券股份有限公司拉萨团结路第一证券营业部"
+        ],
+        "lastDate": "2026-11-19",
+        "net": 0.51,
+        "name": "西陇科学"
+      },
+      {
+        "code": "000636",
+        "buy": 0.51,
+        "sell": 0.0,
+        "seatCount": 1,
+        "seats": [
+          "兴业证券股份有限公司成都航空路证券营业部"
+        ],
+        "lastDate": "2026-11-23",
+        "net": 0.51,
+        "name": "风华高科"
+      },
+      {
+        "code": "002905",
+        "buy": 0.64,
+        "sell": 0.15,
+        "seatCount": 6,
+        "seats": [
+          "东方财富证券股份有限公司山南香曲东路证券营业部",
+          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "国泰海通证券股份有限公司上海长宁区江苏路证券营业部",
+          "华泰证券股份有限公司南京分公司"
+        ],
+        "lastDate": "2026-11-19",
+        "net": 0.49,
+        "name": "金逸影视"
+      },
+      {
+        "code": "601091",
+        "buy": 8.0,
+        "sell": 7.51,
+        "seatCount": 10,
+        "seats": [
+          "东方财富证券股份有限公司山南香曲东路证券营业部",
+          "东方财富证券股份有限公司拉萨金融城南环路证券营业部",
+          "国信证券股份有限公司浙江互联网分公司",
+          "平安证券股份有限公司深圳香蜜湖证券营业部"
+        ],
+        "lastDate": "2026-11-18",
+        "net": 0.49,
+        "name": "沈鼓集团"
+      },
+      {
+        "code": "600316",
+        "buy": 0.49,
+        "sell": 0.0,
+        "seatCount": 2,
+        "seats": [
+          "国泰海通证券股份有限公司上海静安区新闸路证券营业部",
+          "中信证券股份有限公司深圳深南中路中信大厦证券营业部"
+        ],
+        "lastDate": "2026-11-20",
+        "net": 0.49,
+        "name": "洪都航空"
+      },
+      {
+        "code": "603880",
+        "buy": 1.43,
+        "sell": 0.94,
+        "seatCount": 7,
+        "seats": [
+          "高盛(中国)证券有限责任公司上海浦东新区世纪大道证券营业部",
+          "摩根大通证券(中国)有限公司上海银城中路证券营业部",
+          "中信证券股份有限公司上海分公司",
+          "中信证券股份有限公司北京分公司"
+        ],
+        "lastDate": "2026-11-17",
+        "net": 0.49,
+        "name": "南卫股份"
+      },
+      {
+        "code": "002199",
+        "buy": 0.55,
+        "sell": 0.07,
+        "seatCount": 4,
+        "seats": [
+          "开源证券股份有限公司西安西大街证券营业部",
+          "国新证券股份有限公司北京分公司",
+          "国新证券股份有限公司北京亦庄证券营业部",
+          "国泰海通证券股份有限公司重庆朝天门证券营业部"
+        ],
+        "lastDate": "2026-11-23",
+        "net": 0.48,
+        "name": "东晶电子"
       }
     ]
   },
@@ -4712,12 +5748,12 @@
     ]
   },
   "screenMeta": {
-    "asOf": "2026-11-18",
-    "refreshedAt": "2026-11-19T13:11:57+0800",
+    "asOf": "2026-11-23",
+    "refreshedAt": "2026-11-24T01:07:52+0800",
     "priceSource": "东方财富（ulist + kline 前复权）",
     "hotWindow": {
-      "from": "2026-11-05",
-      "to": "2026-11-18",
+      "from": "2026-11-10",
+      "to": "2026-11-23",
       "days": 10
     },
     "count": 39,
@@ -4726,49 +5762,49 @@
     "note": "市值/换手/5日涨幅为当日收盘截面；a4 由龙虎榜游资席位明细计算，a5 由收盘价计算；a1–a3 为人工研究结论，不由脚本改动。"
   },
   "focus": {
-    "asOf": "2026-11-18",
+    "asOf": "2026-11-23",
     "presetId": "default",
     "presetName": "默认（既定条件）",
     "presetNote": "科技赛道中期观察池：市值 45–330 亿 · 换手 >2.5% · 叠加景气与加分项",
     "topN": 5,
-    "passed": 17,
+    "passed": 32,
     "picked": [
+      {
+        "code": "002913",
+        "name": "奥士康",
+        "score": 4,
+        "mcap": 192.3,
+        "track": "PCB"
+      },
       {
         "code": "603283",
         "name": "赛腾股份",
         "score": 3,
-        "mcap": 138.2,
+        "mcap": 134.3,
         "track": "半导体检测设备"
+      },
+      {
+        "code": "300358",
+        "name": "楚天科技",
+        "score": 2,
+        "mcap": 55.6,
+        "track": "制药装备"
       },
       {
         "code": "605058",
         "name": "澳弘电子",
         "score": 2,
-        "mcap": 57.4,
+        "mcap": 64.2,
         "track": "PCB"
       },
       {
         "code": "603690",
         "name": "至纯科技",
         "score": 2,
-        "mcap": 73.0,
+        "mcap": 68.7,
         "track": "半导体设备"
-      },
-      {
-        "code": "603936",
-        "name": "博敏电子",
-        "score": 2,
-        "mcap": 77.3,
-        "track": "PCB"
-      },
-      {
-        "code": "300852",
-        "name": "四会富仕",
-        "score": 2,
-        "mcap": 77.7,
-        "track": "PCB"
       }
     ],
-    "generatedAt": "2026-11-19T13:12:13+0800"
+    "generatedAt": "2026-11-24T01:08:48+0800"
   }
 }

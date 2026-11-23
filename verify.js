@@ -112,22 +112,22 @@ setTimeout(() => {
   const assert = (name, cond, got) => checks.push({ name, ok: !!cond, got: String(got).slice(0, 90) });
 
   // ---- 元信息 ----
-  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-19", txt("headerDate"));
+  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-23", txt("headerDate"));
   assert("liveText 显示已收盘时间", txt("liveText").includes("已收盘"), txt("liveText"));
   assert("dataSource 填入数据源", txt("dataSource").includes("东方财富"), txt("dataSource"));
-  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 19 日"), txt("dataDate"));
+  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 23 日"), txt("dataDate"));
   assert("offlineBanner 保持隐藏", d.getElementById("offlineBanner").hidden === true, d.getElementById("offlineBanner").hidden);
 
   // ---- 恐慌指数 ----
-  assert("fearValue = 77", txt("fearValue") === "77", txt("fearValue"));
-  assert("fearBadge = 偏高", txt("fearBadge") === "偏高", txt("fearBadge"));
+  assert("fearValue = 37", txt("fearValue") === "37", txt("fearValue"));
+  assert("fearBadge = 平稳", txt("fearBadge") === "平稳", txt("fearBadge"));
   assert("fearBreakdown 渲染 5 项", count("#fearBreakdown .breakdown-item") === 5, count("#fearBreakdown .breakdown-item"));
   assert("fearRaw 渲染 6 项读数", count("#fearRaw > div") === 6, count("#fearRaw > div"));
   assert("gaugeArc 有描边色", (d.getElementById("gaugeArc").style.stroke || "").length > 0, d.getElementById("gaugeArc").style.stroke);
 
   // ---- 指数 ----
   assert("marketStats 4 张卡片", count("#marketStats .stat-card") === 4, count("#marketStats .stat-card"));
-  assert("指数含上证 3577.62", htmlOf("marketStats").includes("3,577.62"), "见 innerHTML");
+  assert("指数含上证 3538.95", htmlOf("marketStats").includes("3,538.95"), "见 innerHTML");
   assert("成交额显示万亿", htmlOf("marketStats").includes("万亿"), "见 innerHTML");
 
   // ---- 板块 ----

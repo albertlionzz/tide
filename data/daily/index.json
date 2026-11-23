@@ -144,7 +144,29 @@
     "delta.json",
     "top5.json"
    ]
+  },
+  {
+   "date": "2026-11-23",
+   "fear": 37,
+   "label": "平稳",
+   "sh": 3538.95,
+   "shPct": 0.15,
+   "up": 146,
+   "down": 3,
+   "maxBoards": 5,
+   "adv": 4344,
+   "dec": 806,
+   "turnoverYi": 15529.0,
+   "boardUp": 447,
+   "boardDown": 49,
+   "boardTotal": 496,
+   "files": [
+    "raw_snapshot.json",
+    "tide_data.json",
+    "delta.json",
+    "top5.json"
+   ]
   }
  ],
- "count": 7
+ "count": 8
 }

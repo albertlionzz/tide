@@ -144,10 +144,16 @@ def main():
         prev3 = mean(turns[-6:-3]) if len(turns) >= 6 else mean(turns[:-3])
         if last3 and prev3:
             chg = round((last3 / prev3 - 1) * 100, 1)
+            # 「近 3 日缩量」与「今日放量」可以同时成立（缺档时更常见），
+            # 必须把今日相对 3 日均的方向单列，否则「缩量」会被读成对今日的判断。
+            today = cur["turnoverYi"]
+            tchg = round((today / last3 - 1) * 100, 1) if last3 else 0
+            tdir = "高于" if tchg > 0 else "低于"
             findings.append({
                 "tone": "info",
-                "text": f"近 3 日日均成交 {last3:.0f} 亿，较前段 {prev3:.0f} 亿 {'放量' if chg > 0 else '缩量'} {abs(chg):.1f}%；"
-                        f"今日 {cur['turnoverYi']:.0f} 亿。",
+                "text": f"近 3 个记录日日均成交 {last3:.0f} 亿，较前段 {prev3:.0f} 亿 "
+                        f"{'放量' if chg > 0 else '缩量'} {abs(chg):.1f}%；"
+                        f"今日 {today:.0f} 亿，{tdir} 3 日均 {abs(tchg):.1f}%。",
             })
 
     # ④ 上涨家数占比：判断普跌还是结构性

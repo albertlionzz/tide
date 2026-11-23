@@ -27,8 +27,8 @@ import urllib.request
 import kline_src
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-BASE = "http://push2.eastmoney.com"
-HIS = "http://push2his.eastmoney.com"
+BASE = "https://push2.eastmoney.com"
+HIS = "https://push2his.eastmoney.com"
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 CTX = ssl.create_default_context()
@@ -50,6 +50,11 @@ def get_json(url, referer="https://quote.eastmoney.com/", retries=3):
                 return json.loads(r.read().decode("utf-8"))
         except Exception as e:                      # noqa: BLE001
             last = e
+            # 东财频控会单侧封死某个协议：http 报 RemoteDisconnected 时换 https 往往能过
+            if "https://" in url:
+                url = url.replace("https://", "http://", 1)
+            elif "http://" in url:
+                url = url.replace("http://", "https://", 1)
             time.sleep(1.0 * (i + 1))
     raise RuntimeError(f"拉取失败 {url[:80]} -> {last}")
 

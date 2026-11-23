@@ -363,11 +363,17 @@ function renderIndices() {
     </article>`
   );
 
+  // 副行原先再写一遍「1.55 万亿」，与主值完全重复；改成较前记录日的增减，
+  // 缺 delta 时退回亿为单位（量纲不同，不算重复）。
+  const td = STATE.delta && STATE.delta.market ? STATE.delta.market.turnoverDelta : null;
+  const turnoverSub = typeof td === "number"
+    ? `较前记录日 ${td > 0 ? "+" : "−"}${fmtNum(Math.abs(td), 0)} 亿`
+    : `${fmtNum(d.turnoverYi, 0)} 亿`;
   cards.push(`
     <article class="stat-card">
       <p class="stat-label">两市成交</p>
       <p class="stat-value">${(d.turnoverYi / 10000).toFixed(2)}<span class="unit">万亿</span></p>
-      <p class="stat-change flat">${fmtYi(d.turnoverYi)}</p>
+      <p class="stat-change flat">${turnoverSub}</p>
     </article>`);
 
   row.innerHTML = cards.join("");
@@ -429,7 +435,11 @@ function renderSectorDetail(s) {
   setText("sectorDetailTitle", s.name);
 
   const l = STATE.data.limit;
-  const desc = `板块今日 ${fmtPct(s.pct)}，换手 ${s.turnover ? s.turnover.toFixed(2) + "%" : "—"}。`;
+  const nAdv = Number(s.advancers) || 0;
+  const nDec = Number(s.decliners) || 0;
+  const nAll = nAdv + nDec;
+  const desc = `板块今日 ${fmtPct(s.pct)}，换手 ${s.turnover ? s.turnover.toFixed(2) + "%" : "—"}`
+    + (nAll ? `，成分 ${nAll} 只（涨 ${nAdv} / 跌 ${nDec}）。` : "。");
   setText("sectorDetailDesc", desc);
 
   const chg = $("sectorChange");
@@ -456,10 +466,18 @@ function renderSectorDetail(s) {
   const leaders = $("sectorLeaders");
   if (leaders) {
     const bare = String(s.name || "").replace(/[ⅠⅡⅢⅣⅤ]/g, "").trim();
-    const pool = STATE.data.limitUpPool.filter((r) => {
-      const reason = r.reason || "";
-      return (bare && reason.includes(bare)) ||
-        reason.split(".").some((t) => t && (t.includes(bare) || bare.includes(t)));
+    // 全量精简表（limitUpBrief）覆盖当日所有涨停股；老快照没有该字段时退回取样池，
+    // 此时命中率受样本限制，措辞必须标明「样本内」。
+    const brief = STATE.data.limitUpBrief || [];
+    const src = brief.length ? brief : STATE.data.limitUpPool;
+    // hybk 会被东财截断（「自动化设」= 自动化设备），所以除包含判断外再加前缀判断；
+    // 概念板块（如「机器人」）靠同花顺涨停原因命中，行业板块靠 hybk。
+    const pool = src.filter((r) => {
+      const txt = [r.reason, r.board].filter(Boolean).join(".");
+      if (!bare) return false;
+      if (txt.includes(bare)) return true;
+      return txt.split(".").some((t) => t && t.length >= 3
+        && (t.includes(bare) || bare.includes(t) || bare.startsWith(t)));
     });
     const rows = pool.length ? pool.slice(0, 4) : [];
     leaders.innerHTML = rows.length
@@ -475,7 +493,9 @@ function renderSectorDetail(s) {
         </li>`
           )
           .join("")
-      : `<li class="leader-empty">样本内未见该板块涨停股</li>`;
+      : `<li class="leader-empty">${brief.length
+          ? "该板块今日无涨停股"
+          : "样本内未见该板块涨停股（取样池，命中率有限）"}</li>`;
   }
 }
 
@@ -1486,8 +1506,13 @@ function renderFearChart() {
   const first = pts[0], last = pts[pts.length - 1];
   if (sub) {
     const diff = last.fear - first.fear;
-    sub.textContent = `${pts.length} 个交易日 · ${first.label} ${first.fear} → ${last.label} ${last.fear}`
-      + ` · ${diff === 0 ? "持平" : (diff > 0 ? "上行 " : "回落 ") + Math.abs(diff) + " 分"}`;
+    // 台账只在抓过数的交易日有点，缺档时折线会把两天连成一天。算最大相邻间隔并标出来。
+    const gaps = pts.slice(1).map((p, i) => Math.round(
+      (new Date(`${p.date}T00:00:00`) - new Date(`${pts[i].date}T00:00:00`)) / 86400000));
+    const maxGap = gaps.length ? Math.max(...gaps) : 0;
+    sub.textContent = `${pts.length} 个记录日 · ${first.fear}→${last.fear} `
+      + `${diff === 0 ? "持平" : (diff > 0 ? "上行 " : "回落 ") + Math.abs(diff)}`
+      + (maxGap > 5 ? ` · 缺档最大 ${maxGap} 天` : "");
   }
   if (legend) {
     legend.innerHTML = FEAR_BANDS.map(
@@ -2216,14 +2241,17 @@ function renderDelta() {
   }
   block.hidden = false;
 
-  $("deltaRange").textContent = `${d.prev} → ${d.asOf}　与上一交易日对比`;
+  const gapDays = Math.round(
+    (new Date(`${d.asOf}T00:00:00`) - new Date(`${d.prev}T00:00:00`)) / 86400000);
+  $("deltaRange").textContent = `${d.prev} → ${d.asOf}　与上个记录日对比`
+    + (gapDays > 1 ? `　相隔 ${gapDays} 天，中间日期未记录` : "");
 
   // —— 一句话领读：指数 + 情绪 + 跌停 + 成交，都是已算好的数 ——
   const sh = (d.market.index || []).find((i) => i.name === "上证指数") || d.market.index[0];
   const lead = $("deltaLead");
   if (lead) {
     const fearDir = d.fear.delta > 0 ? "升温" : d.fear.delta < 0 ? "降温" : "持平";
-    lead.innerHTML = `上证 <b>${fmtNum(sh.close, 2)}</b>（${pn(sh.pct, "%")}，前一日 ${pn(sh.pctPrev, "%")}），`
+    lead.innerHTML = `上证 <b>${fmtNum(sh.close, 2)}</b>（${pn(sh.pct, "%")}，前记录日 ${pn(sh.pctPrev, "%")}），`
       + `恐慌 <b>${d.fear.prev} → ${d.fear.now}</b>（${fearDir} ${pn(d.fear.delta, "", 0).replace("−", "")} 分），`
       + `跌停 <b>${d.limit.downPrev} → ${d.limit.down}</b> 家，`
       + `成交 <b>${fmtNum(d.market.turnoverYi, 0)}</b> 亿（${pn(d.market.turnoverDelta, "", 0)} 亿）。`;

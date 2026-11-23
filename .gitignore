@@ -56,3 +56,7 @@ deploy/*.tar.gz
 _cache/
 _probe.html
 _probe2.html
+
+# ---- 量化模块产物（235MB：全市场日线 + 龙虎榜 + 特征表，可由脚本重建）----
+quant/data/
+quant/reports/

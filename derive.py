@@ -301,6 +301,7 @@ def build(raw: dict) -> dict:
             "spread": round(board_spread, 2),
         },
         "limitUpPool": up_pool,
+        "limitUpBrief": raw.get("limitUpBrief") or [],
         "limitDownPool": down_pool,
         "seats": seats,
         "stockActivity": raw["stockListActivity"],
