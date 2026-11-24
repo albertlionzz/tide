@@ -60,6 +60,9 @@ def load_series():
             "maxBoards": d["limit"]["maxBoards"],
             "adv": d["breadth"]["advancers"],
             "dec": d["breadth"]["decliners"],
+            "total": d["breadth"].get("total") or (
+                d["breadth"]["advancers"] + d["breadth"]["decliners"]
+                + (d["breadth"].get("unchanged") or 0)),
             "turnoverYi": round(d["turnoverYi"], 0),
             "boardUp": bs.get("up"),
             "boardTotal": bs.get("total"),
@@ -95,8 +98,11 @@ def main():
     prev = rows[-2]
     fears = [r["fear"] for r in rows]
     turns = [r["turnoverYi"] for r in rows]
-    adv_ratios = [round(r["adv"] / (r["adv"] + r["dec"]) * 100, 1)
-                  if (r["adv"] + r["dec"]) else None for r in rows]
+    # 分母统一用全市场家数（含平盘），与 tide_data.breadth.advRatio、情绪台账、
+    # 筛选规则 A5 同一个口径。原先这里用「涨+跌」作分母，同一页会同时出现
+    # 35.3% 与 36.1% 两个「上涨占比」（11-24 发现）。
+    adv_ratios = [round(r["adv"] / r["total"] * 100, 1) if r.get("total") else None
+                  for r in rows]
 
     findings = []
 
@@ -125,18 +131,42 @@ def main():
                     f"亏钱效应仍在扩散。",
         })
     else:
-        # 今日已翻正，往回数「上一段」连续跌停占优的天数（跳过今天，否则恒为 0）
+        # 今日涨停多于跌停。往回数「上一段」连续跌停占优的天数，判断是不是刚反转。
         back = 0
         for r in reversed(rows[:-1]):
             if r["down"] > r["up"]:
                 back += 1
             else:
                 break
-        findings.append({
-            "tone": "up",
-            "text": f"涨停 {cur['up']} 家重新多于跌停 {cur['down']} 家，"
-                    f"此前连续 {back} 日跌停占优的格局被打断，风险释放出现停顿。",
-        })
+        # 涨停占优已延续几天（含今天）。back==0 说明昨天就已占优，此时说「重新」
+        # 「格局被打断」都是错的（11-24 踩：昨涨停 146 / 跌停 3，今天 55 / 2）。
+        lead = 0
+        for r in reversed(rows):
+            if r["up"] > r["down"]:
+                lead += 1
+            else:
+                break
+        prev = rows[-2] if len(rows) >= 2 else None
+        if back:
+            findings.append({
+                "tone": "up",
+                "text": f"涨停 {cur['up']} 家重新多于跌停 {cur['down']} 家，"
+                        f"此前连续 {back} 个记录日跌停占优的格局被打断，风险释放出现停顿。",
+            })
+        elif prev and prev["up"] and cur["up"] <= prev["up"] * 0.7:
+            # 延续但明显降温：家数是这次真正的边际变化，必须点出来
+            findings.append({
+                "tone": "down",
+                "text": f"涨停 {cur['up']} 家仍多于跌停 {cur['down']} 家，但较前记录日的 "
+                        f"{prev['up']} 家减少 {prev['up'] - cur['up']} 家，接力明显降温；"
+                        f"涨停占优已延续 {lead} 个记录日。",
+            })
+        else:
+            findings.append({
+                "tone": "up",
+                "text": f"涨停 {cur['up']} 家多于跌停 {cur['down']} 家，"
+                        f"涨停占优已延续 {lead} 个记录日，风险释放仍在停顿状态。",
+            })
 
     # ③ 成交额：近 3 日 vs 前 3 日
     if len(turns) >= 4:
@@ -162,7 +192,7 @@ def main():
         tone = "down" if ar < 30 else ("up" if ar > 60 else "info")
         findings.append({
             "tone": tone,
-            "text": f"上涨家数占比 {ar:.1f}%（{cur['adv']} 涨 / {cur['dec']} 跌），"
+            "text": f"上涨家数占比 {ar:.1f}%（{cur['adv']} 涨 / {cur['dec']} 跌 / {cur['total']} 只全市场），"
                     f"{'全面普跌' if ar < 25 else '跌多涨少' if ar < 45 else '多空接近' if ar < 60 else '普涨'}；"
                     f"本地台账最低 {min(x for x in adv_ratios if x is not None):.1f}%、"
                     f"最高 {max(x for x in adv_ratios if x is not None):.1f}%。",

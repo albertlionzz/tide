@@ -190,6 +190,25 @@ def main():
     with open(os.path.join(HERE, "screen_meta.json"), "w", encoding="utf-8") as fh:
         json.dump(meta, fh, ensure_ascii=False, indent=2)
 
+    # derive.py 在 refresh 之前跑，它读到的还是**上一日**的 screen_meta.json，
+    # 于是 tide_data.json 里嵌的 screenMeta.asOf 会滞后一天（前端「行情截面」
+    # 标注 11-23，而筛选表里其实是 11-24 的价）。这里显式回写一次。
+    tide_path = os.path.join(HERE, "tide_data.json")
+    if os.path.exists(tide_path):
+        try:
+            with open(tide_path, "r", encoding="utf-8") as fh:
+                tide = json.load(fh)
+            tide["screenMeta"] = meta
+            tmp = tide_path + ".tmp"
+            with open(tmp, "w", encoding="utf-8") as fh:
+                # 与 derive.py 的写出格式保持一致（indent=2），否则同一份数据
+                # 会因为缩进差异让 git diff 看起来像整体重写。
+                json.dump(tide, fh, ensure_ascii=False, indent=2)
+            os.replace(tmp, tide_path)
+            print(f"  screenMeta 已回写 tide_data.json（asOf={trade_date}）")
+        except Exception as e:                       # noqa: BLE001
+            print(f"  [!] 回写 screenMeta 失败：{e}")
+
     print(f"完成。{len(pool)} 只 · A4 命中 {a4_hit} 只 · A5 命中 {a5_hit} 只")
     if miss_mcap:
         print(f"  [!] 市值缺失 {len(miss_mcap)} 只：{miss_mcap}")

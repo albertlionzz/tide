@@ -1,48 +1,48 @@
 {
-  "asOf": "2026-11-23",
-  "prev": "2026-11-19",
+  "asOf": "2026-11-24",
+  "prev": "2026-11-23",
   "available": true,
   "fear": {
-    "now": 37,
-    "prev": 77,
-    "delta": -40,
-    "label": "平稳",
-    "labelPrev": "偏高",
+    "now": 58,
+    "prev": 37,
+    "delta": 21,
+    "label": "紧张",
+    "labelPrev": "平稳",
     "parts": [
       {
         "name": "涨跌家数失衡",
-        "now": 0,
-        "prev": 100,
+        "now": 100,
+        "prev": 0,
         "weight": 0.3,
-        "delta": -100
+        "delta": 100
       },
       {
         "name": "跌停扩散度",
-        "now": 8,
-        "prev": 100,
+        "now": 14,
+        "prev": 8,
         "weight": 0.22,
-        "delta": -92
+        "delta": 6
       },
       {
         "name": "连板高度",
-        "now": 50,
-        "prev": 75,
+        "now": 62,
+        "prev": 50,
         "weight": 0.18,
-        "delta": -25
+        "delta": 12
       },
       {
         "name": "赚钱效应",
-        "now": 72,
-        "prev": 49,
+        "now": 12,
+        "prev": 72,
         "weight": 0.15,
-        "delta": 23
+        "delta": -60
       },
       {
         "name": "指数振幅",
-        "now": 100,
-        "prev": 25,
+        "now": 76,
+        "prev": 100,
         "weight": 0.15,
-        "delta": 75
+        "delta": -24
       }
     ]
   },
@@ -50,303 +50,288 @@
     "index": [
       {
         "name": "上证指数",
-        "close": 3538.95,
-        "pct": 0.15,
-        "pctPrev": -0.28,
-        "deltaPct": 0.43
+        "close": 3548.37,
+        "pct": 0.27,
+        "pctPrev": 0.15,
+        "deltaPct": 0.12
       },
       {
         "name": "深证成指",
-        "close": 10454.37,
-        "pct": 1.93,
-        "pctPrev": -0.71,
-        "deltaPct": 2.64
+        "close": 10423.6,
+        "pct": -0.29,
+        "pctPrev": 1.93,
+        "deltaPct": -2.22
       },
       {
         "name": "创业板指",
-        "close": 2280.2,
-        "pct": 3.08,
-        "pctPrev": -0.79,
-        "deltaPct": 3.87
+        "close": 2278.99,
+        "pct": -0.05,
+        "pctPrev": 3.08,
+        "deltaPct": -3.13
       }
     ],
-    "turnoverYi": 15529.0,
-    "turnoverPrev": 13051.0,
-    "turnoverDelta": 2477.0,
-    "turnoverDeltaPct": 19.0,
-    "adv": 4344,
-    "advPrev": 647,
-    "dec": 806,
-    "decPrev": 4594,
-    "advRatio": 82.12,
-    "advRatioPrev": 12.22,
-    "amplitude": 3.56,
-    "amplitudePrev": 1.46
+    "turnoverYi": 16551.0,
+    "turnoverPrev": 15529.0,
+    "turnoverDelta": 1022.0,
+    "turnoverDeltaPct": 6.6,
+    "adv": 1867,
+    "advPrev": 4344,
+    "dec": 3305,
+    "decPrev": 806,
+    "advRatio": 35.25,
+    "advRatioPrev": 82.12,
+    "amplitude": 2.85,
+    "amplitudePrev": 3.56
   },
   "limit": {
-    "up": 146,
-    "upPrev": 23,
-    "upDelta": 123,
-    "down": 3,
-    "downPrev": 68,
-    "downDelta": -65,
-    "maxBoards": 5,
-    "maxBoardsPrev": 3,
-    "highBoardCount": 3,
+    "up": 55,
+    "upPrev": 146,
+    "upDelta": -91,
+    "down": 2,
+    "downPrev": 3,
+    "downDelta": -1,
+    "maxBoards": 4,
+    "maxBoardsPrev": 5,
+    "highBoardCount": 5,
     "highBoardCountPrev": 3,
-    "sealedRatio": 5.6,
-    "sealedRatioPrev": 18.8,
-    "avgSealYi": 1.57,
-    "avgSealYiPrev": 1.03
+    "sealedRatio": 47.1,
+    "sealedRatioPrev": 5.6,
+    "avgSealYi": 1.71,
+    "avgSealYiPrev": 1.57
   },
   "boards": {
     "basis": "full",
     "comparable": true,
-    "up": 447,
-    "down": 49,
+    "up": 191,
+    "down": 304,
     "total": 496,
-    "upPrev": 22,
-    "downPrev": 472,
-    "upDelta": 425,
-    "downDelta": -423,
-    "spread": 17.5,
-    "spreadPrev": 12.16,
+    "upPrev": 447,
+    "downPrev": 49,
+    "upDelta": -256,
+    "downDelta": 255,
+    "spread": 16.45,
+    "spreadPrev": 17.5,
     "top": [
       {
-        "name": "视频媒体",
-        "pct": 15.21,
-        "pctPrev": -6.7,
+        "name": "钴",
+        "pct": 11.5,
+        "pctPrev": 2.15,
         "isNew": true
       },
       {
         "name": "其他数字媒体",
-        "pct": 14.16,
-        "pctPrev": -5.26,
+        "pct": 7.12,
+        "pctPrev": 14.16,
+        "isNew": false
+      },
+      {
+        "name": "文化用品",
+        "pct": 6.17,
+        "pctPrev": 6.59,
+        "isNew": false
+      },
+      {
+        "name": "涂料",
+        "pct": 5.98,
+        "pctPrev": -0.78,
         "isNew": true
       },
       {
-        "name": "机器人",
-        "pct": 9.54,
-        "pctPrev": -3.19,
+        "name": "汽车综合服务",
+        "pct": 4.16,
+        "pctPrev": 3.71,
         "isNew": true
       },
       {
-        "name": "文字媒体",
-        "pct": 8.65,
-        "pctPrev": -5.74,
+        "name": "镍",
+        "pct": 3.86,
+        "pctPrev": 3.74,
         "isNew": true
       },
       {
         "name": "院线",
-        "pct": 8.3,
-        "pctPrev": -7.16,
+        "pct": 3.14,
+        "pctPrev": 8.3,
+        "isNew": false
+      },
+      {
+        "name": "文娱用品",
+        "pct": 3.04,
+        "pctPrev": 3.85,
         "isNew": true
       },
       {
-        "name": "影视院线",
-        "pct": 7.63,
-        "pctPrev": -5.86,
+        "name": "逆变器",
+        "pct": 2.86,
+        "pctPrev": 1.12,
         "isNew": true
       },
       {
-        "name": "影视动漫制作",
-        "pct": 7.42,
-        "pctPrev": -5.49,
+        "name": "能源金属",
+        "pct": 2.65,
+        "pctPrev": 2.46,
         "isNew": true
       },
       {
-        "name": "医疗研发外包",
-        "pct": 7.23,
-        "pctPrev": -3.59,
+        "name": "医美服务",
+        "pct": 2.58,
+        "pctPrev": 0.54,
         "isNew": true
       },
       {
-        "name": "数字媒体",
-        "pct": 6.92,
-        "pctPrev": -5.47,
+        "name": "电商服务",
+        "pct": 2.54,
+        "pctPrev": 3.17,
         "isNew": true
       },
       {
-        "name": "水产养殖",
-        "pct": 6.8,
-        "pctPrev": -3.77,
+        "name": "卫浴制品",
+        "pct": 2.49,
+        "pctPrev": 4.15,
         "isNew": true
       },
       {
-        "name": "文化用品",
-        "pct": 6.59,
-        "pctPrev": -1.65,
+        "name": "航天装备Ⅲ",
+        "pct": 2.44,
+        "pctPrev": 3.27,
         "isNew": true
       },
       {
-        "name": "自动化设备",
-        "pct": 6.56,
-        "pctPrev": -2.89,
-        "isNew": true
-      },
-      {
-        "name": "电机Ⅲ",
-        "pct": 6.26,
-        "pctPrev": -2.99,
-        "isNew": true
-      },
-      {
-        "name": "电机Ⅱ",
-        "pct": 6.26,
-        "pctPrev": -2.99,
-        "isNew": true
-      },
-      {
-        "name": "其他自动化设备",
-        "pct": 5.88,
-        "pctPrev": -2.67,
+        "name": "航天装备Ⅱ",
+        "pct": 2.44,
+        "pctPrev": 3.27,
         "isNew": true
       }
     ],
     "dropped": [
       {
-        "name": "集成电路制造",
-        "pctPrev": 5.0,
-        "pct": -0.45
+        "name": "视频媒体",
+        "pctPrev": 15.21,
+        "pct": 0.1
       },
       {
-        "name": "集成电路封测",
-        "pctPrev": 2.65,
-        "pct": 1.81
+        "name": "机器人",
+        "pctPrev": 9.54,
+        "pct": 1.36
       },
       {
-        "name": "氨纶",
-        "pctPrev": 2.05,
-        "pct": 2.5
+        "name": "文字媒体",
+        "pctPrev": 8.65,
+        "pct": 0.04
       },
       {
-        "name": "稀土",
-        "pctPrev": 1.69,
-        "pct": 3.6
+        "name": "影视院线",
+        "pctPrev": 7.63,
+        "pct": 0.96
       },
       {
-        "name": "航空运输",
-        "pctPrev": 1.32,
-        "pct": 0.64
+        "name": "影视动漫制作",
+        "pctPrev": 7.42,
+        "pct": 0.34
       },
       {
-        "name": "半导体设备",
-        "pctPrev": 1.07,
-        "pct": 1.07
+        "name": "医疗研发外包",
+        "pctPrev": 7.23,
+        "pct": -0.82
       },
       {
-        "name": "光伏主材",
-        "pctPrev": 0.67,
-        "pct": 1.04
+        "name": "数字媒体",
+        "pctPrev": 6.92,
+        "pct": 1.29
       },
       {
-        "name": "空调",
-        "pctPrev": 0.63,
-        "pct": -1.45
+        "name": "水产养殖",
+        "pctPrev": 6.8,
+        "pct": 0.17
       },
       {
-        "name": "航空机场",
-        "pctPrev": 0.63,
-        "pct": 0.44
+        "name": "自动化设备",
+        "pctPrev": 6.56,
+        "pct": 0.9
       },
       {
-        "name": "彩电",
-        "pctPrev": 0.6,
-        "pct": 0.3
+        "name": "电机Ⅲ",
+        "pctPrev": 6.26,
+        "pct": 0.97
       },
       {
-        "name": "涂料",
-        "pctPrev": 0.52,
-        "pct": -0.78
+        "name": "电机Ⅱ",
+        "pctPrev": 6.26,
+        "pct": 0.97
       },
       {
-        "name": "快递",
-        "pctPrev": 0.38,
-        "pct": -0.77
-      },
-      {
-        "name": "纺织鞋类制造",
-        "pctPrev": 0.3,
-        "pct": 0.64
-      },
-      {
-        "name": "白色家电",
-        "pctPrev": 0.29,
-        "pct": -0.65
-      },
-      {
-        "name": "电子化学品Ⅲ",
-        "pctPrev": 0.23,
-        "pct": 4.02
+        "name": "其他自动化设备",
+        "pctPrev": 5.88,
+        "pct": 0.59
       }
     ]
   },
   "money": [
     {
       "kind": "机构",
-      "net": 3.86,
-      "prev": -17.28,
-      "delta": 21.14,
+      "net": 6.62,
+      "prev": 3.86,
+      "delta": 2.76,
       "sample": 1,
       "samplePrev": 1
     },
     {
       "kind": "北向",
-      "net": 7.18,
-      "prev": 3.78,
-      "delta": 3.4,
+      "net": -1.8,
+      "prev": 7.18,
+      "delta": -8.98,
       "sample": 2,
       "samplePrev": 2
     },
     {
       "kind": "营业部",
-      "net": 3.62,
-      "prev": 14.99,
-      "delta": -11.37,
+      "net": 0.44,
+      "prev": 3.62,
+      "delta": -3.18,
       "sample": 11,
       "samplePrev": 11
     }
   ],
   "hotmoney": [
     {
+      "name": "桑田路",
+      "net": -2.31,
+      "netPrev": -2.17,
+      "dayNet": -0.13,
+      "dayPrev": -0.01,
+      "dayDelta": -0.12,
+      "stocks": 7,
+      "activeDays": 7,
+      "topStock": "九阳股份"
+    },
+    {
+      "name": "赵老哥",
+      "net": -0.88,
+      "netPrev": -0.56,
+      "dayNet": -0.32,
+      "dayPrev": 0.31,
+      "dayDelta": -0.63,
+      "stocks": 7,
+      "activeDays": 8,
+      "topStock": "真视通"
+    },
+    {
       "name": "章盟主",
-      "net": 12.96,
-      "netPrev": 17.8,
-      "dayNet": 2.64,
-      "dayPrev": -0.24,
-      "dayDelta": 2.88,
-      "stocks": 84,
+      "net": 14.1,
+      "netPrev": 12.96,
+      "dayNet": -0.77,
+      "dayPrev": 2.64,
+      "dayDelta": -3.41,
+      "stocks": 80,
       "activeDays": 10,
       "topStock": "文投控股"
     },
     {
-      "name": "赵老哥",
-      "net": -0.56,
-      "netPrev": -0.76,
-      "dayNet": 0.31,
-      "dayPrev": -0.05,
-      "dayDelta": 0.36,
-      "stocks": 7,
-      "activeDays": 7,
-      "topStock": "真视通"
-    },
-    {
-      "name": "桑田路",
-      "net": -2.17,
-      "netPrev": -1.3,
-      "dayNet": -0.01,
-      "dayPrev": null,
-      "dayDelta": null,
-      "stocks": 6,
-      "activeDays": 6,
-      "topStock": "九阳股份"
-    },
-    {
       "name": "炒股养家",
       "net": -0.73,
-      "netPrev": -0.34,
+      "netPrev": -0.73,
       "dayNet": null,
-      "dayPrev": 0.11,
+      "dayPrev": null,
       "dayDelta": null,
       "stocks": 4,
       "activeDays": 3,
@@ -354,38 +339,38 @@
     }
   ],
   "hotmoneyWindow": {
-    "from": "2026-11-10",
-    "to": "2026-11-23",
+    "from": "2026-11-11",
+    "to": "2026-11-24",
     "days": 10
   },
   "signals": [
     {
-      "tone": "up",
-      "text": "恐慌 77 → 37（-40），情绪明显切换"
+      "tone": "down",
+      "text": "恐慌 37 → 58（+21），情绪明显切换"
     },
     {
       "tone": "up",
-      "text": "跌停 68 → 3 家（-65），风险收敛"
+      "text": "跌停 3 → 2 家（-1），风险收敛"
+    },
+    {
+      "tone": "down",
+      "text": "涨停 146 → 55 家（-91）"
+    },
+    {
+      "tone": "down",
+      "text": "最高板 5 → 4 板，空间压缩"
     },
     {
       "tone": "up",
-      "text": "涨停 23 → 146 家（+123）"
-    },
-    {
-      "tone": "up",
-      "text": "最高板 3 → 5 板，空间打开"
-    },
-    {
-      "tone": "up",
-      "text": "机构合计由净卖 17.28 亿转为净买 3.86 亿"
+      "text": "机构合计净额 +3.86 亿 → +6.62 亿"
     },
     {
       "tone": "info",
-      "text": "涨幅前八新进 8 个：视频媒体、其他数字媒体、机器人、文字媒体…"
+      "text": "涨幅前八新进 5 个：钴、涂料、汽车综合服务、镍…"
     },
     {
       "tone": "info",
-      "text": "全市场上涨行业 22 → 447 个，下跌 472 → 49 个"
+      "text": "全市场上涨行业 447 → 191 个，下跌 49 → 304 个"
     }
   ]
 }

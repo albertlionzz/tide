@@ -112,22 +112,22 @@ setTimeout(() => {
   const assert = (name, cond, got) => checks.push({ name, ok: !!cond, got: String(got).slice(0, 90) });
 
   // ---- 元信息 ----
-  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-23", txt("headerDate"));
+  assert("headerDate 填入交易日", txt("headerDate") === "2026-11-24", txt("headerDate"));
   assert("liveText 显示已收盘时间", txt("liveText").includes("已收盘"), txt("liveText"));
   assert("dataSource 填入数据源", txt("dataSource").includes("东方财富"), txt("dataSource"));
-  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 23 日"), txt("dataDate"));
+  assert("dataDate 中文化", txt("dataDate").includes("2026 年 11 月 24 日"), txt("dataDate"));
   assert("offlineBanner 保持隐藏", d.getElementById("offlineBanner").hidden === true, d.getElementById("offlineBanner").hidden);
 
   // ---- 恐慌指数 ----
-  assert("fearValue = 37", txt("fearValue") === "37", txt("fearValue"));
-  assert("fearBadge = 平稳", txt("fearBadge") === "平稳", txt("fearBadge"));
+  assert("fearValue = 58", txt("fearValue") === "58", txt("fearValue"));
+  assert("fearBadge = 紧张", txt("fearBadge") === "紧张", txt("fearBadge"));
   assert("fearBreakdown 渲染 5 项", count("#fearBreakdown .breakdown-item") === 5, count("#fearBreakdown .breakdown-item"));
   assert("fearRaw 渲染 6 项读数", count("#fearRaw > div") === 6, count("#fearRaw > div"));
   assert("gaugeArc 有描边色", (d.getElementById("gaugeArc").style.stroke || "").length > 0, d.getElementById("gaugeArc").style.stroke);
 
   // ---- 指数 ----
   assert("marketStats 4 张卡片", count("#marketStats .stat-card") === 4, count("#marketStats .stat-card"));
-  assert("指数含上证 3538.95", htmlOf("marketStats").includes("3,538.95"), "见 innerHTML");
+  assert("指数含上证 3548.37", htmlOf("marketStats").includes("3,548.37"), "见 innerHTML");
   assert("成交额显示万亿", htmlOf("marketStats").includes("万亿"), "见 innerHTML");
 
   // ---- 板块 ----
@@ -229,9 +229,10 @@ setTimeout(() => {
     assert("资金结构 3 行", count("#deltaMoney .delta-row") === 3, count("#deltaMoney .delta-row"));
     assert("轮动表含「新进」或表头", htmlOf("deltaBoards").includes("今日涨幅居前"), "见 innerHTML");
     assert("游资变动表含游资名", htmlOf("deltaHot").includes("章盟主"), "见 innerHTML");
-    assert("领读已生成（含恐慌与跌停）",
-      txt("deltaLead").includes("恐慌") && txt("deltaLead").includes("跌停") && txt("deltaLead").length > 30,
-      txt("deltaLead").slice(0, 50));
+    assert("领读已生成（含恐慌与涨跌停）",
+      txt("deltaLead").includes("恐慌") && txt("deltaLead").includes("涨停")
+        && txt("deltaLead").includes("跌停") && txt("deltaLead").length > 30,
+      txt("deltaLead").slice(0, 60));
   } else {
     assert("无 delta.json 时整块隐藏", d.getElementById("deltaBlock").hidden === true, "缺数据");
   }

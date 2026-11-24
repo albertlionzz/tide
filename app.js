@@ -2246,14 +2246,16 @@ function renderDelta() {
   $("deltaRange").textContent = `${d.prev} → ${d.asOf}　与上个记录日对比`
     + (gapDays > 1 ? `　相隔 ${gapDays} 天，中间日期未记录` : "");
 
-  // —— 一句话领读：指数 + 情绪 + 跌停 + 成交，都是已算好的数 ——
+  // —— 一句话领读：指数 + 情绪 + 涨跌停 + 成交，都是已算好的数 ——
   const sh = (d.market.index || []).find((i) => i.name === "上证指数") || d.market.index[0];
   const lead = $("deltaLead");
   if (lead) {
     const fearDir = d.fear.delta > 0 ? "升温" : d.fear.delta < 0 ? "降温" : "持平";
+    // 涨停与跌停都要写：只写跌停时，涨停从 146 掉到 55 这种降温会被读成「风险缓解」
+    // （11-24 踩：摘要写「跌停 3 → 2 家」，而当天涨停腰斩、上涨家数从 4344 掉到 1867）。
     lead.innerHTML = `上证 <b>${fmtNum(sh.close, 2)}</b>（${pn(sh.pct, "%")}，前记录日 ${pn(sh.pctPrev, "%")}），`
       + `恐慌 <b>${d.fear.prev} → ${d.fear.now}</b>（${fearDir} ${pn(d.fear.delta, "", 0).replace("−", "")} 分），`
-      + `跌停 <b>${d.limit.downPrev} → ${d.limit.down}</b> 家，`
+      + `涨停 <b>${d.limit.upPrev} → ${d.limit.up}</b> 家、跌停 <b>${d.limit.downPrev} → ${d.limit.down}</b> 家，`
       + `成交 <b>${fmtNum(d.market.turnoverYi, 0)}</b> 亿（${pn(d.market.turnoverDelta, "", 0)} 亿）。`;
   }
 
